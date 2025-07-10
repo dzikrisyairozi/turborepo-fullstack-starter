@@ -1,1 +1,1 @@
-# fullstack-turborepo-starter
+# turborepo-fullstack-starter

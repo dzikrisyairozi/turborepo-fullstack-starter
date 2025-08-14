@@ -1,0 +1,49 @@
+# Dependencies
+node_modules/
+pnpm-lock.yaml
+
+# Build outputs
+dist/
+build/
+coverage/
+
+# Development files
+.husky/
+.vscode/
+.idea/
+
+# Tests
+test/
+*.spec.ts
+*.test.ts
+
+# Documentation
+README.md
+DEVELOPMENT.md
+docs/
+
+# Git
+.git/
+.gitignore
+
+# CI/CD
+.github/
+
+# Logs
+npm-debug.log*
+pnpm-debug.log*
+*.log
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Environment variables
+.env
+.env.*
+
+# Temporary files
+.tmp/
+.temp/ 

@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+pnpm-lock.yaml
+
+# Build outputs
+dist/
+build/
+coverage/
+
+# Logs
+*.log
+logs/
+
+# Environment files
+.env
+.env.*
+
+# IDE files
+.vscode/
+.idea/
+
+# Git
+.git/
+
+# Husky
+.husky/_ 

@@ -1,0 +1,19 @@
+#!/bin/sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "🔍 Checking if dependencies need to be updated..."
+
+# Check if package.json or pnpm-lock.yaml changed
+changed_files="$(git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD)"
+
+check_run() {
+    echo "$changed_files" | grep -q "$1" && eval "$2"
+}
+
+# Check if package.json changed
+check_run "package.json" "echo '📦 package.json changed, updating dependencies...' && pnpm install"
+
+# Check if pnpm-lock.yaml changed
+check_run "pnpm-lock.yaml" "echo '🔒 pnpm-lock.yaml changed, updating dependencies...' && pnpm install"
+
+echo "✅ Post-merge checks completed!" 

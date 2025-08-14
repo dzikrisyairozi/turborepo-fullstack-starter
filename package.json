@@ -7,8 +7,8 @@
     "lint": "turbo run lint",
     "lint:fix": "turbo run lint:fix",
     "lint:check": "turbo run lint:check",
-    "format": "prettier --write \"**/*.{ts,tsx,md,json,js,jsx,css,scss}\"",
-    "format:check": "prettier --check \"**/*.{ts,tsx,md,json,js,jsx,css,scss}\"",
+    "format": "prettier --write \"**/*.{ts,tsx,md,json,js,jsx,css,scss,yaml,yml}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,md,json,js,jsx,css,scss,yaml,yml}\"",
     "type-check": "turbo run type-check",
     "check-types": "turbo run check-types",
     "test": "turbo run test",
@@ -43,14 +43,5 @@
   "packageManager": "pnpm@9.0.0",
   "engines": {
     "node": ">=18"
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "*.{json,css,scss,md,html}": [
-      "prettier --write"
-    ]
   }
 }

@@ -1,4 +1,7 @@
 {
-  "*.{ts,js}": ["eslint --fix", "prettier --write"],
-  "*.{json,md,yml,yaml}": ["prettier --write"]
+  "apps/web/src/**/*.{js,jsx,ts,tsx}": ["eslint --fix", "prettier --check"],
+  "apps/api/src/**/*.{js,jsx,ts,tsx}": ["eslint --fix", "prettier --check"],
+  "apps/docs/app/**/*.{js,jsx,ts,tsx}": ["eslint --fix", "prettier --check"],
+  "packages/ui/src/**/*.{js,jsx,ts,tsx}": ["eslint --fix", "prettier --check"],
+  "*.{json,css,scss,md,html,yaml,yml}": ["prettier --check"]
 }

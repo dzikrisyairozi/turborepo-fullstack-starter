@@ -1,1 +1,6 @@
+echo "🔧 Running pre-commit checks..."
+echo "🧹 Linting staged files..."
+echo "📝 Checking code formatting..."
 npx lint-staged
+
+echo "✅ Pre-commit checks passed! 🎉"

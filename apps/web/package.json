@@ -10,9 +10,13 @@
     "format:check": "prettier --check \"**/*.{ts,tsx,md,json,js,jsx,css,scss}\"",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
+    "type-check": "tsc --noEmit",
+    "check-types": "tsc --noEmit",
+    "test": "echo \"No tests specified\"",
+    "test:watch": "echo \"No tests specified\"",
+    "clean": "rimraf .next .turbo dist",
     "prepare": "husky install",
-    "type:check": "tsc --noEmit",
-    "check-all": "pnpm run type:check && pnpm run lint && pnpm run format:check"
+    "check-all": "pnpm run type-check && pnpm run lint && pnpm run format:check"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -87,7 +91,8 @@
     "husky": "^9.1.7",
     "lint-staged": "^15.5.2",
     "prettier": "^3.6.2",
-    "prettier-plugin-tailwindcss": "^0.6.13"
+    "prettier-plugin-tailwindcss": "^0.6.13",
+    "rimraf": "^5.0.5"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [

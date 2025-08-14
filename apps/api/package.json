@@ -15,6 +15,7 @@
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "lint:fix": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "lint:check": "eslint \"{src,apps,libs,test}/**/*.ts\"",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -23,6 +24,8 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "prepare": "husky",
     "type-check": "tsc --noEmit",
+    "check-types": "tsc --noEmit",
+    "clean": "rimraf dist .turbo",
     "docker:build": "docker build -t nest-ts-prisma-starter .",
     "docker:run": "docker run -p 3000:3000 nest-ts-prisma-starter",
     "ci": "pnpm run type-check && pnpm run lint:check && pnpm run format:check && pnpm run test && pnpm run build",
@@ -77,7 +80,8 @@
     "tsconfig-paths": "^4.2.0",
     "tsx": "^4.20.3",
     "typescript": "^5.7.3",
-    "typescript-eslint": "^8.20.0"
+    "typescript-eslint": "^8.20.0",
+    "rimraf": "^5.0.5"
   },
   "jest": {
     "moduleFileExtensions": [

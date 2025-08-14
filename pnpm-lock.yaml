@@ -10,10 +10,13 @@ importers:
     devDependencies:
       '@commitlint/cli':
         specifier: ^19.8.1
-        version: 19.8.1(@types/node@24.2.0)(typescript@5.8.3)
+        version: 19.8.1(@types/node@22.15.3)(typescript@5.8.3)
       '@commitlint/config-conventional':
         specifier: ^19.8.1
         version: 19.8.1
+      '@types/node':
+        specifier: ^22.15.3
+        version: 22.15.3
       husky:
         specifier: ^9.1.7
         version: 9.1.7
@@ -129,6 +132,9 @@ importers:
       prettier:
         specifier: ^3.4.2
         version: 3.6.2
+      rimraf:
+        specifier: ^5.0.5
+        version: 5.0.10
       source-map-support:
         specifier: ^0.5.21
         version: 0.5.21
@@ -410,6 +416,9 @@ importers:
       prettier-plugin-tailwindcss:
         specifier: ^0.6.13
         version: 0.6.14(prettier@3.6.2)
+      rimraf:
+        specifier: ^5.0.5
+        version: 5.0.10
 
   packages/eslint-config:
     devDependencies:
@@ -602,6 +611,9 @@ importers:
       eslint:
         specifier: ^9.30.0
         version: 9.30.0(jiti@2.5.1)
+      rimraf:
+        specifier: ^5.0.5
+        version: 5.0.10
       typescript:
         specifier: 5.8.2
         version: 5.8.2
@@ -6173,6 +6185,10 @@ packages:
     deprecated: Rimraf versions prior to v4 are no longer supported
     hasBin: true
 
+  rimraf@5.0.10:
+    resolution: {integrity: sha512-l0OE8wL34P4nJH/H2ffoaniAokM2qSmrtXHmlpvYr5AVVX8msAyW0l8NVJFDxlSK4u3Uh/f41cQheDVdnYijwQ==}
+    hasBin: true
+
   router@2.2.0:
     resolution: {integrity: sha512-nLTrUKm2UyiL7rlhapu/Zl45FwNgkZGaCpZbIHajDYgwlJCOzLSk+cIPAnsEqV955GjILJnKbdQC1nVPz+gAYQ==}
     engines: {node: '>= 18'}
@@ -7293,6 +7309,19 @@ snapshots:
       - '@types/node'
       - typescript
 
+  '@commitlint/cli@19.8.1(@types/node@22.15.3)(typescript@5.8.3)':
+    dependencies:
+      '@commitlint/format': 19.8.1
+      '@commitlint/lint': 19.8.1
+      '@commitlint/load': 19.8.1(@types/node@22.15.3)(typescript@5.8.3)
+      '@commitlint/read': 19.8.1
+      '@commitlint/types': 19.8.1
+      tinyexec: 1.0.1
+      yargs: 17.7.2
+    transitivePeerDependencies:
+      - '@types/node'
+      - typescript
+
   '@commitlint/cli@19.8.1(@types/node@24.2.0)(typescript@5.8.3)':
     dependencies:
       '@commitlint/format': 19.8.1
@@ -7353,6 +7382,22 @@ snapshots:
       chalk: 5.5.0
       cosmiconfig: 9.0.0(typescript@5.2.2)
       cosmiconfig-typescript-loader: 6.1.0(@types/node@20.6.2)(cosmiconfig@9.0.0(typescript@5.2.2))(typescript@5.2.2)
+      lodash.isplainobject: 4.0.6
+      lodash.merge: 4.6.2
+      lodash.uniq: 4.5.0
+    transitivePeerDependencies:
+      - '@types/node'
+      - typescript
+
+  '@commitlint/load@19.8.1(@types/node@22.15.3)(typescript@5.8.3)':
+    dependencies:
+      '@commitlint/config-validator': 19.8.1
+      '@commitlint/execute-rule': 19.8.1
+      '@commitlint/resolve-extends': 19.8.1
+      '@commitlint/types': 19.8.1
+      chalk: 5.5.0
+      cosmiconfig: 9.0.0(typescript@5.8.3)
+      cosmiconfig-typescript-loader: 6.1.0(@types/node@22.15.3)(cosmiconfig@9.0.0(typescript@5.8.3))(typescript@5.8.3)
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       lodash.uniq: 4.5.0
@@ -10536,6 +10581,13 @@ snapshots:
       jiti: 2.5.1
       typescript: 5.2.2
 
+  cosmiconfig-typescript-loader@6.1.0(@types/node@22.15.3)(cosmiconfig@9.0.0(typescript@5.8.3))(typescript@5.8.3):
+    dependencies:
+      '@types/node': 22.15.3
+      cosmiconfig: 9.0.0(typescript@5.8.3)
+      jiti: 2.5.1
+      typescript: 5.8.3
+
   cosmiconfig-typescript-loader@6.1.0(@types/node@24.2.0)(cosmiconfig@9.0.0(typescript@5.8.3))(typescript@5.8.3):
     dependencies:
       '@types/node': 24.2.0
@@ -13252,6 +13304,10 @@ snapshots:
   rimraf@3.0.2:
     dependencies:
       glob: 7.2.3
+
+  rimraf@5.0.10:
+    dependencies:
+      glob: 10.4.5
 
   router@2.2.0:
     dependencies:

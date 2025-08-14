@@ -55,8 +55,13 @@
   },
   "scripts": {
     "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "generate:component": "turbo gen react-component",
-    "check-types": "tsc --noEmit"
+    "check-types": "tsc --noEmit",
+    "type-check": "tsc --noEmit",
+    "test": "echo \"No tests specified\"",
+    "test:watch": "echo \"No tests specified\"",
+    "clean": "rimraf dist .turbo"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
@@ -65,7 +70,8 @@
     "@types/react": "19.1.0",
     "@types/react-dom": "19.1.1",
     "eslint": "^9.30.0",
-    "typescript": "5.8.2"
+    "typescript": "5.8.2",
+    "rimraf": "^5.0.5"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.11",

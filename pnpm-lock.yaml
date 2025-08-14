@@ -17,6 +17,9 @@ importers:
       '@types/node':
         specifier: ^22.15.3
         version: 22.15.3
+      globals:
+        specifier: ^16.0.0
+        version: 16.3.0
       husky:
         specifier: ^9.1.7
         version: 9.1.7
@@ -32,6 +35,9 @@ importers:
       typescript:
         specifier: 5.8.3
         version: 5.8.3
+      typescript-eslint:
+        specifier: ^8.20.0
+        version: 8.35.0(eslint@9.30.0(jiti@2.5.1))(typescript@5.8.3)
 
   apps/api:
     dependencies:
@@ -196,6 +202,9 @@ importers:
       eslint:
         specifier: ^9.30.0
         version: 9.30.0(jiti@2.5.1)
+      rimraf:
+        specifier: ^5.0.5
+        version: 5.0.10
       typescript:
         specifier: 5.8.2
         version: 5.8.2

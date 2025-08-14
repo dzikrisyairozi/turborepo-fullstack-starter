@@ -8,7 +8,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint --max-warnings 0",
-    "check-types": "tsc --noEmit"
+    "lint:fix": "next lint --fix",
+    "lint:check": "next lint --max-warnings 0",
+    "type-check": "tsc --noEmit",
+    "check-types": "tsc --noEmit",
+    "test": "echo \"No tests specified\"",
+    "test:watch": "echo \"No tests specified\"",
+    "clean": "rimraf .next .turbo dist"
   },
   "dependencies": {
     "@repo/ui": "workspace:*",
@@ -23,6 +29,7 @@
     "@types/react": "19.1.0",
     "@types/react-dom": "19.1.1",
     "eslint": "^9.30.0",
-    "typescript": "5.8.2"
+    "typescript": "5.8.2",
+    "rimraf": "^5.0.5"
   }
 }

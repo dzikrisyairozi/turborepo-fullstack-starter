@@ -10,6 +10,7 @@
     "format:check": "prettier --check \"**/*.{ts,tsx,md,json,js,jsx,css,scss}\"",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
+    "lint:check": "next lint",
     "type-check": "tsc --noEmit",
     "check-types": "tsc --noEmit",
     "test": "echo \"No tests specified\"",

@@ -1,135 +1,325 @@
-# Turborepo starter
+# 🚀 Turborepo Full-Stack Starter
 
-This Turborepo starter is maintained by the Turborepo core team.
+A modern, production-ready full-stack starter built with Turborepo, featuring Next.js, NestJS, and a comprehensive shadcn/ui component library.
 
-## Using this example
+## ✨ Features
 
-Run the following command:
+- 🏗️ **Turborepo** - High-performance build system for JavaScript/TypeScript monorepos
+- ⚡ **Next.js 15** - React framework with App Router and Server Components
+- 🛡️ **NestJS** - Scalable Node.js backend framework with TypeScript
+- 🎨 **shadcn/ui** - Beautiful, accessible UI components built with Radix UI and Tailwind CSS
+- 🎯 **TypeScript** - Full type safety across the entire stack
+- 🎨 **Tailwind CSS** - Utility-first CSS framework
+- 📱 **Responsive Design** - Mobile-first approach with dark/light mode support
+- 🔧 **Developer Experience** - ESLint, Prettier, Husky, and Commitlint pre-configured
+- 🐳 **Docker Ready** - Containerization support for easy deployment
+- 🔄 **CI/CD** - GitHub Actions workflows included
 
-```sh
-npx create-turbo@latest
+## 📦 What's Inside?
+
+This Turborepo includes the following packages and apps:
+
+### Apps
+
+- **`web`** - Next.js 15 frontend application with shadcn/ui components
+- **`api`** - NestJS backend API with Prisma ORM
+- **`docs`** - Documentation site built with Next.js
+
+### Packages
+
+- **`@repo/ui`** - Shared React component library with 40+ shadcn/ui components
+- **`@repo/eslint-config`** - Shared ESLint configurations
+- **`@repo/typescript-config`** - Shared TypeScript configurations
+
+### Tools & Configuration
+
+- **TypeScript** - Static type checking across all packages
+- **ESLint** - Code linting with custom rules
+- **Prettier** - Code formatting
+- **Husky** - Git hooks for code quality
+- **Commitlint** - Conventional commit message linting
+- **Tailwind CSS** - Utility-first styling
+- **Prisma** - Type-safe database ORM
+- **Docker** - Containerization support
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+- **Node.js** 22+
+- **pnpm** (recommended package manager)
+- **Git**
+
+### Installation
+
+1. **Clone the repository**
+
+   ```bash
+   git clone <your-repo-url>
+   cd turborepo-fullstack-starter
+   ```
+
+2. **Install dependencies**
+
+   ```bash
+   pnpm install
+   ```
+
+3. **Set up environment variables**
+
+   ```bash
+   # Copy environment files
+   cp apps/api/.env.example apps/api/.env
+   cp apps/web/.env.example apps/web/.env
+   ```
+
+4. **Set up the database** (if using the API)
+   ```bash
+   cd apps/api
+   npx prisma generate
+   npx prisma db push
+   ```
+
+### Development
+
+**Start all applications:**
+
+```bash
+pnpm dev
 ```
 
-## What's inside?
+**Start specific applications:**
 
-This Turborepo includes the following packages/apps:
+```bash
+# Frontend only
+pnpm dev --filter=web
 
-### Apps and Packages
+# Backend only
+pnpm dev --filter=api
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+# Documentation
+pnpm dev --filter=docs
+```
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+**Access your applications:**
 
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+- 🌐 **Web App**: http://localhost:3000
+- 🔧 **API**: http://localhost:3001
+- 📚 **Docs**: http://localhost:3002
 
 ### Build
 
-To build all apps and packages, run the following command:
+**Build all packages:**
 
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
+```bash
+pnpm build
 ```
 
-You can build a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+**Build specific packages:**
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
+```bash
+pnpm build --filter=web
+pnpm build --filter=api
+pnpm build --filter=docs
 ```
 
-### Develop
+## 🧩 Component Library
 
-To develop all apps and packages, run the following command:
+The `@repo/ui` package includes 40+ pre-built components from shadcn/ui:
 
+### Layout Components
+
+- **Card** - Flexible content containers
+- **Separator** - Visual dividers
+- **Aspect Ratio** - Maintain aspect ratios
+- **Container** - Responsive containers
+
+### Form Components
+
+- **Button** - Various button styles and sizes
+- **Input** - Text inputs with validation
+- **Textarea** - Multi-line text inputs
+- **Select** - Dropdown selections
+- **Checkbox** - Boolean inputs
+- **Radio Group** - Single selection from options
+- **Switch** - Toggle switches
+- **Slider** - Range inputs
+
+### Navigation
+
+- **Navigation Menu** - Complex navigation structures
+- **Breadcrumb** - Hierarchical navigation
+- **Pagination** - Page navigation
+- **Menubar** - Application menus
+
+### Feedback
+
+- **Alert** - Important messages
+- **Toast** - Temporary notifications
+- **Progress** - Loading indicators
+- **Skeleton** - Loading placeholders
+
+### Overlay
+
+- **Dialog** - Modal dialogs
+- **Drawer** - Slide-out panels
+- **Popover** - Contextual overlays
+- **Tooltip** - Helpful hints
+- **Sheet** - Side panels
+- **Hover Card** - Rich hover content
+
+### Data Display
+
+- **Table** - Data tables
+- **Badge** - Status indicators
+- **Avatar** - User representations
+- **Calendar** - Date selection
+- **Chart** - Data visualizations
+
+## 🛠️ Development Scripts
+
+```bash
+# Development
+pnpm dev              # Start all apps in development
+pnpm dev:web          # Start web app only
+pnpm dev:api          # Start API only
+
+# Building
+pnpm build            # Build all packages
+pnpm build:web        # Build web app only
+pnpm build:api        # Build API only
+
+# Code Quality
+pnpm lint             # Lint all packages
+pnpm lint:fix         # Fix linting issues
+pnpm format           # Format code with Prettier
+pnpm type-check       # Run TypeScript checks
+
+# Testing
+pnpm test             # Run all tests
+pnpm test:watch       # Run tests in watch mode
+
+# Database (API)
+pnpm db:generate      # Generate Prisma client
+pnpm db:push          # Push schema to database
+pnpm db:migrate       # Run database migrations
+pnpm db:studio        # Open Prisma Studio
 ```
-cd my-turborepo
 
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
+## 🐳 Docker Support
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
+Build and run with Docker:
+
+```bash
+# Build Docker image
+docker build -t turborepo-starter .
+
+# Run container
+docker run -p 3000:3000 turborepo-starter
 ```
 
-You can develop a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+## 🔧 Configuration
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
+### Environment Variables
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
+**Web App (`apps/web/.env`)**
+
+```env
+NEXT_PUBLIC_API_URL=http://localhost:3001
 ```
 
-### Remote Caching
+**API (`apps/api/.env`)**
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
+```env
+DATABASE_URL="postgresql://user:password@localhost:5432/mydb"
+JWT_SECRET="your-jwt-secret"
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+### Customization
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+- **Theme**: Modify `apps/web/src/app/globals.css` for custom themes
+- **Components**: Add new components to `packages/ui/src/`
+- **API Routes**: Add endpoints in `apps/api/src/`
+- **Database**: Update schema in `apps/api/prisma/schema.prisma`
 
+## 🚢 Deployment
+
+### Vercel (Recommended for Frontend)
+
+1. **Connect your repository** to Vercel
+2. **Configure build settings**:
+   - Build Command: `pnpm build --filter=web`
+   - Output Directory: `apps/web/.next`
+3. **Set environment variables** in Vercel dashboard
+4. **Deploy** 🚀
+
+### Docker Deployment
+
+```bash
+# Build production image
+docker build -t turborepo-starter .
+
+# Run in production
+docker run -p 3000:3000 -e NODE_ENV=production turborepo-starter
 ```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
-```
+### Railway/Render (API)
 
-## Useful Links
+1. **Connect your repository**
+2. **Set build command**: `pnpm build --filter=api`
+3. **Set start command**: `pnpm start --filter=api`
+4. **Configure environment variables**
 
-Learn more about the power of Turborepo:
+## 🤝 Contributing
+
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+
+### Quick Contribution Steps
+
+1. **Fork the repository**
+2. **Create a feature branch**: `git checkout -b feat/amazing-feature`
+3. **Make your changes**
+4. **Run tests**: `pnpm test`
+5. **Commit**: `git commit -m "feat: add amazing feature"`
+6. **Push**: `git push origin feat/amazing-feature`
+7. **Open a Pull Request**
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- [Turborepo](https://turborepo.com/) - The build system that powers this monorepo
+- [shadcn/ui](https://ui.shadcn.com/) - Beautiful and accessible UI components
+- [Next.js](https://nextjs.org/) - The React framework for production
+- [NestJS](https://nestjs.com/) - A progressive Node.js framework
+- [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework
+- [Prisma](https://prisma.io/) - Next-generation ORM for Node.js and TypeScript
+
+## 📚 Learn More
+
+### Documentation
+
+- [Turborepo Docs](https://turborepo.com/docs)
+- [Next.js Docs](https://nextjs.org/docs)
+- [NestJS Docs](https://docs.nestjs.com/)
+- [shadcn/ui Docs](https://ui.shadcn.com/)
+- [Tailwind CSS Docs](https://tailwindcss.com/docs)
+
+### Turborepo Features
 
 - [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
 - [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
 - [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
 - [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+
+---
+
+<div align="center">
+
+**[⭐ Star this repo](https://github.com/your-username/turborepo-fullstack-starter)** • **[🐛 Report Bug](https://github.com/your-username/turborepo-fullstack-starter/issues)** • **[✨ Request Feature](https://github.com/your-username/turborepo-fullstack-starter/issues)**
+
+Made with ❤️ by the community
+
+</div>

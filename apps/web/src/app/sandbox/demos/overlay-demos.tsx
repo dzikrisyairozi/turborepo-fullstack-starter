@@ -46,11 +46,7 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from '@repo/ui/hover-card';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@repo/ui/popover';
+import { Popover, PopoverContent, PopoverTrigger } from '@repo/ui/popover';
 import {
   Sheet,
   SheetContent,

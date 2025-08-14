@@ -22,7 +22,7 @@ const Progress = React.forwardRef<
       value={normalizedValue}
       className={cn(
         'relative h-4 w-full overflow-hidden rounded-full bg-secondary',
-        className
+        className,
       )}
       {...props}
     >

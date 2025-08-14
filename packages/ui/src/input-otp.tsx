@@ -14,7 +14,7 @@ const InputOTP = React.forwardRef<
     ref={ref}
     containerClassName={cn(
       'has-[:disabled]:opacity-50 flex items-center gap-2',
-      containerClassName
+      containerClassName,
     )}
     className={cn('disabled:cursor-not-allowed', className)}
     {...props}
@@ -36,7 +36,11 @@ const InputOTPSlot = React.forwardRef<
 >(({ index, className, ...props }, ref) => {
   const inputOTPContext = React.useContext(OTPInputContext);
   const slot = inputOTPContext.slots[index];
-  const { char, hasFakeCaret, isActive } = slot || { char: '', hasFakeCaret: false, isActive: false };
+  const { char, hasFakeCaret, isActive } = slot || {
+    char: '',
+    hasFakeCaret: false,
+    isActive: false,
+  };
 
   return (
     <div
@@ -44,7 +48,7 @@ const InputOTPSlot = React.forwardRef<
       className={cn(
         'relative flex h-10 w-10 items-center justify-center border-y border-r border-input text-sm transition-all first:rounded-l-md first:border-l last:rounded-r-md',
         isActive && 'z-10 ring-2 ring-ring ring-offset-background',
-        className
+        className,
       )}
       {...props}
     >

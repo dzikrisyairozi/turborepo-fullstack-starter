@@ -1,0 +1,122 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+env:
+  NODE_VERSION: '20'
+  PNPM_VERSION: '8'
+
+jobs:
+  # Single comprehensive job with all checks
+  ci:
+    name: CI/CD Pipeline
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Update lockfile if needed
+        run: |
+          if [ -f pnpm-lock.yaml ]; then
+            echo "Lockfile exists, checking compatibility..."
+            pnpm install --lockfile-only
+          fi
+
+      - name: Generate Prisma Client
+        run: pnpm run db:generate
+
+      - name: Type checking
+        run: pnpm run type-check
+
+      - name: Lint check
+        run: pnpm run lint:check
+
+      - name: Format check
+        run: pnpm run format:check
+
+      - name: Run unit tests
+        run: pnpm run test
+
+      - name: Run e2e tests
+        run: pnpm run test:e2e
+
+      - name: Generate test coverage
+        run: pnpm run test:cov
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          directory: ./coverage
+          flags: unittests
+          name: codecov-umbrella
+          fail_ci_if_error: false
+
+      - name: Run security audit
+        run: pnpm audit --audit-level moderate
+
+      - name: Build application
+        run: pnpm run build
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+          retention-days: 7
+
+      - name: Deploy to staging
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: |
+          echo "🚀 Deploying to staging environment..."
+          echo "Add your staging deployment commands here"
+          # Examples:
+          # - Deploy to Vercel: vercel --prod
+          # - Deploy to Heroku: git push heroku main
+          # - Deploy to Railway: railway up
+
+      - name: Deploy to production
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: |
+          echo "🎯 Deploying to production environment..."
+          echo "Add your production deployment commands here"
+          # Add manual approval through GitHub environments if needed
+
+      - name: Notify deployment status
+        if: always() && github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: |
+          echo "📢 Deployment completed with status: ${{ job.status }}"
+          # Add Slack notification here if needed

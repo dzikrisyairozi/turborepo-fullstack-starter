@@ -1,0 +1,53 @@
+version: 2
+updates:
+  # Single weekly update for all dependencies
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      day: 'monday'
+      time: '09:00'
+    open-pull-requests-limit: 1
+    reviewers:
+      - '@dzikrisyairozi'
+    assignees:
+      - '@dzikrisyairozi'
+    commit-message:
+      prefix: 'chore'
+      prefix-development: 'chore'
+      include: 'scope'
+    labels:
+      - 'dependencies'
+      - 'automated'
+    # Group ALL updates into single PR
+    groups:
+      weekly-updates:
+        patterns:
+          - '*'
+        update-types:
+          - 'minor'
+          - 'patch'
+          - 'major'
+
+  # GitHub Actions updates (separate from npm deps)
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      day: 'monday'
+      time: '10:00'
+    open-pull-requests-limit: 1
+    reviewers:
+      - '@dzikrisyairozi'
+    assignees:
+      - '@dzikrisyairozi'
+    commit-message:
+      prefix: 'ci'
+      include: 'scope'
+    labels:
+      - 'github-actions'
+      - 'automated'
+    groups:
+      github-actions-updates:
+        patterns:
+          - '*'

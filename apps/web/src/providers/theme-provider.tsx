@@ -8,7 +8,7 @@ type ThemeProviderProps = {
   children: React.ReactNode;
   defaultTheme?: Theme;
   storageKey?: string;
-};
+} & React.ComponentProps<'div'>;
 
 type ThemeProviderState = {
   theme: Theme;
@@ -27,7 +27,7 @@ export function ThemeProvider({
   defaultTheme = 'light',
   storageKey = 'ui-theme',
   ...props
-}: ThemeProviderProps) {
+}: ThemeProviderProps): React.ReactElement {
   const [theme, setTheme] = useState<Theme>(defaultTheme);
 
   useEffect(() => {

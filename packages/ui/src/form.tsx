@@ -15,7 +15,7 @@ import {
 import { Label } from './label';
 import { cn } from './utils';
 
-const Form = FormProvider;
+const Form: typeof FormProvider = FormProvider;
 
 type FormFieldContextValue<
   TFieldValues extends FieldValues = FieldValues,
@@ -72,21 +72,25 @@ const FormItemContext = React.createContext<FormItemContextValue>(
   {} as FormItemContextValue,
 );
 
-const FormItem = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => {
-  const id = React.useId();
+const FormItem: React.ForwardRefExoticComponent<
+  React.HTMLAttributes<HTMLDivElement> & React.RefAttributes<HTMLDivElement>
+> = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  ({ className, ...props }, ref) => {
+    const id = React.useId();
 
-  return (
-    <FormItemContext.Provider value={{ id }}>
-      <div ref={ref} className={cn('space-y-2', className)} {...props} />
-    </FormItemContext.Provider>
-  );
-});
+    return (
+      <FormItemContext.Provider value={{ id }}>
+        <div ref={ref} className={cn('space-y-2', className)} {...props} />
+      </FormItemContext.Provider>
+    );
+  },
+);
 FormItem.displayName = 'FormItem';
 
-const FormLabel = React.forwardRef<
+const FormLabel: React.ForwardRefExoticComponent<
+  React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root> &
+    React.RefAttributes<React.ElementRef<typeof LabelPrimitive.Root>>
+> = React.forwardRef<
   React.ElementRef<typeof LabelPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root>
 >(({ className, ...props }, ref) => {
@@ -103,7 +107,10 @@ const FormLabel = React.forwardRef<
 });
 FormLabel.displayName = 'FormLabel';
 
-const FormControl = React.forwardRef<
+const FormControl: React.ForwardRefExoticComponent<
+  React.ComponentPropsWithoutRef<typeof Slot> &
+    React.RefAttributes<React.ElementRef<typeof Slot>>
+> = React.forwardRef<
   React.ElementRef<typeof Slot>,
   React.ComponentPropsWithoutRef<typeof Slot>
 >(({ ...props }, ref) => {
@@ -126,7 +133,10 @@ const FormControl = React.forwardRef<
 });
 FormControl.displayName = 'FormControl';
 
-const FormDescription = React.forwardRef<
+const FormDescription: React.ForwardRefExoticComponent<
+  React.HTMLAttributes<HTMLParagraphElement> &
+    React.RefAttributes<HTMLParagraphElement>
+> = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLParagraphElement>
 >(({ className, ...props }, ref) => {
@@ -143,7 +153,10 @@ const FormDescription = React.forwardRef<
 });
 FormDescription.displayName = 'FormDescription';
 
-const FormMessage = React.forwardRef<
+const FormMessage: React.ForwardRefExoticComponent<
+  React.HTMLAttributes<HTMLParagraphElement> &
+    React.RefAttributes<HTMLParagraphElement>
+> = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLParagraphElement>
 >(({ className, children, ...props }, ref) => {

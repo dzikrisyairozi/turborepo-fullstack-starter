@@ -6,7 +6,10 @@ import * as React from 'react';
 
 import { cn } from './utils';
 
-const InputOTP = React.forwardRef<
+const InputOTP: React.ForwardRefExoticComponent<
+  React.ComponentPropsWithoutRef<typeof OTPInput> &
+    React.RefAttributes<React.ElementRef<typeof OTPInput>>
+> = React.forwardRef<
   React.ElementRef<typeof OTPInput>,
   React.ComponentPropsWithoutRef<typeof OTPInput>
 >(({ className, containerClassName, ...props }, ref) => (
@@ -22,7 +25,10 @@ const InputOTP = React.forwardRef<
 ));
 InputOTP.displayName = 'InputOTP';
 
-const InputOTPGroup = React.forwardRef<
+const InputOTPGroup: React.ForwardRefExoticComponent<
+  React.ComponentPropsWithoutRef<'div'> &
+    React.RefAttributes<React.ElementRef<'div'>>
+> = React.forwardRef<
   React.ElementRef<'div'>,
   React.ComponentPropsWithoutRef<'div'>
 >(({ className, ...props }, ref) => (
@@ -30,12 +36,16 @@ const InputOTPGroup = React.forwardRef<
 ));
 InputOTPGroup.displayName = 'InputOTPGroup';
 
-const InputOTPSlot = React.forwardRef<
+const InputOTPSlot: React.ForwardRefExoticComponent<
+  React.ComponentPropsWithoutRef<'div'> & {
+    index: number;
+  } & React.RefAttributes<React.ElementRef<'div'>>
+> = React.forwardRef<
   React.ElementRef<'div'>,
   React.ComponentPropsWithoutRef<'div'> & { index: number }
 >(({ index, className, ...props }, ref) => {
-  const inputOTPContext = React.useContext(OTPInputContext);
-  const slot = inputOTPContext.slots[index];
+  const inputOTPContext = React.useContext(OTPInputContext as any);
+  const slot = (inputOTPContext as any)?.slots?.[index];
   const { char, hasFakeCaret, isActive } = slot || {
     char: '',
     hasFakeCaret: false,
@@ -63,7 +73,10 @@ const InputOTPSlot = React.forwardRef<
 });
 InputOTPSlot.displayName = 'InputOTPSlot';
 
-const InputOTPSeparator = React.forwardRef<
+const InputOTPSeparator: React.ForwardRefExoticComponent<
+  React.ComponentPropsWithoutRef<'div'> &
+    React.RefAttributes<React.ElementRef<'div'>>
+> = React.forwardRef<
   React.ElementRef<'div'>,
   React.ComponentPropsWithoutRef<'div'>
 >(({ ...props }, ref) => (

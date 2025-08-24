@@ -28,6 +28,7 @@ This Turborepo includes the following packages and apps:
 ### Packages
 
 - **`@repo/ui`** - Shared React component library with 40+ shadcn/ui components
+- **`@repo/db`** - Shared database package with Prisma client and schema
 - **`@repo/eslint-config`** - Shared ESLint configurations
 - **`@repo/typescript-config`** - Shared TypeScript configurations
 
@@ -75,9 +76,8 @@ This Turborepo includes the following packages and apps:
 
 4. **Set up the database** (if using the API)
    ```bash
-   cd apps/api
-   npx prisma generate
-   npx prisma db push
+   pnpm db:generate
+   pnpm db:push
    ```
 
 ### Development
@@ -104,8 +104,8 @@ pnpm dev --filter=docs
 **Access your applications:**
 
 - 🌐 **Web App**: http://localhost:3000
-- 🔧 **API**: http://localhost:3001
-- 📚 **Docs**: http://localhost:3002
+- 🔧 **API**: http://localhost:3002
+- 📚 **Docs**: http://localhost:3001
 
 ### Build
 
@@ -235,12 +235,18 @@ DATABASE_URL="postgresql://user:password@localhost:5432/mydb"
 JWT_SECRET="your-jwt-secret"
 ```
 
+**Database (`packages/db/.env`)**
+
+```env
+DATABASE_URL="postgresql://user:password@localhost:5432/mydb"
+```
+
 ### Customization
 
 - **Theme**: Modify `apps/web/src/app/globals.css` for custom themes
 - **Components**: Add new components to `packages/ui/src/`
 - **API Routes**: Add endpoints in `apps/api/src/`
-- **Database**: Update schema in `apps/api/prisma/schema.prisma`
+- **Database**: Update schema in `packages/db/prisma/schema.prisma`
 
 ## 🚢 Deployment
 
@@ -320,6 +326,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **[⭐ Star this repo](https://github.com/your-username/turborepo-fullstack-starter)** • **[🐛 Report Bug](https://github.com/your-username/turborepo-fullstack-starter/issues)** • **[✨ Request Feature](https://github.com/your-username/turborepo-fullstack-starter/issues)**
 
-Made with ❤️ by the community
+Made with ❤️ by @dzikrisyairozi
 
 </div>

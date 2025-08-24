@@ -37,17 +37,27 @@
       "persistent": true
     },
     "db:generate": {
-      "cache": false
+      "cache": false,
+      "dependsOn": ["^build"]
     },
     "db:push": {
-      "cache": false
+      "cache": false,
+      "dependsOn": ["db:generate"]
     },
     "db:migrate": {
-      "cache": false
+      "cache": false,
+      "dependsOn": ["db:generate"]
     },
     "db:studio": {
       "cache": false,
       "persistent": true
+    },
+    "db:seed": {
+      "cache": false,
+      "dependsOn": ["db:generate"]
+    },
+    "db:reset": {
+      "cache": false
     }
   }
 }

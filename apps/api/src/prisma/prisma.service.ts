@@ -1,5 +1,5 @@
 import { Injectable, OnModuleInit, OnModuleDestroy } from '@nestjs/common';
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '@repo/db';
 
 @Injectable()
 export class PrismaService
@@ -10,6 +10,11 @@ export class PrismaService
     super({
       log: ['query', 'info', 'warn', 'error'],
       errorFormat: 'pretty',
+      datasources: {
+        db: {
+          url: process.env.DATABASE_URL,
+        },
+      },
     });
   }
 

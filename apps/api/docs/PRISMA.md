@@ -1,12 +1,12 @@
 # Prisma Guide
 
-This guide covers everything you need to know about using Prisma in this NestJS starter.
+This guide covers everything you need to know about using Prisma in this monorepo starter with shared database package.
 
 ## 🗄️ Database Setup
 
 ### 1. Choose Your Database
 
-This starter supports multiple databases. Update your `prisma/schema.prisma` provider if needed:
+This starter supports multiple databases. Update your `packages/db/prisma/schema.prisma` provider if needed:
 
 ```prisma
 datasource db {
@@ -17,7 +17,16 @@ datasource db {
 
 ### 2. Environment Configuration
 
-Copy `.env.example` to `.env` and configure your database:
+Configure your database in both `apps/api/.env` and `packages/db/.env`:
+
+**apps/api/.env:**
+
+```bash
+# PostgreSQL (Recommended for production)
+DATABASE_URL="postgresql://username:password@localhost:5432/database_name?schema=public"
+```
+
+**packages/db/.env:**
 
 ```bash
 # PostgreSQL (Recommended for production)
@@ -32,9 +41,12 @@ DATABASE_URL="file:./dev.db"
 
 ### 3. Database Connection
 
-The starter includes `PrismaService` which handles connection lifecycle:
+The starter uses a shared database package (`@repo/db`) with `PrismaService` that handles connection lifecycle:
 
 ```typescript
+// Import from shared package
+import { PrismaService } from '@repo/db';
+
 // Automatically connects when app starts
 // Automatically disconnects when app shuts down
 ```
@@ -83,7 +95,7 @@ enum Role {
 
 ### Adding New Models
 
-1. **Add model to schema**:
+1. **Add model to schema** in `packages/db/prisma/schema.prisma`:
 
 ```prisma
 model Product {
@@ -98,16 +110,16 @@ model Product {
 }
 ```
 
-2. **Generate client**:
+2. **Generate client** (from project root):
 
 ```bash
-pnpm run db:generate
+pnpm db:generate
 ```
 
-3. **Create migration**:
+3. **Create migration** (from project root):
 
 ```bash
-pnpm run db:migrate
+pnpm db:migrate
 ```
 
 ## 🚀 Workflow Commands
@@ -115,29 +127,29 @@ pnpm run db:migrate
 ### Development Workflow
 
 ```bash
-# 1. Make schema changes in prisma/schema.prisma
-# 2. Generate Prisma client
-pnpm run db:generate
+# 1. Make schema changes in packages/db/prisma/schema.prisma
+# 2. Generate Prisma client (from project root)
+pnpm db:generate
 
 # 3a. For prototyping - push schema directly
-pnpm run db:push
+pnpm db:push
 
 # 3b. For production - create proper migration
-pnpm run db:migrate
+pnpm db:migrate
 
 # 4. Seed with example data (optional)
-pnpm run db:seed
+pnpm db:seed
 ```
 
 ### Production Workflow
 
 ```bash
-# 1. Create migration
-pnpm run db:migrate
+# 1. Create migration (from project root)
+pnpm db:migrate
 
 # 2. Deploy migration to production
 # This happens automatically in CI/CD or run manually:
-npx prisma migrate deploy
+pnpm db:deploy
 ```
 
 ## 💾 Service Examples
@@ -146,7 +158,7 @@ npx prisma migrate deploy
 
 ```typescript
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from '../prisma/prisma.service';
+import { PrismaService } from '@repo/db';
 import { User, Prisma } from '@prisma/client';
 
 @Injectable()
@@ -283,7 +295,7 @@ datasource db {
 1. **Create test database**:
 
 ```bash
-# Add to .env.test
+# Add to packages/db/.env.test
 DATABASE_URL="postgresql://username:password@localhost:5432/test_db"
 ```
 
@@ -291,6 +303,8 @@ DATABASE_URL="postgresql://username:password@localhost:5432/test_db"
 
 ```typescript
 // test/helpers/database.ts
+import { PrismaService } from '@repo/db';
+
 export async function cleanDatabase(prisma: PrismaService) {
   await prisma.post.deleteMany();
   await prisma.user.deleteMany();
@@ -301,7 +315,7 @@ export async function cleanDatabase(prisma: PrismaService) {
 
 ```typescript
 import { Test } from '@nestjs/testing';
-import { PrismaService } from '../src/prisma/prisma.service';
+import { PrismaService } from '@repo/db';
 
 describe('UsersService', () => {
   let prisma: PrismaService;
@@ -339,14 +353,14 @@ The starter includes automatic Prisma client generation in CI/CD:
 ```yaml
 # .github/workflows/ci.yml includes:
 - name: Generate Prisma Client
-  run: pnpm run db:generate
+  run: pnpm db:generate
 ```
 
 ### Migration Deployment
 
 ```bash
 # In production deployment script:
-npx prisma migrate deploy
+pnpm db:deploy
 ```
 
 ## 🔍 Debugging
@@ -364,7 +378,7 @@ super({
 
 ```bash
 # Open database GUI
-pnpm run db:studio
+pnpm db:studio
 ```
 
 ### Common Issues
@@ -375,11 +389,11 @@ pnpm run db:studio
    - Check network connectivity
 
 2. **Migration Issues**:
-   - Run `pnpm run db:generate` after schema changes
-   - Check migration status: `npx prisma migrate status`
+   - Run `pnpm db:generate` after schema changes
+   - Check migration status: `pnpm db:status`
 
 3. **Type Issues**:
-   - Regenerate client: `pnpm run db:generate`
+   - Regenerate client: `pnpm db:generate`
    - Restart TypeScript server in IDE
 
 ## 📚 Resources

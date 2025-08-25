@@ -28,11 +28,11 @@
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "@types/node": "^22.10.2",
-    "eslint": "^9.17.0",
+    "@types/node": "^24.3.0",
+    "eslint": "^9.34.0",
     "prisma": "^6.14.0",
     "rimraf": "^6.0.1",
-    "tsx": "^4.19.2",
+    "tsx": "^4.20.5",
     "typescript": "^5.7.2"
   }
 }

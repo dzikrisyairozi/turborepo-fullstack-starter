@@ -7,6 +7,9 @@ dist/
 build/
 coverage/
 
+# Prisma generated files
+packages/db/src/generated/
+
 # Logs
 *.log
 logs/
@@ -23,4 +26,4 @@ logs/
 .git/
 
 # Husky
-.husky/_ 
+.husky/_

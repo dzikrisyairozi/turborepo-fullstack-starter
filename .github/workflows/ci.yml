@@ -9,6 +9,7 @@ on:
 env:
   NODE_VERSION: '20'
   PNPM_VERSION: '9.0.0'
+  TURBO_TELEMETRY_DISABLED: 1
 
 jobs:
   # Single comprehensive job with all checks
@@ -55,6 +56,9 @@ jobs:
             pnpm install --lockfile-only
           fi
 
+      - name: Build packages
+        run: pnpm run build
+
       - name: Type checking
         run: pnpm run type-check
 
@@ -66,6 +70,3 @@ jobs:
 
       - name: Run unit tests
         run: pnpm run test
-
-      - name: Build application
-        run: pnpm run build

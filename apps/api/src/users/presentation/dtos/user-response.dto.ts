@@ -1,12 +1,12 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { UserRole } from './create-user.dto';
+import { UserRoleEnum } from '../../domain/value-objects';
 
 export class UserResponseDto {
   @ApiProperty({
     description: 'Unique user identifier',
-    example: 1,
+    example: 'cuid-example-123',
   })
-  id: number;
+  id: string;
 
   @ApiProperty({
     description: 'User email address',
@@ -22,10 +22,10 @@ export class UserResponseDto {
 
   @ApiProperty({
     description: 'User role in the system',
-    enum: UserRole,
-    example: UserRole.USER,
+    enum: UserRoleEnum,
+    example: UserRoleEnum.USER,
   })
-  role: UserRole;
+  role: UserRoleEnum;
 
   @ApiProperty({
     description: 'When the user was created',

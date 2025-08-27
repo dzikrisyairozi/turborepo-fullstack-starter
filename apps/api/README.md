@@ -100,7 +100,7 @@ A production-ready [NestJS](https://github.com/nestjs/nest) starter template wit
 
 6. **Access the application**:
    - **API**: http://localhost:3000
-   - **Swagger UI**: http://localhost:3000/api
+   - **Swagger UI**: http://localhost:3000/docs
 
 ### Additional Commands
 

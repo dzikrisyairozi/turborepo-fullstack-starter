@@ -11,7 +11,7 @@ This starter project includes a comprehensive Swagger OpenAPI setup for automati
    ```
 
 2. **Access Swagger UI:**
-   Open your browser and navigate to: http://localhost:3000/api
+   Open your browser and navigate to: http://localhost:3000/docs
 
 3. **View OpenAPI JSON:**
    Get the raw OpenAPI specification at: http://localhost:3000/api-json

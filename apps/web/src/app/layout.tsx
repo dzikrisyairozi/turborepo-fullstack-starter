@@ -1,4 +1,5 @@
 import { Toaster } from '@repo/ui/toaster';
+import { TooltipProvider } from '@repo/ui/tooltip';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
@@ -166,8 +167,10 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className} suppressHydrationWarning>
         <ThemeProvider defaultTheme="light" storageKey="app-theme">
-          {children}
-          <Toaster />
+          <TooltipProvider>
+            {children}
+            <Toaster />
+          </TooltipProvider>
         </ThemeProvider>
       </body>
     </html>

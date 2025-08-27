@@ -58,8 +58,11 @@ async function bootstrap() {
 
   const document = SwaggerModule.createDocument(app, config);
 
+  // Set global API prefix
+  app.setGlobalPrefix('api/v1');
+
   // Setup Swagger UI
-  SwaggerModule.setup('api', app, document, {
+  SwaggerModule.setup('docs', app, document, {
     swaggerOptions: {
       persistAuthorization: true,
       tagsSorter: 'alpha',
@@ -86,12 +89,12 @@ async function bootstrap() {
     credentials: true,
   });
 
-  const port = process.env.PORT ?? 3002;
+  const port = process.env.PORT ?? 3000;
   await app.listen(port);
 
   console.log(`🚀 Application is running on: http://localhost:${port}`);
   console.log(
-    `📚 Swagger documentation is available at: http://localhost:${port}/api`,
+    `📚 Swagger documentation is available at: http://localhost:${port}/docs`,
   );
 }
 

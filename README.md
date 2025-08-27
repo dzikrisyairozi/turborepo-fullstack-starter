@@ -103,9 +103,9 @@ pnpm dev --filter=docs
 
 **Access your applications:**
 
-- 🌐 **Web App**: http://localhost:3000
-- 🔧 **API**: http://localhost:3002
-- 📚 **Docs**: http://localhost:3001
+- 🔧 **API**: http://localhost:3000
+- 🌐 **Web App**: http://localhost:3001
+- 📚 **Docs**: http://localhost:3002
 
 ### Build
 

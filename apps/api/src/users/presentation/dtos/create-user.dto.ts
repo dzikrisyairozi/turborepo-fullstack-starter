@@ -7,11 +7,7 @@ import {
   MaxLength,
   IsEnum,
 } from 'class-validator';
-
-export enum UserRole {
-  USER = 'USER',
-  ADMIN = 'ADMIN',
-}
+import { UserRoleEnum } from '../../domain/value-objects';
 
 export class CreateUserDto {
   @ApiProperty({
@@ -35,11 +31,11 @@ export class CreateUserDto {
 
   @ApiProperty({
     description: 'User role in the system',
-    enum: UserRole,
-    default: UserRole.USER,
-    example: UserRole.USER,
+    enum: UserRoleEnum,
+    default: UserRoleEnum.USER,
+    example: UserRoleEnum.USER,
   })
   @IsOptional()
-  @IsEnum(UserRole)
-  role?: UserRole = UserRole.USER;
+  @IsEnum(UserRoleEnum)
+  role?: UserRoleEnum = UserRoleEnum.USER;
 }

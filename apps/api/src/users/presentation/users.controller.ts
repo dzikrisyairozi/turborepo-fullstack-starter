@@ -7,7 +7,6 @@ import {
   Param,
   Delete,
   Query,
-  ParseIntPipe,
   HttpStatus,
 } from '@nestjs/common';
 import {
@@ -22,17 +21,22 @@ import {
   ApiNotFoundResponse,
   ApiBadRequestResponse,
 } from '@nestjs/swagger';
-import { UsersService } from './users.service';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
-import { UserResponseDto } from './dto/user-response.dto';
-import { PaginationDto } from '../common/dto/pagination.dto';
+import { UserApplicationService } from '../application';
+import {
+  CreateUserDto,
+  UpdateUserDto,
+  UserResponseDto,
+  PaginationDto,
+  UserIdParamDto,
+} from './dtos';
 
 @ApiTags('Users')
 @Controller('users')
 @ApiBearerAuth('JWT-auth')
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(
+    private readonly userApplicationService: UserApplicationService,
+  ) {}
 
   @Post()
   @ApiOperation({
@@ -54,7 +58,7 @@ export class UsersController {
     },
   })
   create(@Body() createUserDto: CreateUserDto): Promise<UserResponseDto> {
-    return this.usersService.create(createUserDto);
+    return this.userApplicationService.createUser(createUserDto);
   }
 
   @Get()
@@ -96,7 +100,7 @@ export class UsersController {
     },
   })
   findAll(@Query() paginationDto: PaginationDto) {
-    return this.usersService.findAll(paginationDto);
+    return this.userApplicationService.findAllUsers(paginationDto);
   }
 
   @Get(':id')
@@ -107,8 +111,8 @@ export class UsersController {
   @ApiParam({
     name: 'id',
     description: 'User ID',
-    example: 1,
-    type: 'number',
+    example: 'f47ac10b-58cc-4372-a567-0e02b2c3d479',
+    type: 'string',
   })
   @ApiOkResponse({
     description: 'User found successfully',
@@ -124,20 +128,17 @@ export class UsersController {
       },
     },
   })
-  findOne(@Param('id', ParseIntPipe) id: number): Promise<UserResponseDto> {
-    return this.usersService.findOne(id);
+  findOne(@Param() params: UserIdParamDto): Promise<UserResponseDto> {
+    return this.userApplicationService.findUserById(params.id);
   }
 
   @Patch(':id')
-  @ApiOperation({
-    summary: 'Update user',
-    description: 'Updates an existing user with partial data',
-  })
+  @ApiOperation({ summary: 'Update a user by ID' })
   @ApiParam({
     name: 'id',
     description: 'User ID',
-    example: 1,
-    type: 'number',
+    type: 'string',
+    example: 'cuid-example-123',
   })
   @ApiOkResponse({
     description: 'User updated successfully',
@@ -145,44 +146,66 @@ export class UsersController {
   })
   @ApiNotFoundResponse({
     description: 'User not found',
+    schema: {
+      type: 'object',
+      properties: {
+        statusCode: { type: 'number', example: 404 },
+        message: { type: 'string', example: 'User not found' },
+        error: { type: 'string', example: 'Not Found' },
+      },
+    },
   })
   @ApiBadRequestResponse({
     description: 'Invalid input data',
+    schema: {
+      type: 'object',
+      properties: {
+        statusCode: { type: 'number', example: 400 },
+        message: {
+          type: 'array',
+          items: { type: 'string' },
+          example: ['email must be a valid email'],
+        },
+        error: { type: 'string', example: 'Bad Request' },
+      },
+    },
   })
   update(
-    @Param('id', ParseIntPipe) id: number,
+    @Param() params: UserIdParamDto,
     @Body() updateUserDto: UpdateUserDto,
   ): Promise<UserResponseDto> {
-    return this.usersService.update(id, updateUserDto);
+    return this.userApplicationService.updateUser(params.id, updateUserDto);
   }
 
   @Delete(':id')
-  @ApiOperation({
-    summary: 'Delete user',
-    description: 'Deletes a user from the system',
-  })
+  @ApiOperation({ summary: 'Delete a user by ID' })
   @ApiParam({
     name: 'id',
     description: 'User ID',
-    example: 1,
-    type: 'number',
+    type: 'string',
+    example: 'cuid-example-123',
   })
   @ApiOkResponse({
     description: 'User deleted successfully',
     schema: {
       type: 'object',
       properties: {
-        message: {
-          type: 'string',
-          example: 'User deleted successfully',
-        },
+        message: { type: 'string', example: 'User deleted successfully' },
       },
     },
   })
   @ApiNotFoundResponse({
     description: 'User not found',
+    schema: {
+      type: 'object',
+      properties: {
+        statusCode: { type: 'number', example: 404 },
+        message: { type: 'string', example: 'User not found' },
+        error: { type: 'string', example: 'Not Found' },
+      },
+    },
   })
-  remove(@Param('id', ParseIntPipe) id: number) {
-    return this.usersService.remove(id);
+  remove(@Param() params: UserIdParamDto): Promise<{ message: string }> {
+    return this.userApplicationService.deleteUser(params.id);
   }
 }

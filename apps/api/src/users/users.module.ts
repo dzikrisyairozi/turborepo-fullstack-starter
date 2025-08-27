@@ -1,10 +1,33 @@
 import { Module } from '@nestjs/common';
-import { UsersService } from './users.service';
-import { UsersController } from './users.controller';
+import { UsersController } from './presentation/users.controller';
+import {
+  UserApplicationService,
+  UserCreatedHandler,
+  UserUpdatedHandler,
+  UserDeletedHandler,
+} from './application';
+import { MockUserRepository } from './infrastructure';
+import { UserRepositoryInterface, UserDomainService } from './domain';
 
 @Module({
   controllers: [UsersController],
-  providers: [UsersService],
-  exports: [UsersService],
+  providers: [
+    UserApplicationService,
+    UserDomainService,
+    UserCreatedHandler,
+    UserUpdatedHandler,
+    UserDeletedHandler,
+    {
+      provide: 'UserRepositoryInterface',
+      useClass: MockUserRepository,
+    },
+  ],
+  exports: [
+    UserApplicationService,
+    UserDomainService,
+    UserCreatedHandler,
+    UserUpdatedHandler,
+    UserDeletedHandler,
+  ],
 })
 export class UsersModule {}

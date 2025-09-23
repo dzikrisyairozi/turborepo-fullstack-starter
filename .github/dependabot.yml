@@ -19,6 +19,10 @@ updates:
     labels:
       - 'dependencies'
       - 'automated'
+    # Ignore tailwindcss updates to prevent automatic v4 upgrades
+    ignore:
+      - dependency-name: 'tailwindcss'
+        versions: ['>=4.0.0']
     # Group ALL updates into single PR
     groups:
       weekly-updates:

@@ -38,9 +38,9 @@
     "db:reset": "cd ../../packages/db && pnpm db:reset"
   },
   "dependencies": {
-    "@nestjs/common": "^11.1.10",
-    "@nestjs/core": "^11.1.10",
-    "@nestjs/platform-express": "^11.1.10",
+    "@nestjs/common": "^11.1.11",
+    "@nestjs/core": "^11.1.11",
+    "@nestjs/platform-express": "^11.1.11",
     "@nestjs/swagger": "^11.2.3",
     "@repo/db": "workspace:*",
     "class-transformer": "^0.5.1",
@@ -52,15 +52,15 @@
     "uuid": "^13.0.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^20.2.0",
-    "@commitlint/config-conventional": "^20.2.0",
+    "@commitlint/cli": "^20.3.0",
+    "@commitlint/config-conventional": "^20.3.0",
     "@eslint/eslintrc": "^3.3.3",
     "@eslint/js": "^9.39.2",
     "@nestjs/cli": "^11.0.14",
     "@nestjs/schematics": "^11.0.9",
-    "@nestjs/testing": "^11.1.10",
+    "@nestjs/testing": "^11.1.11",
     "@swc/cli": "^0.7.9",
-    "@swc/core": "^1.15.7",
+    "@swc/core": "^1.15.8",
     "@types/dotenv": "^8.2.3",
     "@types/express": "^5.0.6",
     "@types/jest": "^30.0.0",
@@ -70,7 +70,7 @@
     "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.2.2",
-    "globals": "^16.5.0",
+    "globals": "^17.0.0",
     "husky": "^9.1.7",
     "jest": "^30.2.0",
     "lint-staged": "^16.2.7",
@@ -84,7 +84,7 @@
     "tsconfig-paths": "^4.2.0",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.50.1"
+    "typescript-eslint": "^8.51.0"
   },
   "jest": {
     "moduleFileExtensions": [

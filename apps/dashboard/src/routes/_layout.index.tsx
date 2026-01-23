@@ -81,13 +81,15 @@ function Index() {
   return (
     <div className="space-y-8">
       <div>
-        <h2 className="text-3xl font-bold tracking-tight mb-1">
+        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight mb-1">
           {t('index.title')}
         </h2>
-        <p className="text-muted-foreground">{t('index.subtitle')}</p>
+        <p className="text-sm sm:text-base text-muted-foreground">
+          {t('index.subtitle')}
+        </p>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-4 sm:gap-6 grid-cols-2 lg:grid-cols-4">
         {stats.map((stat, i) => (
           <Card
             key={i}
@@ -113,7 +115,7 @@ function Index() {
             <CardTitle>{t('index.chartOverview')}</CardTitle>
             <CardDescription>{t('index.chartDescription')}</CardDescription>
           </CardHeader>
-          <CardContent className="h-[300px] w-full pt-4">
+          <CardContent className="h-[200px] sm:h-[300px] w-full pt-4">
             <ChartContainer config={chartConfig} className="h-full w-full">
               <BarChart accessibilityLayer data={chartData}>
                 <CartesianGrid vertical={false} />
@@ -148,15 +150,17 @@ function Index() {
                   <div className="h-9 w-9 rounded-full bg-primary/10 flex items-center justify-center text-primary font-medium text-xs">
                     OM
                   </div>
-                  <div className="ml-4 space-y-1">
-                    <p className="text-sm font-medium leading-none">
+                  <div className="ml-3 sm:ml-4 space-y-1 min-w-0">
+                    <p className="text-sm font-medium leading-none truncate">
                       Olivia Martin
                     </p>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-xs sm:text-sm text-muted-foreground truncate">
                       olivia.martin@email.com
                     </p>
                   </div>
-                  <div className="ml-auto font-medium">+$1,999.00</div>
+                  <div className="ml-auto font-medium text-sm sm:text-base shrink-0">
+                    +$1,999.00
+                  </div>
                 </div>
               ))}
             </div>

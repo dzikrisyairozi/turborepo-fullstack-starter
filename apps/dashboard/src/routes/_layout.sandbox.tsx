@@ -155,7 +155,7 @@ function Section({
         <h3 className="text-lg font-semibold tracking-tight">{title}</h3>
         <p className="text-sm text-muted-foreground">{description}</p>
       </div>
-      <div className="rounded-xl border border-border bg-white/60 dark:bg-neutral-900/60 p-6">
+      <div className="rounded-xl border border-border bg-white/60 dark:bg-neutral-900/60 p-4 sm:p-6">
         {children}
       </div>
     </section>
@@ -182,10 +182,10 @@ function SandboxPage() {
             {t('sandbox.badge')}
           </Badge>
         </div>
-        <h2 className="text-3xl font-bold tracking-tight">
+        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
           {t('sandbox.title')}
         </h2>
-        <p className="text-muted-foreground max-w-2xl">
+        <p className="text-sm sm:text-base text-muted-foreground max-w-2xl">
           {t('sandbox.subtitle')}
         </p>
       </div>
@@ -816,70 +816,72 @@ function SandboxPage() {
         title="Table"
         description="Structured data displayed in rows and columns."
       >
-        <Table>
-          <TableCaption>A list of your recent invoices.</TableCaption>
-          <TableHeader>
-            <TableRow>
-              <TableHead className="w-[100px]">Invoice</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Method</TableHead>
-              <TableHead className="text-right">Amount</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {[
-              {
-                invoice: 'INV001',
-                status: 'Paid',
-                method: 'Credit Card',
-                amount: '$250.00',
-              },
-              {
-                invoice: 'INV002',
-                status: 'Pending',
-                method: 'PayPal',
-                amount: '$150.00',
-              },
-              {
-                invoice: 'INV003',
-                status: 'Unpaid',
-                method: 'Bank Transfer',
-                amount: '$350.00',
-              },
-              {
-                invoice: 'INV004',
-                status: 'Paid',
-                method: 'Credit Card',
-                amount: '$450.00',
-              },
-              {
-                invoice: 'INV005',
-                status: 'Paid',
-                method: 'PayPal',
-                amount: '$550.00',
-              },
-            ].map((row) => (
-              <TableRow key={row.invoice}>
-                <TableCell className="font-medium">{row.invoice}</TableCell>
-                <TableCell>
-                  <Badge
-                    variant={
-                      row.status === 'Paid'
-                        ? 'default'
-                        : row.status === 'Pending'
-                          ? 'secondary'
-                          : 'destructive'
-                    }
-                  >
-                    {row.status}
-                  </Badge>
-                </TableCell>
-                <TableCell>{row.method}</TableCell>
-                <TableCell className="text-right">{row.amount}</TableCell>
+        <div className="overflow-x-auto -mx-2">
+          <Table>
+            <TableCaption>A list of your recent invoices.</TableCaption>
+            <TableHeader>
+              <TableRow>
+                <TableHead className="w-[100px]">Invoice</TableHead>
+                <TableHead>Status</TableHead>
+                <TableHead>Method</TableHead>
+                <TableHead className="text-right">Amount</TableHead>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+            </TableHeader>
+            <TableBody>
+              {[
+                {
+                  invoice: 'INV001',
+                  status: 'Paid',
+                  method: 'Credit Card',
+                  amount: '$250.00',
+                },
+                {
+                  invoice: 'INV002',
+                  status: 'Pending',
+                  method: 'PayPal',
+                  amount: '$150.00',
+                },
+                {
+                  invoice: 'INV003',
+                  status: 'Unpaid',
+                  method: 'Bank Transfer',
+                  amount: '$350.00',
+                },
+                {
+                  invoice: 'INV004',
+                  status: 'Paid',
+                  method: 'Credit Card',
+                  amount: '$450.00',
+                },
+                {
+                  invoice: 'INV005',
+                  status: 'Paid',
+                  method: 'PayPal',
+                  amount: '$550.00',
+                },
+              ].map((row) => (
+                <TableRow key={row.invoice}>
+                  <TableCell className="font-medium">{row.invoice}</TableCell>
+                  <TableCell>
+                    <Badge
+                      variant={
+                        row.status === 'Paid'
+                          ? 'default'
+                          : row.status === 'Pending'
+                            ? 'secondary'
+                            : 'destructive'
+                      }
+                    >
+                      {row.status}
+                    </Badge>
+                  </TableCell>
+                  <TableCell>{row.method}</TableCell>
+                  <TableCell className="text-right">{row.amount}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
       </Section>
 
       {/* ── AVATARS ──────────────────────────────────────── */}

@@ -17,6 +17,7 @@
     "dev:web": "turbo run dev --filter=web",
     "dev:api": "turbo run dev --filter=api",
     "dev:docs": "turbo run dev --filter=docs",
+    "dev:dashboard": "turbo run dev --filter=@repo/dashboard",
     "build:web": "turbo run build --filter=web",
     "build:api": "turbo run build --filter=api",
     "build:docs": "turbo run build --filter=docs",

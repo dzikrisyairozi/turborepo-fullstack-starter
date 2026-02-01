@@ -17,7 +17,10 @@
     "react-dom": "^19.2.0",
     "react-hook-form": "^7.71.2",
     "zod": "^4.3.6",
-    "zustand": "^5.0.11"
+    "zustand": "^5.0.11",
+    "@repo/ui": "workspace:*",
+    "@repo/tailwind-config": "workspace:*",
+    "lucide-react": "^0.378.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",

@@ -1,9 +1,6 @@
-@import 'tailwindcss';
-
-@theme {
-  --font-sans: 'Inter', system-ui, sans-serif;
-  --color-primary: #3b82f6;
-}
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+@import '@repo/tailwind-config';
+@source "../../../packages/ui/src";
 
 @layer base {
   body {

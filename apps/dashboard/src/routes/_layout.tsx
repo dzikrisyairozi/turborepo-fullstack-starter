@@ -15,7 +15,7 @@ function DashboardLayout() {
             <Box className="h-5 w-5 text-primary-foreground" />
           </div>
           <span className="font-bold text-lg tracking-tight bg-gradient-to-r from-neutral-900 to-neutral-500 dark:from-white dark:to-neutral-400 bg-clip-text text-transparent">
-            Acme Inc
+            Dashboard Starter
           </span>
         </div>
 

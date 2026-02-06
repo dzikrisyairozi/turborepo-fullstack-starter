@@ -75,11 +75,8 @@
   --sidebar-ring: oklch(0.769 0.188 70 / 50%);
 }
 
-.theme {
-  --font-sans: 'Outfit', sans-serif;
-}
-
 @theme inline {
+  --font-sans: 'Outfit', ui-sans-serif, system-ui, sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);

@@ -1,9 +1,14 @@
-"use client";
+'use client';
 
-import { Canvas, useFrame } from "@react-three/fiber";
-import { Environment, Float, MeshDistortMaterial, Sphere } from "@react-three/drei";
-import { useRef } from "react";
-import * as THREE from "three";
+import { Canvas, useFrame } from '@react-three/fiber';
+import {
+  Environment,
+  Float,
+  MeshDistortMaterial,
+  Sphere,
+} from '@react-three/drei';
+import { useRef } from 'react';
+import * as THREE from 'three';
 
 function AnimatedSphere() {
   const sphereRef = useRef<THREE.Mesh>(null);

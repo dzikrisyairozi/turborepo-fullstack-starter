@@ -1,0 +1,14 @@
+{
+  "name": "api",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "cargo watch -x run",
+    "build": "cargo build --release",
+    "clean": "cargo clean",
+    "check": "cargo check",
+    "test": "cargo test",
+    "lint": "cargo clippy -- -D warnings",
+    "generate-types": "cargo test export_bindings -- --nocapture"
+  }
+}

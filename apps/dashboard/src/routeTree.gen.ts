@@ -8,94 +8,94 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from './routes/__root'
-import { Route as LayoutRouteImport } from './routes/_layout'
-import { Route as LayoutIndexRouteImport } from './routes/_layout.index'
-import { Route as LayoutSandboxRouteImport } from './routes/_layout.sandbox'
+import { Route as rootRouteImport } from './routes/__root';
+import { Route as LayoutRouteImport } from './routes/_layout';
+import { Route as LayoutIndexRouteImport } from './routes/_layout.index';
+import { Route as LayoutSandboxRouteImport } from './routes/_layout.sandbox';
 
 const LayoutRoute = LayoutRouteImport.update({
   id: '/_layout',
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const LayoutIndexRoute = LayoutIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => LayoutRoute,
-} as any)
+} as any);
 const LayoutSandboxRoute = LayoutSandboxRouteImport.update({
   id: '/sandbox',
   path: '/sandbox',
   getParentRoute: () => LayoutRoute,
-} as any)
+} as any);
 
 export interface FileRoutesByFullPath {
-  '/': typeof LayoutIndexRoute
-  '/sandbox': typeof LayoutSandboxRoute
+  '/': typeof LayoutIndexRoute;
+  '/sandbox': typeof LayoutSandboxRoute;
 }
 export interface FileRoutesByTo {
-  '/sandbox': typeof LayoutSandboxRoute
-  '/': typeof LayoutIndexRoute
+  '/sandbox': typeof LayoutSandboxRoute;
+  '/': typeof LayoutIndexRoute;
 }
 export interface FileRoutesById {
-  __root__: typeof rootRouteImport
-  '/_layout': typeof LayoutRouteWithChildren
-  '/_layout/sandbox': typeof LayoutSandboxRoute
-  '/_layout/': typeof LayoutIndexRoute
+  __root__: typeof rootRouteImport;
+  '/_layout': typeof LayoutRouteWithChildren;
+  '/_layout/sandbox': typeof LayoutSandboxRoute;
+  '/_layout/': typeof LayoutIndexRoute;
 }
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/sandbox'
-  fileRoutesByTo: FileRoutesByTo
-  to: '/sandbox' | '/'
-  id: '__root__' | '/_layout' | '/_layout/sandbox' | '/_layout/'
-  fileRoutesById: FileRoutesById
+  fileRoutesByFullPath: FileRoutesByFullPath;
+  fullPaths: '/' | '/sandbox';
+  fileRoutesByTo: FileRoutesByTo;
+  to: '/sandbox' | '/';
+  id: '__root__' | '/_layout' | '/_layout/sandbox' | '/_layout/';
+  fileRoutesById: FileRoutesById;
 }
 export interface RootRouteChildren {
-  LayoutRoute: typeof LayoutRouteWithChildren
+  LayoutRoute: typeof LayoutRouteWithChildren;
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
     '/_layout': {
-      id: '/_layout'
-      path: ''
-      fullPath: '/'
-      preLoaderRoute: typeof LayoutRouteImport
-      parentRoute: typeof rootRouteImport
-    }
+      id: '/_layout';
+      path: '';
+      fullPath: '/';
+      preLoaderRoute: typeof LayoutRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
     '/_layout/': {
-      id: '/_layout/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof LayoutIndexRouteImport
-      parentRoute: typeof LayoutRoute
-    }
+      id: '/_layout/';
+      path: '/';
+      fullPath: '/';
+      preLoaderRoute: typeof LayoutIndexRouteImport;
+      parentRoute: typeof LayoutRoute;
+    };
     '/_layout/sandbox': {
-      id: '/_layout/sandbox'
-      path: '/sandbox'
-      fullPath: '/sandbox'
-      preLoaderRoute: typeof LayoutSandboxRouteImport
-      parentRoute: typeof LayoutRoute
-    }
+      id: '/_layout/sandbox';
+      path: '/sandbox';
+      fullPath: '/sandbox';
+      preLoaderRoute: typeof LayoutSandboxRouteImport;
+      parentRoute: typeof LayoutRoute;
+    };
   }
 }
 
 interface LayoutRouteChildren {
-  LayoutSandboxRoute: typeof LayoutSandboxRoute
-  LayoutIndexRoute: typeof LayoutIndexRoute
+  LayoutSandboxRoute: typeof LayoutSandboxRoute;
+  LayoutIndexRoute: typeof LayoutIndexRoute;
 }
 
 const LayoutRouteChildren: LayoutRouteChildren = {
   LayoutSandboxRoute: LayoutSandboxRoute,
   LayoutIndexRoute: LayoutIndexRoute,
-}
+};
 
 const LayoutRouteWithChildren =
-  LayoutRoute._addFileChildren(LayoutRouteChildren)
+  LayoutRoute._addFileChildren(LayoutRouteChildren);
 
 const rootRouteChildren: RootRouteChildren = {
   LayoutRoute: LayoutRouteWithChildren,
-}
+};
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
+  ._addFileTypes<FileRouteTypes>();

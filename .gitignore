@@ -26,6 +26,10 @@ coverage
 out/
 build
 dist
+**/target/
+
+# Rust / ts-rs generated bindings
+apps/api/bindings/
 
 
 # Debug

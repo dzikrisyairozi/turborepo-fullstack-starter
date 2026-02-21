@@ -9,6 +9,9 @@
     "check": "cargo check",
     "test": "cargo test",
     "lint": "cargo clippy -- -D warnings",
-    "generate-types": "cargo test export_bindings -- --nocapture"
+    "generate-types": "cross-env TS_RS_EXPORT_DIR=../../packages/api-types/src cargo test export_bindings -- --nocapture"
+  },
+  "devDependencies": {
+    "cross-env": "^10.1.0"
   }
 }

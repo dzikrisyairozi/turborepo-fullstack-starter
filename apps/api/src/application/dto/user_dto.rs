@@ -12,7 +12,7 @@ use crate::domain::entities::user::User;
 
 /// Payload for creating a new user.
 #[derive(Debug, Deserialize, Serialize, ToSchema, TS)]
-#[ts(export, export_to = "bindings/")]
+#[ts(export)]
 pub struct CreateUserRequest {
     /// User email address.
     pub email: String,
@@ -22,7 +22,7 @@ pub struct CreateUserRequest {
 
 /// Payload for updating an existing user.
 #[derive(Debug, Deserialize, Serialize, ToSchema, TS)]
-#[ts(export, export_to = "bindings/")]
+#[ts(export)]
 pub struct UpdateUserRequest {
     /// Updated email address (optional).
     pub email: Option<String>,
@@ -36,7 +36,7 @@ pub struct UpdateUserRequest {
 
 /// Serialisable user representation returned by the API.
 #[derive(Debug, Serialize, Deserialize, ToSchema, TS)]
-#[ts(export, export_to = "bindings/")]
+#[ts(export)]
 pub struct UserResponse {
     pub id: Uuid,
     pub email: String,

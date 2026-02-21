@@ -10,7 +10,7 @@ use uuid::Uuid;
 /// for the user's shape. Thanks to `ts-rs`, a matching TypeScript interface will
 /// be generated automatically.
 #[derive(Debug, Clone, Serialize, Deserialize, FromRow, TS)]
-#[ts(export, export_to = "bindings/")]
+#[ts(export)]
 pub struct User {
     pub id: Uuid,
     pub email: String,

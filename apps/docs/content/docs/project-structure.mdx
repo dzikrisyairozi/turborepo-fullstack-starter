@@ -1,0 +1,78 @@
+---
+title: Project Structure
+description: Understand the monorepo layout and where everything lives.
+---
+
+# Project Structure
+
+This project uses a **Turborepo monorepo** with pnpm workspaces. Here's how it's organized:
+
+```
+turborepo-fullstack-starter/
+├── apps/
+│   ├── api/              # Rust API (Actix-Web + SQLx)
+│   ├── dashboard/        # Admin dashboard (Vite + React)
+│   ├── docs/             # Documentation (Next.js + Fumadocs)
+│   └── web/              # Landing page (Next.js + R3F)
+├── packages/
+│   ├── api-types/        # Auto-generated TS types from Rust
+│   ├── eslint-config/    # Shared ESLint configurations
+│   ├── tailwind-config/  # Shared Tailwind CSS theme
+│   ├── typescript-config/ # Shared TypeScript configs
+│   └── ui/               # Shared component library (shadcn/ui)
+├── turbo.json            # Turborepo pipeline configuration
+├── pnpm-workspace.yaml   # Workspace definition
+├── package.json          # Root scripts and dev dependencies
+└── eslint.config.mjs     # Root ESLint configuration
+```
+
+## Apps vs Packages
+
+### Apps (`apps/`)
+
+Apps are **deployable applications**. Each app has its own build process, dev server, and can be deployed independently.
+
+- They can import from packages using `workspace:*` protocol
+- Each has its own `package.json`, configuration files, and scripts
+
+### Packages (`packages/`)
+
+Packages are **shared libraries** consumed by apps (and sometimes by other packages).
+
+- They provide reusable code (components, configs, types)
+- Changes to a package automatically trigger rebuilds of dependent apps via Turborepo
+
+## Key Configuration Files
+
+### `turbo.json`
+
+Defines the task pipeline — build order, caching rules, and task dependencies. Key tasks:
+
+- **`build`** — Builds all packages and apps (respects dependency order)
+- **`dev`** — Starts dev servers (not cached, persistent)
+- **`lint`** — Runs ESLint across all packages
+
+### `pnpm-workspace.yaml`
+
+Tells pnpm which directories are workspaces:
+
+```yaml
+packages:
+  - 'apps/*'
+  - 'packages/*'
+```
+
+### Root `package.json`
+
+Contains convenience scripts like `pnpm dev:web`, `pnpm build:docs`, etc. Also manages shared dev dependencies (Prettier, Husky, Commitlint, Turbo).
+
+## How Turborepo Works
+
+When you run `pnpm build`, Turborepo:
+
+1. Reads `turbo.json` to understand task dependencies
+2. Builds packages first (since apps depend on them)
+3. Builds apps in parallel where possible
+4. **Caches results** — subsequent builds skip unchanged packages
+
+This means your builds are fast, even in a large monorepo.

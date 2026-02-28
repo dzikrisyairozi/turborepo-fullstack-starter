@@ -1,0 +1,79 @@
+---
+title: Dashboard
+description: The Vite + React admin dashboard with TanStack Router.
+---
+
+# Dashboard App
+
+The `dashboard` app is a **Vite-powered React** admin dashboard. It uses TanStack Router for type-safe routing and TanStack Query for data fetching.
+
+## Tech Stack
+
+- **Vite** — Lightning-fast dev server and bundler
+- **React 19** — UI library
+- **TanStack Router** — Type-safe file-based routing
+- **TanStack Query** — Server state management
+- **Recharts** — Data visualization (charts)
+- **React Hook Form** + **Zod** — Form handling and validation
+- **Zustand** — Client state management
+- **Tailwind CSS v4** — Styling via `@repo/tailwind-config`
+- **shadcn/ui** — Shared components via `@repo/ui`
+
+## Directory Structure
+
+```
+apps/dashboard/
+├── src/
+│   ├── routes/            # TanStack Router file-based routes
+│   │   ├── __root.tsx     # Root layout
+│   │   └── index.tsx      # Dashboard home page
+│   ├── components/        # Dashboard-specific components
+│   ├── lib/               # Utilities and helpers
+│   └── main.tsx           # App entry point
+├── vite.config.ts         # Vite configuration
+└── package.json
+```
+
+## Running Locally
+
+```bash
+pnpm dev:dashboard
+# Opens at http://localhost:5174
+```
+
+## How to Edit
+
+### Adding New Routes
+
+Create new files in `src/routes/` — TanStack Router auto-generates type-safe routes from the file structure:
+
+```
+src/routes/users.tsx       →  /users
+src/routes/settings.tsx    →  /settings
+src/routes/users/$id.tsx   →  /users/:id
+```
+
+### Using Shared Components
+
+Import components from the shared UI package:
+
+```tsx
+import { Button, Card, Input } from '@repo/ui';
+```
+
+### Adding Charts
+
+The dashboard uses Recharts. See the existing chart in `src/routes/index.tsx` for reference.
+
+### Connecting to the API
+
+Use TanStack Query to fetch data from the Rust API:
+
+```tsx
+import { useQuery } from '@tanstack/react-query';
+
+const { data } = useQuery({
+  queryKey: ['users'],
+  queryFn: () => fetch('http://localhost:8080/api/users').then(r => r.json()),
+});
+```

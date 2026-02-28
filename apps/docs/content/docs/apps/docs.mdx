@@ -1,0 +1,91 @@
+---
+title: Docs
+description: The documentation site built with Next.js and Fumadocs.
+---
+
+# Docs App
+
+The `docs` app is **this site** — built with [Fumadocs](https://fumadocs.dev/), a documentation framework for Next.js. It shares the same design system as the dashboard and web apps.
+
+## Tech Stack
+
+- **Next.js** — React framework
+- **Fumadocs** — Documentation framework (MDX-based)
+- **Tailwind CSS v4** — Styling via `@repo/tailwind-config`
+- **shadcn/ui** — Shared components via `@repo/ui`
+
+## Directory Structure
+
+```
+apps/docs/
+├── content/
+│   └── docs/             # MDX documentation files
+│       ├── meta.json     # Sidebar ordering
+│       ├── index.mdx     # Introduction page
+│       ├── apps/         # Apps section
+│       └── packages/     # Packages section
+├── src/
+│   ├── app/
+│   │   ├── layout.tsx    # Root layout (font, provider)
+│   │   ├── (home)/       # Landing page route
+│   │   └── docs/         # Docs routes
+│   └── lib/
+│       ├── source.ts     # Fumadocs content source
+│       └── layout.shared.tsx  # Shared layout options
+├── source.config.ts      # Fumadocs MDX configuration
+├── mdx-components.tsx    # MDX component overrides
+└── next.config.mjs       # Next.js + Fumadocs MDX plugin
+```
+
+## Running Locally
+
+```bash
+pnpm dev:docs
+# Opens at http://localhost:3002
+```
+
+## How to Add a New Page
+
+### 1. Create an MDX File
+
+Add a new `.mdx` file in `content/docs/`:
+
+```mdx
+---
+title: My New Page
+description: A brief description of this page.
+---
+
+# My New Page
+
+Your content here. You can use **Markdown** and JSX components.
+```
+
+### 2. Add to Sidebar
+
+Update the `meta.json` file in the same directory to include your new page in the sidebar:
+
+```json
+{
+  "title": "Section Title",
+  "pages": ["existing-page", "my-new-page"]
+}
+```
+
+### 3. Create a New Section
+
+To add a new folder-based section (like "Apps" or "Packages"):
+
+1. Create a directory: `content/docs/my-section/`
+2. Add a `meta.json` inside it for ordering
+3. Add your MDX files
+4. Reference the section in the parent `meta.json` with `...my-section`
+
+## MDX Features
+
+Fumadocs supports standard MDX features:
+
+- **Code blocks** with syntax highlighting
+- **Tables** with standard Markdown
+- **Frontmatter** for title and description
+- **Custom components** via `mdx-components.tsx`

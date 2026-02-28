@@ -1,0 +1,83 @@
+---
+title: Deployment
+description: Guide for deploying the apps to production.
+---
+
+# Deployment
+
+Each app in the monorepo can be deployed independently. Here are the recommended approaches.
+
+## Web & Docs (Next.js) — Vercel
+
+[Vercel](https://vercel.com/) is the easiest option for Next.js apps.
+
+### Steps
+
+1. **Connect your repository** to Vercel
+2. **Configure the project:**
+   - **Root Directory:** `apps/web` (or `apps/docs`)
+   - **Build Command:** `cd ../.. && pnpm build --filter=web` (or `--filter=docs`)
+   - **Output Directory:** `apps/web/.next` (or `apps/docs/.next`)
+3. **Set environment variables** in the Vercel dashboard
+4. **Deploy** 🚀
+
+### Monorepo Support
+
+Vercel has first-class Turborepo support. It will automatically detect your monorepo structure and only rebuild when relevant files change.
+
+## Dashboard (Vite) — Vercel / Netlify / Any Static Host
+
+The dashboard builds to static files, so it can be hosted anywhere.
+
+### Vercel
+
+- **Root Directory:** `apps/dashboard`
+- **Build Command:** `cd ../.. && pnpm build --filter=@repo/dashboard`
+- **Output Directory:** `apps/dashboard/dist`
+
+### Netlify
+
+- **Base directory:** `apps/dashboard`
+- **Build command:** `cd ../.. && pnpm build --filter=@repo/dashboard`
+- **Publish directory:** `apps/dashboard/dist`
+
+## API (Rust) — Docker / Railway / Fly.io
+
+The Rust API needs a server environment.
+
+### Docker
+
+```bash
+# Build the Docker image
+docker build -t turborepo-api -f Dockerfile .
+
+# Run the container
+docker run -p 8080:8080 \
+  -e DATABASE_URL="postgresql://user:pass@host:5432/db" \
+  turborepo-api
+```
+
+### Railway
+
+1. Connect your repository
+2. Set the **root directory** to `apps/api`
+3. Railway auto-detects Rust projects via `Cargo.toml`
+4. Set environment variables (`DATABASE_URL`, etc.)
+
+### Fly.io
+
+```bash
+cd apps/api
+fly launch
+fly deploy
+```
+
+## Environment Variables
+
+Make sure all required environment variables are set in your deployment platform:
+
+| App | Variable | Description |
+|-----|----------|-------------|
+| API | `DATABASE_URL` | PostgreSQL connection string |
+| API | `RUST_LOG` | Log level (e.g., `info`) |
+| Web | `NEXT_PUBLIC_API_URL` | API base URL |

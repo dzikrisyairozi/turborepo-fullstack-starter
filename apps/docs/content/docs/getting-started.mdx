@@ -1,0 +1,100 @@
+---
+title: Getting Started
+description: Set up the Turborepo Full-Stack Starter on your local machine.
+---
+
+# Getting Started
+
+Get up and running in under 5 minutes.
+
+## Prerequisites
+
+Make sure you have the following installed:
+
+- **Node.js** 22+ — [Download](https://nodejs.org/)
+- **pnpm** — Install with `npm install -g pnpm`
+- **Rust** (for the API) — [Install via rustup](https://rustup.rs/)
+- **PostgreSQL** (for the API) — [Download](https://www.postgresql.org/download/)
+- **Git** — [Download](https://git-scm.com/)
+
+## Installation
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/dzikrisyairozi/turborepo-fullstack-starter.git
+cd turborepo-fullstack-starter
+```
+
+### 2. Install Dependencies
+
+```bash
+pnpm install
+```
+
+This installs dependencies for **all** apps and packages in the monorepo.
+
+### 3. Set Up Environment Variables
+
+```bash
+# Copy example env files (if they exist)
+cp apps/api/.env.example apps/api/.env
+cp apps/web/.env.example apps/web/.env
+```
+
+### 4. Set Up the Database (for the API)
+
+Make sure PostgreSQL is running, then:
+
+```bash
+# Create your database and run migrations
+# Check apps/api/README.md for specific instructions
+```
+
+## Running the Development Servers
+
+### Start Everything
+
+```bash
+pnpm dev
+```
+
+This launches all apps in parallel using Turborepo.
+
+### Start Individual Apps
+
+```bash
+# Web (landing page) — http://localhost:3000
+pnpm dev:web
+
+# Dashboard — http://localhost:5174
+pnpm dev:dashboard
+
+# API — http://localhost:8080
+pnpm dev:api
+
+# Docs — http://localhost:3002
+pnpm dev:docs
+```
+
+## Build for Production
+
+```bash
+# Build everything
+pnpm build
+
+# Build a specific app
+pnpm build:web
+pnpm build:docs
+```
+
+## Useful Scripts
+
+```bash
+pnpm lint          # Lint all packages
+pnpm lint:fix      # Auto-fix linting issues
+pnpm format        # Format with Prettier
+pnpm type-check    # TypeScript type checking
+pnpm test          # Run all tests
+pnpm check-all     # Run type-check + lint + format check
+```

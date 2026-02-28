@@ -21,6 +21,7 @@
     "build:web": "turbo run build --filter=web",
     "build:api": "turbo run build --filter=api",
     "build:docs": "turbo run build --filter=docs",
+    "build:dashboard": "turbo run build --filter=@repo/dashboard",
     "db:generate": "turbo run db:generate --filter=@repo/db",
     "db:push": "turbo run db:push --filter=@repo/db",
     "db:migrate": "turbo run db:migrate --filter=@repo/db",

@@ -1,0 +1,79 @@
+---
+title: Tailwind Config
+description: The shared Tailwind CSS v4 theme and design tokens.
+---
+
+# Tailwind Config (`@repo/tailwind-config`)
+
+The `@repo/tailwind-config` package centralizes the design system. All apps import from it so they share the same colors, fonts, spacing, and utilities.
+
+## How Apps Use It
+
+Each app imports the shared stylesheet in its CSS entry point:
+
+```css
+@import '@repo/tailwind-config/global.css';
+```
+
+And adds the package as a dependency in `package.json`:
+
+```json
+{
+  "dependencies": {
+    "@repo/tailwind-config": "workspace:*"
+  }
+}
+```
+
+## Color System
+
+The theme uses **oklch colors** with an **amber** primary accent. Colors are defined as CSS custom properties:
+
+| Token | Light | Dark |
+|-------|-------|------|
+| `--primary` | Amber 500 | Amber 500 |
+| `--background` | White | Near black |
+| `--foreground` | Near black | Near white |
+| `--muted` | Gray 100 | Gray 800 |
+| `--accent` | Gray 100 | Gray 700 |
+| `--border` | Gray 200 | White 10% |
+
+## Font
+
+The project uses **Outfit** as the primary sans-serif font, loaded via Google Fonts in each app's layout.
+
+## Customizing the Theme
+
+### Changing Colors
+
+Edit `packages/tailwind-config/global.css`. The `:root` selector has light mode colors, and `.dark` has dark mode colors:
+
+```css
+:root {
+  --primary: oklch(0.769 0.188 70);  /* Amber */
+  --background: oklch(1 0 0);        /* White */
+  /* ... */
+}
+
+.dark {
+  --primary: oklch(0.769 0.188 70);  /* Same amber */
+  --background: oklch(0.145 0 0);    /* Dark */
+  /* ... */
+}
+```
+
+### Changing the Font
+
+Update the `--font-sans` variable in the `@theme inline` block:
+
+```css
+@theme inline {
+  --font-sans: 'Your Font', ui-sans-serif, system-ui, sans-serif;
+}
+```
+
+Then update each app's layout to load the new font from Google Fonts.
+
+## Dark Mode
+
+Dark mode is implemented with the CSS class strategy (`.dark` on the root element). The `next-themes` package handles the toggle in Next.js apps.

@@ -1,0 +1,83 @@
+---
+title: API
+description: The Rust API built with Actix-Web and SQLx.
+---
+
+# API App
+
+The `api` app is a **Rust** backend built with Actix-Web for high performance. It uses SQLx for type-safe database queries against PostgreSQL.
+
+## Tech Stack
+
+- **Rust** — Systems programming language
+- **Actix-Web** — High-performance web framework
+- **SQLx** — Async, compile-time checked SQL queries
+- **PostgreSQL** — Relational database
+- **ts-rs** — Auto-generate TypeScript types from Rust structs
+
+## Directory Structure
+
+```
+apps/api/
+├── src/
+│   ├── main.rs            # Entry point, server setup
+│   ├── api/
+│   │   ├── router.rs      # Route definitions
+│   │   ├── handlers/      # Request handlers
+│   │   └── responses.rs   # Response types
+│   ├── models/            # Database models
+│   └── db/                # Database connection setup
+├── migrations/            # SQL migration files
+├── Cargo.toml             # Rust dependencies
+└── .env                   # Environment variables
+```
+
+## Running Locally
+
+### Prerequisites
+
+1. Install Rust via [rustup](https://rustup.rs/)
+2. Have PostgreSQL running locally
+3. Create a `.env` file with your database URL
+
+### Start the Server
+
+```bash
+pnpm dev:api
+# Or directly with cargo:
+cd apps/api && cargo run
+# Server runs at http://localhost:8080
+```
+
+## How to Edit
+
+### Adding a New Endpoint
+
+1. Create a handler in `src/api/handlers/`:
+
+```rust
+pub async fn get_items(db: web::Data<PgPool>) -> impl Responder {
+    // your logic here
+}
+```
+
+2. Register the route in `src/api/router.rs`:
+
+```rust
+cfg.service(
+    web::resource("/items")
+        .route(web::get().to(handlers::get_items))
+);
+```
+
+### Adding Database Migrations
+
+Create a new SQL file in `migrations/`:
+
+```
+migrations/20250309_000001_create_items.sql
+```
+
+### Auto-Generated TypeScript Types
+
+Rust structs decorated with `#[derive(TS)]` from `ts-rs` automatically export TypeScript types to `packages/api-types/`. This ensures your frontend always has accurate types for API responses.

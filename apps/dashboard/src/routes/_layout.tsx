@@ -1,5 +1,6 @@
 import { Outlet, createFileRoute, Link } from '@tanstack/react-router';
 import { Home, Layers, Settings, Box } from 'lucide-react';
+import { ThemeToggle } from '../components/theme-toggle';
 
 export const Route = createFileRoute('/_layout')({
   component: DashboardLayout,
@@ -66,6 +67,7 @@ function DashboardLayout() {
         {/* Header */}
         <header className="h-16 flex justify-end items-center px-8 bg-white/50 dark:bg-black/50 backdrop-blur-md border-b border-border sticky top-0 z-10 text-foreground">
           <div className="flex items-center gap-4">
+            <ThemeToggle />
             <div className="h-8 w-8 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-500 shadow-inner ring-2 ring-background border border-border cursor-pointer hover:opacity-90 transition-opacity"></div>
           </div>
         </header>

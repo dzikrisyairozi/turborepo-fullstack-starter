@@ -1,14 +1,15 @@
-# 🚀 Turborepo Full-Stack Starter
+# 🚀 Monorepo Full-Stack Starter
 
 A modern, production-ready full-stack starter built with Turborepo, featuring Next.js, NestJS, and a comprehensive shadcn/ui component library.
 
 ## ✨ Features
 
 - 🏗️ **Turborepo** - High-performance build system for JavaScript/TypeScript monorepos
-- ⚡ **Next.js 15** - React framework with App Router and Server Components
-- 🛡️ **NestJS** - Scalable Node.js backend framework with TypeScript
+- ⚡ **Next.js 15** - React framework with App Router for Web & Docs
+- 🦀 **Rust** - High-performance backend API with Actix-Web and SQLx
+- 🛠️ **Vite & React** - Fast admin dashboard
 - 🎨 **shadcn/ui** - Beautiful, accessible UI components built with Radix UI and Tailwind CSS
-- 🎯 **TypeScript** - Full type safety across the entire stack
+- 🎯 **TypeScript** - Full type safety across all frontend applications
 - 🎨 **Tailwind CSS** - Utility-first CSS framework
 - 📱 **Responsive Design** - Mobile-first approach with dark/light mode support
 - 🔧 **Developer Experience** - ESLint, Prettier, Husky, and Commitlint pre-configured
@@ -17,19 +18,21 @@ A modern, production-ready full-stack starter built with Turborepo, featuring Ne
 
 ## 📦 What's Inside?
 
-This Turborepo includes the following packages and apps:
+This Monorepo includes the following packages and apps:
 
 ### Apps
 
-- **`web`** - Next.js 15 frontend application with shadcn/ui components
-- **`api`** - NestJS backend API with Prisma ORM
-- **`docs`** - Documentation site built with Next.js
+- **`api`** - Rust backend API (Actix-Web + SQLx)
+- **`dashboard`** - Admin dashboard (Vite + React)
+- **`docs`** - Documentation site (Next.js + Fumadocs)
+- **`web`** - Premium landing page (Next.js + React Three Fiber)
 
 ### Packages
 
-- **`@repo/ui`** - Shared React component library with 40+ shadcn/ui components
-- **`@repo/db`** - Shared database package with Prisma client and schema
+- **`@repo/api-types`** - Auto-generated TS types from the Rust API
+- **`@repo/ui`** - Shared React component library
 - **`@repo/eslint-config`** - Shared ESLint configurations
+- **`@repo/tailwind-config`** - Shared Tailwind CSS theme
 - **`@repo/typescript-config`** - Shared TypeScript configurations
 
 ### Tools & Configuration
@@ -40,7 +43,7 @@ This Turborepo includes the following packages and apps:
 - **Husky** - Git hooks for code quality
 - **Commitlint** - Conventional commit message linting
 - **Tailwind CSS** - Utility-first styling
-- **Prisma** - Type-safe database ORM
+- **Rust/Cargo** - Backend language and package manager
 - **Docker** - Containerization support
 
 ## 🚀 Quick Start
@@ -57,7 +60,7 @@ This Turborepo includes the following packages and apps:
 
    ```bash
    git clone <your-repo-url>
-   cd turborepo-fullstack-starter
+   cd monorepo-fullstack-starter
    ```
 
 2. **Install dependencies**
@@ -71,13 +74,14 @@ This Turborepo includes the following packages and apps:
    ```bash
    # Copy environment files
    cp apps/api/.env.example apps/api/.env
-   cp apps/web/.env.example apps/web/.env
+   # Make sure to update your DATABASE_URL in apps/api/.env
    ```
 
 4. **Set up the database** (if using the API)
    ```bash
-   pnpm db:generate
-   pnpm db:push
+   cd apps/api
+   cargo sqlx database setup
+   cd ../..
    ```
 
 ### Development
@@ -92,20 +96,24 @@ pnpm dev
 
 ```bash
 # Frontend only
-pnpm dev --filter=web
+pnpm dev:web
+
+# Dashboard only
+pnpm dev:dashboard
 
 # Backend only
-pnpm dev --filter=api
+pnpm dev:api
 
 # Documentation
-pnpm dev --filter=docs
+pnpm dev:docs
 ```
 
 **Access your applications:**
 
-- 🔧 **API**: http://localhost:3000
-- 🌐 **Web App**: http://localhost:3001
+- 🌐 **Web App**: http://localhost:3000
+- 🔧 **API**: http://localhost:3001
 - 📚 **Docs**: http://localhost:3002
+- 📊 **Dashboard**: http://localhost:5174
 
 ### Build
 
@@ -119,6 +127,7 @@ pnpm build
 
 ```bash
 pnpm build --filter=web
+pnpm build --filter=@repo/dashboard
 pnpm build --filter=api
 pnpm build --filter=docs
 ```
@@ -182,12 +191,16 @@ The `@repo/ui` package includes 40+ pre-built components from shadcn/ui:
 # Development
 pnpm dev              # Start all apps in development
 pnpm dev:web          # Start web app only
+pnpm dev:dashboard    # Start dashboard only
 pnpm dev:api          # Start API only
+pnpm dev:docs         # Start docs only
 
 # Building
 pnpm build            # Build all packages
 pnpm build:web        # Build web app only
+pnpm build:dashboard  # Build dashboard only
 pnpm build:api        # Build API only
+pnpm build:docs       # Build docs only
 
 # Code Quality
 pnpm lint             # Lint all packages
@@ -200,10 +213,10 @@ pnpm test             # Run all tests
 pnpm test:watch       # Run tests in watch mode
 
 # Database (API)
-pnpm db:generate      # Generate Prisma client
-pnpm db:push          # Push schema to database
-pnpm db:migrate       # Run database migrations
-pnpm db:studio        # Open Prisma Studio
+cd apps/api
+cargo sqlx database setup # Run migrations
+cargo sqlx prepare        # Prepare query metadata
+cd ../..
 ```
 
 ## 🐳 Docker Support
@@ -228,25 +241,19 @@ docker run -p 3000:3000 turborepo-starter
 NEXT_PUBLIC_API_URL=http://localhost:3001
 ```
 
-**API (`apps/api/.env`)**
+**Database/API (`apps/api/.env`)**
 
 ```env
 DATABASE_URL="postgresql://user:password@localhost:5432/mydb"
 JWT_SECRET="your-jwt-secret"
 ```
 
-**Database (`packages/db/.env`)**
-
-```env
-DATABASE_URL="postgresql://user:password@localhost:5432/mydb"
-```
-
 ### Customization
 
-- **Theme**: Modify `apps/web/src/app/globals.css` for custom themes
+- **Theme**: Modify `packages/tailwind-config/theme.css` for custom themes (if configured)
 - **Components**: Add new components to `packages/ui/src/`
 - **API Routes**: Add endpoints in `apps/api/src/`
-- **Database**: Update schema in `packages/db/prisma/schema.prisma`
+- **Database**: Update schema via migrations in `apps/api/migrations`
 
 ## 🚢 Deployment
 
@@ -272,9 +279,10 @@ docker run -p 3000:3000 -e NODE_ENV=production turborepo-starter
 ### Railway/Render (API)
 
 1. **Connect your repository**
-2. **Set build command**: `pnpm build --filter=api`
-3. **Set start command**: `pnpm start --filter=api`
-4. **Configure environment variables**
+2. **Environment**: Select Rust
+3. **Set build command**: `cargo build --release`
+4. **Set start command**: `./target/release/api`
+5. **Configure environment variables**
 
 ## 🤝 Contributing
 
@@ -299,9 +307,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [Turborepo](https://turborepo.com/) - The build system that powers this monorepo
 - [shadcn/ui](https://ui.shadcn.com/) - Beautiful and accessible UI components
 - [Next.js](https://nextjs.org/) - The React framework for production
-- [NestJS](https://nestjs.com/) - A progressive Node.js framework
+- [Vite](https://vitejs.dev/) - Next Generation Frontend Tooling
+- [Actix-Web](https://actix.rs/) - A powerful, pragmatic, and extremely fast web framework for Rust
+- [SQLx](https://github.com/launchbadge/sqlx) - The Rust SQL Toolkit
 - [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework
-- [Prisma](https://prisma.io/) - Next-generation ORM for Node.js and TypeScript
 
 ## 📚 Learn More
 
@@ -309,7 +318,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - [Turborepo Docs](https://turborepo.com/docs)
 - [Next.js Docs](https://nextjs.org/docs)
-- [NestJS Docs](https://docs.nestjs.com/)
+- [Vite Docs](https://vitejs.dev/guide/)
+- [Actix-Web Docs](https://actix.rs/docs/)
 - [shadcn/ui Docs](https://ui.shadcn.com/)
 - [Tailwind CSS Docs](https://tailwindcss.com/docs)
 
@@ -324,7 +334,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 <div align="center">
 
-**[⭐ Star this repo](https://github.com/your-username/turborepo-fullstack-starter)** • **[🐛 Report Bug](https://github.com/your-username/turborepo-fullstack-starter/issues)** • **[✨ Request Feature](https://github.com/your-username/turborepo-fullstack-starter/issues)**
+**[⭐ Star this repo](https://github.com/dzikrisyairozi/monorepo-fullstack-starter)** • **[🐛 Report Bug](https://github.com/dzikrisyairozi/monorepo-fullstack-starter/issues)** • **[✨ Request Feature](https://github.com/dzikrisyairozi/monorepo-fullstack-starter/issues)**
 
 Made with ❤️ by @dzikrisyairozi
 

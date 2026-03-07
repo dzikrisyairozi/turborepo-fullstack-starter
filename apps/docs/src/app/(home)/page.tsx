@@ -5,7 +5,7 @@ export default function HomePage() {
     <main className="flex flex-1 flex-col items-center justify-center px-4 py-16 text-center">
       <div className="max-w-2xl space-y-6">
         <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
-          🚀 Turborepo Full-Stack Starter
+          🚀 Monorepo Full-Stack Starter
         </h1>
         <p className="text-lg text-muted-foreground">
           A modern, production-ready monorepo with{' '}
@@ -22,7 +22,7 @@ export default function HomePage() {
             Read the Docs
           </Link>
           <a
-            href="https://github.com/dzikrisyairozi/turborepo-fullstack-starter"
+            href="https://github.com/dzikrisyairozi/monorepo-fullstack-starter"
             target="_blank"
             rel="noreferrer noopener"
             className="inline-flex h-11 items-center justify-center rounded-lg border border-border bg-background px-6 font-medium shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground"

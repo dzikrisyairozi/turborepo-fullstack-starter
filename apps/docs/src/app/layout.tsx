@@ -11,11 +11,11 @@ const outfit = Outfit({
 
 export const metadata: Metadata = {
   title: {
-    template: '%s | Turborepo Starter Docs',
-    default: 'Turborepo Starter Docs',
+    template: '%s | Monorepo Starter Docs',
+    default: 'Monorepo Starter Docs',
   },
   description:
-    'Documentation for the Turborepo Full-Stack Starter — a modern, production-ready monorepo with Next.js, Rust API, and shadcn/ui.',
+    'Documentation for the Monorepo Full-Stack Starter — a modern, production-ready monorepo with Next.js, Rust API, and shadcn/ui.',
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

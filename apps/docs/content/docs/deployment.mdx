@@ -23,7 +23,7 @@ Each app in the monorepo can be deployed independently. Here are the recommended
 
 ### Monorepo Support
 
-Vercel has first-class Turborepo support. It will automatically detect your monorepo structure and only rebuild when relevant files change.
+Vercel has first-class monorepo support. It will automatically detect your monorepo structure and only rebuild when relevant files change.
 
 ## Dashboard (Vite) — Vercel / Netlify / Any Static Host
 
@@ -49,12 +49,12 @@ The Rust API needs a server environment.
 
 ```bash
 # Build the Docker image
-docker build -t turborepo-api -f Dockerfile .
+docker build -t monorepo-api -f Dockerfile .
 
 # Run the container
 docker run -p 8080:8080 \
   -e DATABASE_URL="postgresql://user:pass@host:5432/db" \
-  turborepo-api
+  monorepo-api
 ```
 
 ### Railway

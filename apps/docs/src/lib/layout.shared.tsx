@@ -4,10 +4,12 @@ export function baseOptions(): BaseLayoutProps {
   return {
     nav: {
       title: (
-        <span className="font-bold text-primary">🚀 Turborepo Starter</span>
+        <span className="font-bold text-primary">
+          🚀 Monorepo Fullstack Starter
+        </span>
       ),
     },
-    githubUrl: 'https://github.com/dzikrisyairozi/turborepo-fullstack-starter',
+    githubUrl: 'https://github.com/dzikrisyairozi/monorepo-fullstack-starter',
     links: [
       {
         text: 'Docs',

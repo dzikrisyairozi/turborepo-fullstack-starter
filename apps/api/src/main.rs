@@ -23,7 +23,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     // ── 3. Startup banner (plain text so URLs are clickable) ──
     println!();
-    println!("  🚀 Turborepo API Starter");
+    println!("  🚀 Monorepo API Starter");
     println!("  ────────────────────────────────────────");
     println!("  ├─ Local:   http://localhost:{}", config.port);
     println!("  ├─ Health:  http://localhost:{}/health", config.port);

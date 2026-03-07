@@ -2,7 +2,7 @@
 name = "api"
 version = "0.1.0"
 edition = "2021"
-description = "Turborepo Fullstack Starter – Rust API"
+description = "Monorepo Fullstack Starter – Rust API"
 
 [dependencies]
 # Web framework

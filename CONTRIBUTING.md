@@ -1,4 +1,4 @@
-# Contributing to Turborepo Full-Stack Starter
+# Contributing to Monorepo Full-Stack Starter
 
 Thank you for your interest in contributing to this project! We welcome contributions from everyone.
 
@@ -15,8 +15,8 @@ Thank you for your interest in contributing to this project! We welcome contribu
 1. **Fork and clone the repository**
 
    ```bash
-   git clone https://github.com/your-username/turborepo-fullstack-starter.git
-   cd turborepo-fullstack-starter
+   git clone https://github.com/your-username/monorepo-fullstack-starter.git
+   cd monorepo-fullstack-starter
    ```
 
 2. **Install dependencies**
@@ -33,6 +33,7 @@ Thank you for your interest in contributing to this project! We welcome contribu
 
    # Or start specific apps
    pnpm dev --filter=web
+   pnpm dev --filter=@repo/dashboard
    pnpm dev --filter=api
    ```
 
@@ -43,15 +44,18 @@ Thank you for your interest in contributing to this project! We welcome contribu
 
 ## 📁 Project Structure
 
-```
+```text
 ├── apps/
-│   ├── web/          # Next.js frontend
-│   ├── api/          # NestJS backend
-│   └── docs/         # Documentation site
+│   ├── api/          # Rust API (Actix-Web + SQLx)
+│   ├── dashboard/    # Admin dashboard (Vite + React)
+│   ├── docs/         # Documentation site (Next.js + Fumadocs)
+│   └── web/          # Landing page (Next.js + R3F)
 ├── packages/
-│   ├── ui/           # Shared UI components
+│   ├── api-types/    # Auto-generated TS types from Rust
 │   ├── eslint-config/# Shared ESLint config
-│   └── typescript-config/ # Shared TypeScript config
+│   ├── tailwind-config/# Shared Tailwind CSS theme
+│   ├── typescript-config/ # Shared TypeScript config
+│   └── ui/           # Shared UI components
 └── .github/          # GitHub workflows
 ```
 

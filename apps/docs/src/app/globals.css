@@ -1,0 +1,12 @@
+@import 'tailwindcss';
+
+@source "../../content/**/*.mdx";
+@source "../../mdx-components.tsx";
+@source "../**/*.{ts,tsx}";
+@source "../../node_modules/fumadocs-ui/dist/**/*.js";
+@source "../../../../packages/ui/src/**/*.tsx";
+@import 'fumadocs-ui/css/shadcn.css';
+@import 'fumadocs-ui/css/preset.css';
+@import '@repo/tailwind-config/global.css';
+
+@custom-variant dark (&:is(.dark *));

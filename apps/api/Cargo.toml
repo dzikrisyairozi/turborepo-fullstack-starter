@@ -1,0 +1,53 @@
+[package]
+name = "api"
+version = "0.1.0"
+edition = "2021"
+description = "Monorepo Fullstack Starter – Rust API"
+authors = ["Dzikri Syairozi <dzikrisyairozi@gmail.com>"]
+repository = "https://github.com/dzikrisyairozi/monorepo-fullstack-starter"
+license = "MIT"
+
+[dependencies]
+# Web framework
+axum = { version = "0.8", features = ["macros"] }
+
+# Middleware
+tower = "0.5"
+tower-http = { version = "0.6", features = ["cors", "trace", "request-id", "util", "propagate-header"] }
+
+# Async runtime
+tokio = { version = "1", features = ["full"] }
+
+# Database
+sqlx = { version = "0.8", features = [
+    "runtime-tokio-native-tls",
+    "postgres",
+    "uuid",
+    "chrono",
+    "migrate",
+] }
+
+# Serialization
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+# TypeScript type generation
+ts-rs = { version = "10", features = ["uuid-impl", "chrono-impl", "serde-json-impl"] }
+
+# Error handling
+thiserror = "2"
+
+# Observability
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+
+# OpenAPI
+utoipa = { version = "5", features = ["axum_extras", "uuid", "chrono"] }
+
+# Utilities
+dotenvy = "0.15"
+uuid = { version = "1", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+
+# Async trait support
+async-trait = "0.1"

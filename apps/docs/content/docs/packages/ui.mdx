@@ -1,0 +1,75 @@
+---
+title: UI Components
+description: The shared component library built with shadcn/ui.
+---
+
+# UI Components (`@repo/ui`)
+
+The `@repo/ui` package is a shared component library built with [shadcn/ui](https://ui.shadcn.com/). It provides 40+ pre-built, accessible components used across all frontend apps.
+
+## How It Works
+
+Components are installed via the shadcn CLI into `packages/ui/src/` and then exported for consumption by apps. Each app imports components directly:
+
+```tsx
+import { Button, Card, Input, Dialog } from '@repo/ui';
+```
+
+## Available Components
+
+### Layout
+- **Card** — Flexible content containers
+- **Separator** — Visual dividers
+- **Aspect Ratio** — Maintain aspect ratios
+
+### Form
+- **Button** — Various button styles and sizes
+- **Input** — Text inputs with validation
+- **Textarea** — Multi-line text inputs
+- **Select** — Dropdown selections
+- **Checkbox** — Boolean inputs
+- **Radio Group** — Single selection from options
+- **Switch** — Toggle switches
+- **Slider** — Range inputs
+- **Form** — React Hook Form integration
+
+### Navigation
+- **Navigation Menu** — Complex navigation structures
+- **Breadcrumb** — Hierarchical navigation
+- **Pagination** — Page navigation
+- **Tabs** — Tabbed content
+
+### Feedback
+- **Alert** — Important messages
+- **Toast / Sonner** — Temporary notifications
+- **Progress** — Loading indicators
+- **Skeleton** — Loading placeholders
+
+### Overlay
+- **Dialog** — Modal dialogs
+- **Drawer** — Slide-out panels
+- **Popover** — Contextual overlays
+- **Tooltip** — Helpful hints
+- **Sheet** — Side panels
+
+### Data Display
+- **Table** — Data tables
+- **Badge** — Status indicators
+- **Avatar** — User representations
+- **Calendar** — Date selection
+- **Chart** — Data visualizations (Recharts)
+
+## Adding a New Component
+
+Use the shadcn CLI from the UI package:
+
+```bash
+cd packages/ui
+npx shadcn@latest add <component-name>
+```
+
+The component will be added to `packages/ui/src/` and automatically available to all apps.
+
+## Customizing Components
+
+All components live in `packages/ui/src/` as regular React files. You can modify them directly — they're not hidden in `node_modules`.

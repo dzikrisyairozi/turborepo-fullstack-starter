@@ -1,154 +1,36 @@
-# Next.js + shadcn/ui Starter Kit
-
-A modern, feature-rich starter template built with Next.js 15, Tailwind CSS, TypeScript, and shadcn/ui components.
-
-## Features
-
-- 🚀 Next.js 15 with App Router
-- 💅 shadcn/ui Components (40+ pre-built components)
-- 🎨 Tailwind CSS for styling
-- 📝 TypeScript for type safety
-- 🌙 Dark mode support
-- 🧩 Component showcase page
-- 🔍 ESLint and Prettier for code quality
-- 🪝 Husky for Git hooks
-- 📜 Commitlint for consistent commit messages
-- 🔄 GitHub Actions CI/CD workflow
-- ✅ Automated branch checks and tests
-- 📱 Fully responsive design
-- 🎯 Path aliases (@/ based imports)
-- 📦 Organized project structure
-
-## Prerequisites
-
-- Node.js 18+
-- pnpm (recommended) or npm
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
 
-You can start using this template in two ways:
-
-1. Use as template via GitHub web interface:
-   - Visit https://github.com/dzikrisyairozi/next-shadcn-ui-starter
-   - Click the "Use this template" button
-   - Choose "Create a new repository"
-   - Follow the prompts to create your repository
-
-2. Create from template using CLI:
-
-   ```bash
-   npx create-next-app@latest your-app-name -e https://github.com/dzikrisyairozi/next-shadcn-ui-starter
-   ```
-
-   or clone the repository:
-
-   ```bash
-   git clone https://github.com/dzikrisyairozi/next-shadcn-ui-starter.git
-   ```
-
-3. Install dependencies:
-
-   ```bash
-   pnpm install
-   ```
-
-4. Run the development server:
-
-   ```bash
-   pnpm dev
-   ```
-
-5. Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-## Project Structure
-
-````
-next-shadcn-ui-starter/
-├── src/
-│ ├── app/ # App router pages
-│ ├── components/ # React components
-│ │ └── ui/ # shadcn/ui components
-│ ├── hooks/ # Custom React hooks
-│ └── lib/ # Utility functions
-├── public/ # Static files
-├── styles/ # Global styles
-└── ```config files
-````
-
-## Available Scripts
+First, run the development server:
 
 ```bash
-pnpm dev        # Start development server
-pnpm build      # Build for production
-pnpm start      # Start production server
-pnpm lint       # Run ESLint
-pnpm lint:fix   # Fix ESLint errors
-pnpm format     # Format code with Prettier
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-## Components Showcase
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-Visit `/sandbox` route to explore all available components. Components are organized into categories:
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-- Form Inputs
-- Layout
-- Navigation
-- Feedback
-- Data Display
-- Overlay
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Customization
+## Learn More
 
-### Styling
+To learn more about Next.js, take a look at the following resources:
 
-1. Modify `globals.css` for global styles
-2. Update `tailwind.config.ts` for Tailwind configuration
-3. Edit component-specific styles in their respective files
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-### Theme
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-The default theme can be customized in `src/app/globals.css`:
+## Deploy on Vercel
 
-- Light/dark mode colors
-- Border radius
-- Animations
-- Typography
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-### Adding New Components
-
-1. Use shadcn/ui CLI to add new components:
-
-```bash
-pnpm dlx shadcn-ui@latest add button
-```
-
-2. Components will be added to `src/components/ui/`
-
-## Best Practices
-
-- Use TypeScript for type safety
-- Follow the established project structure
-- Utilize path aliases for imports
-- Keep components modular and reusable
-- Use Prettier and ESLint for code consistency
-
-## Contributing
-
-1. Fork the repository
-2. Create a new branch
-3. Make your changes
-4. Submit a pull request
-
-## License
-
-MIT License - feel free to use this starter kit for any project.
-
-## Acknowledgments
-
-- [shadcn/ui](https://ui.shadcn.com/) for the beautiful components
-- [Next.js](https://nextjs.org/) team for the amazing framework
-- [Tailwind CSS](https://tailwindcss.com/) for the utility-first CSS framework
-
-## Support
-
-For support, please open an issue in the GitHub repository.
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

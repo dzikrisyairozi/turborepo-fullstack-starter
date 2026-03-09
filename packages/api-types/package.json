@@ -1,0 +1,17 @@
+{
+  "name": "@repo/api-types",
+  "version": "0.1.0",
+  "private": true,
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "generate": "pnpm --filter api run generate-types",
+    "lint": "echo 'no-op'",
+    "lint:fix": "echo 'no-op'",
+    "check-types": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "typescript": "5.9.3"
+  }
+}

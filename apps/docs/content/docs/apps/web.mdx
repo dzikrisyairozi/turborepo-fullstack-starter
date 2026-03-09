@@ -1,0 +1,58 @@
+---
+title: Web (Landing Page)
+description: The Next.js landing page with 3D visuals and animations.
+---
+
+# Web App
+
+The `web` app is a **Next.js** landing page designed to be the public face of your project. It features 3D visuals with React Three Fiber and smooth animations with Framer Motion.
+
+## Tech Stack
+
+- **Next.js** — React framework with App Router
+- **React Three Fiber** + **Drei** — 3D rendering in React
+- **Framer Motion** — Animations and transitions
+- **Tailwind CSS v4** — Styling via `@repo/tailwind-config`
+- **shadcn/ui** — Shared components via `@repo/ui`
+
+## Directory Structure
+
+```
+apps/web/
+├── src/
+│   ├── app/
+│   │   ├── layout.tsx      # Root layout (fonts, metadata)
+│   │   ├── page.tsx         # Landing page
+│   │   └── globals.css      # Tailwind imports
+│   └── components/          # Page-specific components
+├── public/                  # Static assets
+├── next.config.ts           # Next.js configuration
+├── postcss.config.mjs       # PostCSS (Tailwind)
+└── package.json
+```
+
+## Running Locally
+
+```bash
+pnpm dev:web
+# Opens at http://localhost:3000
+```
+
+## How to Edit
+
+### Modifying the Landing Page
+
+Edit `src/app/page.tsx` to change the landing page content. The page uses components from `src/components/`.
+
+### Changing Colors / Theme
+
+The web app uses the shared theme from `@repo/tailwind-config`. To change the color palette, edit `packages/tailwind-config/global.css`.
+
+### Adding New Pages
+
+Create new files under `src/app/` following the Next.js App Router conventions:
+
+```
+src/app/about/page.tsx  →  /about
+src/app/blog/page.tsx   →  /blog
+```

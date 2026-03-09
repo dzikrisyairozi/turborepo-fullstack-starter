@@ -30,6 +30,11 @@ export const metadata: Metadata = {
   authors: [
     { name: 'Dzikri Syairozi', url: 'https://github.com/dzikrisyairozi' },
   ],
+  icons: {
+    icon: '/favicon/favicon.ico',
+    apple: '/favicon/apple-icon-180x180.png',
+  },
+  manifest: '/favicon/manifest.json',
 };
 
 export default function RootLayout({

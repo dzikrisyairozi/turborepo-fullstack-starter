@@ -26,6 +26,11 @@ export const metadata: Metadata = {
   },
   description:
     'Documentation for the Monorepo Full-Stack Starter — a modern, production-ready monorepo with Next.js, Rust API, and shadcn/ui.',
+  icons: {
+    icon: '/favicon/favicon.ico',
+    apple: '/favicon/apple-icon-180x180.png',
+  },
+  manifest: '/favicon/manifest.json',
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

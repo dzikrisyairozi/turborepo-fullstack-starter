@@ -27,3 +27,11 @@ logs/
 
 # Husky
 .husky/_
+
+# Generated files
+routeTree.gen.ts
+next-env.d.ts
+.source/
+*.tsbuildinfo
+.next/
+.turbo/

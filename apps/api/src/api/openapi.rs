@@ -11,7 +11,7 @@ use crate::application::dto::user_dto::{CreateUserRequest, UpdateUserRequest, Us
 #[derive(OpenApi)]
 #[openapi(
     info(
-        title = "Turborepo Fullstack Starter API",
+        title = "Monorepo Fullstack Starter API",
         version = "0.1.0",
         description = "A clean, DDD-driven REST API built with Axum and Rust.",
         license(name = "MIT")

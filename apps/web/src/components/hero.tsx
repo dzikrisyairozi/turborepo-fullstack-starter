@@ -1,3 +1,13 @@
+/**
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Monorepo Fullstack Starter — Hero Component
+ *
+ * @author  Dzikri Syairozi <dzikrisyairozi@gmail.com>
+ * @see     https://github.com/dzikrisyairozi/monorepo-fullstack-starter
+ * @license MIT
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+
 'use client';
 
 import { motion, Variants } from 'framer-motion';
@@ -63,6 +73,26 @@ export default function Hero() {
           </motion.div>
         </motion.div>
       </div>
+
+      {/* Subtle Footer Trace */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1, duration: 1 }}
+        className="absolute bottom-8 left-0 right-0 flex justify-center z-10"
+      >
+        <p className="text-xs text-zinc-500 font-medium tracking-widest uppercase">
+          Crafted by{' '}
+          <a
+            href="https://github.com/dzikrisyairozi"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-zinc-400 hover:text-white transition-colors"
+          >
+            Dzikri Syairozi
+          </a>
+        </p>
+      </motion.div>
     </section>
   );
 }

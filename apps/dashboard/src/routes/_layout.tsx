@@ -1,3 +1,13 @@
+/**
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Monorepo Fullstack Starter — Dashboard Layout
+ *
+ * @author  Dzikri Syairozi <dzikrisyairozi@gmail.com>
+ * @see     https://github.com/dzikrisyairozi/monorepo-fullstack-starter
+ * @license MIT
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+
 import { Outlet, createFileRoute, Link } from '@tanstack/react-router';
 import { Home, Layers, Settings, Box } from 'lucide-react';
 import { ThemeToggle } from '../components/theme-toggle';
@@ -60,6 +70,21 @@ function DashboardLayout() {
             Settings
           </Link>
         </nav>
+
+        {/* ── Creator Attribution ── */}
+        <div className="px-4 py-3 border-t border-border">
+          <p className="text-[10px] text-muted-foreground/70 leading-relaxed text-center">
+            Built by{' '}
+            <a
+              href="https://github.com/dzikrisyairozi"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Dzikri Syairozi
+            </a>
+          </p>
+        </div>
       </aside>
 
       {/* Main content */}

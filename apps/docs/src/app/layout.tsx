@@ -1,3 +1,13 @@
+/**
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Monorepo Fullstack Starter — Documentation Site
+ *
+ * @author  Dzikri Syairozi <dzikrisyairozi@gmail.com>
+ * @see     https://github.com/dzikrisyairozi/monorepo-fullstack-starter
+ * @license MIT
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+
 import './globals.css';
 import { RootProvider } from 'fumadocs-ui/provider/next';
 import { Outfit } from 'next/font/google';

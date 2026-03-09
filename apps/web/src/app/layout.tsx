@@ -1,3 +1,13 @@
+/**
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Monorepo Fullstack Starter — Web (Landing Page)
+ *
+ * @author  Dzikri Syairozi <dzikrisyairozi@gmail.com>
+ * @see     https://github.com/dzikrisyairozi/monorepo-fullstack-starter
+ * @license MIT
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+
 import type { Metadata } from 'next';
 import { Outfit, Instrument_Serif } from 'next/font/google';
 import './globals.css';
@@ -17,6 +27,9 @@ const instrumentSerif = Instrument_Serif({
 export const metadata: Metadata = {
   title: 'Premium Landing Page',
   description: 'A stunning 3D Next.js landing page',
+  authors: [
+    { name: 'Dzikri Syairozi', url: 'https://github.com/dzikrisyairozi' },
+  ],
 };
 
 export default function RootLayout({

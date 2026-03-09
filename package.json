@@ -1,6 +1,16 @@
 {
   "name": "monorepo-fullstack-starter",
   "private": true,
+  "author": {
+    "name": "Dzikri Syairozi",
+    "email": "dzikrisyairozi@gmail.com",
+    "url": "https://github.com/dzikrisyairozi"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dzikrisyairozi/monorepo-fullstack-starter"
+  },
+  "license": "MIT",
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",

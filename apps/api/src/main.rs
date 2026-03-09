@@ -1,3 +1,11 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// Monorepo Fullstack Starter — Rust API
+//
+// Author:     Dzikri Syairozi <dzikrisyairozi@gmail.com>
+// Repository: https://github.com/dzikrisyairozi/monorepo-fullstack-starter
+// License:    MIT
+// ─────────────────────────────────────────────────────────────────────────────
+
 use std::sync::Arc;
 use tokio::net::TcpListener;
 use tracing_subscriber::EnvFilter;

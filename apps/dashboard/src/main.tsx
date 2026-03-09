@@ -1,3 +1,13 @@
+/**
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Monorepo Fullstack Starter — Dashboard App
+ *
+ * @author  Dzikri Syairozi <dzikrisyairozi@gmail.com>
+ * @see     https://github.com/dzikrisyairozi/monorepo-fullstack-starter
+ * @license MIT
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { RouterProvider, createRouter } from '@tanstack/react-router';

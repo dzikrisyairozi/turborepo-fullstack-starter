@@ -13,6 +13,7 @@
 import { motion, Variants } from 'framer-motion';
 import { Button } from '@repo/ui/components/ui/button';
 import { ArrowRight, Box, Layers, Zap } from 'lucide-react';
+import Link from 'next/link';
 import Scene from '@/components/scene';
 
 const container: Variants = {
@@ -64,11 +65,18 @@ export default function Hero() {
               Get Started <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
             <Button
+              asChild
               size="lg"
               variant="outline"
-              className="rounded-full h-12 px-8 border-white/20 hover:bg-white/10"
+              className="rounded-full h-12 px-8 border-white/20 hover:bg-white/10 flex items-center justify-center"
             >
-              View Documentation
+              <Link
+                href="https://docs-starter.dzikrisyairozi.com/docs"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View Documentation
+              </Link>
             </Button>
           </motion.div>
         </motion.div>

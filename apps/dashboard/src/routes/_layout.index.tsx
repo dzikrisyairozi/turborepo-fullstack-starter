@@ -14,6 +14,7 @@ import {
   CreditCard,
   Activity,
 } from 'lucide-react';
+import { Link } from '@tanstack/react-router';
 import { Bar, BarChart, CartesianGrid, XAxis } from 'recharts';
 import {
   type ChartConfig,
@@ -163,12 +164,14 @@ function Index() {
 
       <div className="flex items-center justify-center p-8">
         <Button
-          onClick={() => (window.location.href = '/sandbox')}
+          asChild
           size="lg"
           className="rounded-full shadow-lg hover:shadow-xl transition-all h-12 px-8"
         >
-          Check out the UI Sandbox
-          <ArrowRight className="ml-2 h-4 w-4" />
+          <Link to="/sandbox">
+            Check out the UI Sandbox
+            <ArrowRight className="ml-2 h-4 w-4" />
+          </Link>
         </Button>
       </div>
     </div>

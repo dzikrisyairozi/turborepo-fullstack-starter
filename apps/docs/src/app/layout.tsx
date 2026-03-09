@@ -20,12 +20,27 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://docs-starter.dzikrisyairozi.com'),
   title: {
     template: '%s | Monorepo Starter Docs',
     default: 'Monorepo Starter Docs',
   },
   description:
     'Documentation for the Monorepo Full-Stack Starter — a modern, production-ready monorepo with Next.js, Rust API, and shadcn/ui.',
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: '/docs',
+    siteName: 'Monorepo Starter Docs',
+    title: 'Monorepo Starter Docs',
+    description: 'Documentation for the Monorepo Full-Stack Starter.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Monorepo Starter Docs',
+    description: 'Documentation for the Monorepo Full-Stack Starter.',
+    creator: '@dzikrisyairozi',
+  },
   icons: {
     icon: '/favicon/favicon.ico',
     apple: '/favicon/apple-icon-180x180.png',

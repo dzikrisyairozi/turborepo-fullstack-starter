@@ -60,9 +60,16 @@ export default function Hero() {
           >
             <Button
               size="lg"
-              className="rounded-full h-12 px-8 bg-white text-black hover:bg-zinc-200 flex"
+              className="rounded-full h-12 px-8 bg-white text-black hover:bg-zinc-200"
             >
-              Get Started <ArrowRight className="ml-2 h-4 w-4" />
+              <Link
+                href="https://github.com/dzikrisyairozi/monorepo-fullstack-starter"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center"
+              >
+                Get Started <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
             </Button>
             <Button
               asChild

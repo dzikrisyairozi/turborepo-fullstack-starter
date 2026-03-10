@@ -8,10 +8,32 @@
  * ─────────────────────────────────────────────────────────────────────────────
  */
 
+import { i18n } from '@/lib/i18n';
+import { defineI18nUI } from 'fumadocs-ui/i18n';
 import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
 
-export function baseOptions(): BaseLayoutProps {
+export const i18nUI = defineI18nUI(i18n, {
+  translations: {
+    en: {
+      displayName: 'English',
+    },
+    id: {
+      displayName: 'Bahasa Indonesia',
+      search: 'Cari dokumentasi',
+      searchNoResult: 'Tidak ada hasil',
+      toc: 'Daftar Isi',
+      lastUpdate: 'Terakhir diperbarui',
+      chooseTheme: 'Pilih Tema',
+      nextPage: 'Halaman Selanjutnya',
+      previousPage: 'Halaman Sebelumnya',
+      editOnGithub: 'Edit di GitHub',
+    },
+  },
+});
+
+export function baseOptions(locale: string): BaseLayoutProps {
   return {
+    i18n,
     nav: {
       title: (
         <span className="font-bold text-primary">
@@ -22,7 +44,7 @@ export function baseOptions(): BaseLayoutProps {
     githubUrl: 'https://github.com/dzikrisyairozi/monorepo-fullstack-starter',
     links: [
       {
-        text: 'Docs',
+        text: locale === 'id' ? 'Dokumentasi' : 'Docs',
         url: '/docs',
         active: 'nested-url',
       },

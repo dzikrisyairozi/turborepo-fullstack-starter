@@ -1,0 +1,45 @@
+---
+title: Automatically Generated Types (@repo/api-types)
+description: Shared TypeScript interfaces automatically generated from the Rust backend.
+---
+
+The `@repo/api-types` package is a small, utility-focused package that acts as the bridge between our strongly-typed Rust API backend and our TypeScript frontend applications (`web`, `dashboard`, `docs`). 
+
+## Purpose
+
+Instead of manually duplicating Data Transfer Objects (DTOs) and API response types into TypeScript, the backend generates them via the `ts-rs` crate. This guarantees **end-to-end type safety**. If a database model or an API response field changes in Rust, the TypeScript build will instantly catch any discrepancies across all frontend apps.
+
+## Structure
+
+```text
+packages/api-types/
+├── package.json
+└── src/
+    ├── index.ts        # Exports
+    └── bindings/       # Auto-generated .ts files produced by Rust
+        ├── UserDto.ts
+        ├── ApiResponse.ts
+        └── ...
+```
+
+## How It Works
+
+1. In the `api` (Rust) directory, backend entities and structs are tagged with `#[derive(TS)]` and `#[ts(export)]`.
+2. Whenever the Rust project is compiled or tested, the `ts-rs` macros serialize these definitions and output TypeScript interfaces directly into `packages/api-types/src/bindings`.
+3. The `packages/api-types/src/index.ts` file exports them for global use across the monorepo.
+
+> [!NOTE]
+> Do not manually edit files inside the `bindings/` directory! They are auto-generated from Rust source code. If you need to add a new type, update the Rust struct and let compilation generate the TypeScript equivalent.
+
+## Usage
+
+Front-end applications simply import the types. The Turborepo pipeline ensures the API types are always built and available before the frontend apps compile.
+
+```typescript
+import type { UserDto } from '@repo/api-types';
+
+async function fetchUser(id: string): Promise<UserDto> {
+  const response = await fetch(`/api/users/${id}`);
+  return response.json();
+}
+```

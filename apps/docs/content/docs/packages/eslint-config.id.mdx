@@ -1,0 +1,52 @@
+---
+title: Konfigurasi ESLint (@repo/eslint-config)
+description: Aturan linting (pengecekan kode) yang dibagikan untuk React, Next.js, dan dasar TypeScript.
+---
+
+Paket `@repo/eslint-config` menyediakan sekumpulan aturan linting terpadu yang digunakan di seluruh monorepo untuk memastikan konsistensi kode dan mencegah kesalahan umum.
+
+## Struktur
+
+Paket ini mengekspor tiga preset konfigurasi utama yang disesuaikan untuk lingkungan yang berbeda:
+
+- **`base.js`** — Aturan standar TypeScript dan JavaScript. Paling baik untuk aplikasi Node.js, paket umum, dan skrip alat bantu.
+- **`next.js`** — Memperluas `base.js` dengan aturan khusus Next.js (misalnya, Core Web Vitals, pemeriksaan komponen Gambar). Digunakan oleh `web` dan `docs`.
+- **`react-internal.js`** — Memperluas `base.js` dengan aturan React standar (Hooks, aksesibilitas JSX). Digunakan oleh aplikasi Vite seperti `dashboard` dan pustaka komponen React seperti `@repo/ui`.
+
+## Cara Menggunakan
+
+1. Instal sebagai ketergantungan pengembang (dev dependency) di aplikasi atau paket Anda:
+   ```json
+   "devDependencies": {
+     "@repo/eslint-config": "workspace:*"
+   }
+   ```
+
+2. Perluas (extend) preset yang relevan di file `.eslintrc.js` (atau `eslint.config.js`) aplikasi Anda.
+
+**Contoh untuk aplikasi Next.js (`apps/web/.eslintrc.js`):**
+```javascript
+module.exports = {
+  extends: ["@repo/eslint-config/next.js"],
+};
+```
+
+**Contoh untuk aplikasi React Vite (`apps/dashboard/.eslintrc.js`):**
+```javascript
+module.exports = {
+  extends: ["@repo/eslint-config/react-internal.js"],
+};
+```
+
+## Menimpa (Override) Aturan
+
+Jika aplikasi individual memerlukan aturan spesifik yang berbeda dari konfigurasi yang dibagikan, Anda dapat dengan mudah menimpanya di file eslint milik aplikasi tersebut:
+
+```javascript
+module.exports = {
+  extends: ["@repo/eslint-config/next.js"],
+  rules: {
+    "no-console": "off", // Diizinkan dalam aplikasi khusus ini
+  }
+};
+```

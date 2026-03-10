@@ -8,11 +8,12 @@
  * ─────────────────────────────────────────────────────────────────────────────
  */
 
-import './globals.css';
+import '../globals.css';
 import { RootProvider } from 'fumadocs-ui/provider/next';
 import { Outfit } from 'next/font/google';
 import type { ReactNode } from 'react';
 import type { Metadata } from 'next';
+import { i18nUI } from '@/lib/layout.shared';
 
 const outfit = Outfit({
   subsets: ['latin'],
@@ -48,11 +49,19 @@ export const metadata: Metadata = {
   manifest: '/favicon/manifest.json',
 };
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default async function RootLayout({
+  params,
+  children,
+}: {
+  params: Promise<{ lang: string }>;
+  children: ReactNode;
+}) {
+  const { lang } = await params;
+
   return (
-    <html lang="en" className={outfit.variable} suppressHydrationWarning>
-      <body className="font-sans antialiased">
-        <RootProvider>{children}</RootProvider>
+    <html lang={lang} className={outfit.variable} suppressHydrationWarning>
+      <body className="font-sans antialiased" suppressHydrationWarning>
+        <RootProvider i18n={i18nUI.provider(lang)}>{children}</RootProvider>
       </body>
     </html>
   );

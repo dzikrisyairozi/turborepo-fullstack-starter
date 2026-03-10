@@ -2,8 +2,8 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
+import { useTranslation } from '@repo/i18n';
 
-const WORDS = ['Monorepo', 'Fullstack', 'Starter'];
 const CYCLE_DURATION = 900;
 const TOTAL_DURATION = 2700;
 
@@ -12,6 +12,9 @@ export default function LoadingScreen({
 }: {
   onComplete: () => void;
 }) {
+  const { t } = useTranslation('web');
+  const WORDS = [t('loading.word1'), t('loading.word2'), t('loading.word3')];
+
   const [wordIndex, setWordIndex] = useState(0);
   const [progress, setProgress] = useState(0);
   const onCompleteRef = useRef(onComplete);
@@ -33,7 +36,7 @@ export default function LoadingScreen({
     }, CYCLE_DURATION);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [WORDS.length]);
 
   // Counter & Progress Bar
   useEffect(() => {
@@ -77,7 +80,7 @@ export default function LoadingScreen({
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.1 }}
       >
-        Portfolio
+        {t('loading.label')}
       </motion.div>
 
       {/* Element 2: Rotating Words */}

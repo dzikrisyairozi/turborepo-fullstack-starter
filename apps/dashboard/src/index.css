@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 @import '@repo/tailwind-config';
 @source "../../../packages/ui/src";
+@source "../../../packages/i18n/src";
 
 @layer base {
   body {

@@ -1,0 +1,52 @@
+---
+title: ESLint Config (@repo/eslint-config)
+description: Shared linting rules for React, Next.js, and base TypeScript.
+---
+
+The `@repo/eslint-config` package provides a unified set of linting rules used across the entire monorepo to ensure code consistency and prevent common errors.
+
+## Structure
+
+The package exports three main configuration presets tailored for different environments:
+
+- **`base.js`** — Standard TypeScript and JavaScript rules. Best for Node.js apps, generic packages, and tooling scripts.
+- **`next.js`** — Extends `base.js` with Next.js specific rules (e.g., Core Web Vitals, Image component checks). Used by `web` and `docs`.
+- **`react-internal.js`** — Extends `base.js` with standard React rules (Hooks, JSX accessibility). Used by Vite apps like `dashboard` and React component libraries like `@repo/ui`.
+
+## How to use
+
+1. Install it as a dev dependency in your app or package:
+   ```json
+   "devDependencies": {
+     "@repo/eslint-config": "workspace:*"
+   }
+   ```
+
+2. Extend the relevant preset in your app's `.eslintrc.js` (or `eslint.config.js`).
+
+**Example for a Next.js app (`apps/web/.eslintrc.js`):**
+```javascript
+module.exports = {
+  extends: ["@repo/eslint-config/next.js"],
+};
+```
+
+**Example for a Vite React app (`apps/dashboard/.eslintrc.js`):**
+```javascript
+module.exports = {
+  extends: ["@repo/eslint-config/react-internal.js"],
+};
+```
+
+## Overriding Rules
+
+If an individual application needs specific rules that differ from the shared config, you can easily override them in that application's eslint file:
+
+```javascript
+module.exports = {
+  extends: ["@repo/eslint-config/next.js"],
+  rules: {
+    "no-console": "off", // Allowed in this specific app
+  }
+};
+```

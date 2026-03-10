@@ -1,0 +1,38 @@
+{
+  "sidebar": {
+    "title": "Dashboard Starter",
+    "overview": "Ringkasan",
+    "dashboard": "Dasbor",
+    "components": "Komponen",
+    "uiSandbox": "Sandbox UI",
+    "account": "Akun",
+    "settings": "Pengaturan"
+  },
+  "index": {
+    "title": "Dashboard Starter Modern",
+    "subtitle": "Fondasi komprehensif untuk SaaS atau alat internal Anda selanjutnya, dibangun dengan Shadcn UI dan Turborepo.",
+    "totalRevenue": "Total Pendapatan",
+    "revenueChange": "+20,1% dari bulan lalu",
+    "subscriptions": "Langganan",
+    "subscriptionsChange": "+180,1% dari bulan lalu",
+    "sales": "Penjualan",
+    "salesChange": "+19% dari bulan lalu",
+    "activeNow": "Aktif Sekarang",
+    "activeChange": "+201 sejak satu jam lalu",
+    "chartOverview": "Ringkasan",
+    "chartDescription": "Pendapatan Anda selama 30 hari terakhir.",
+    "recentSales": "Penjualan Terbaru",
+    "recentSalesDescription": "Anda melakukan 265 penjualan bulan ini.",
+    "checkSandbox": "Lihat Sandbox UI",
+    "desktop": "Desktop",
+    "mobile": "Seluler"
+  },
+  "sandbox": {
+    "badge": "Sistem Desain",
+    "title": "Sandbox Komponen UI",
+    "subtitle": "Pameran komprehensif dari setiap komponen UI yang tersedia dalam sistem desain. Setiap komponen interaktif — klik, arahkan kursor, dan jelajahi."
+  },
+  "footer": {
+    "builtBy": "Dibuat oleh"
+  }
+}

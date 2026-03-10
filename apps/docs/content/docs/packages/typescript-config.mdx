@@ -1,0 +1,42 @@
+---
+title: TypeScript Config (@repo/typescript-config)
+description: Shared tsconfig.json configurations for optimal application and package typing.
+---
+
+The `@repo/typescript-config` package guarantees uniform TypeScript strictness and compiler settings across the monorepo. It leverages TypeScript's `extends` feature to share common configurations.
+
+## Presets Available
+
+- **`base.json`** — The foundation. Sets strict mode, module resolution techniques, and target environments suitable for generic Node outputs.
+- **`nextjs.json`** — Extends `base.json` with Next.js specific compiler options (`jsx: preserve`, custom plugins, Next.js path aliases).
+- **`react-library.json`** — Extends `base.json` but optimized for Vite environments and generic React components.
+
+## How to use
+
+1. Install it as a dev dependency in your app or package:
+   ```json
+   "devDependencies": {
+     "@repo/typescript-config": "workspace:*"
+   }
+   ```
+
+2. Create a `tsconfig.json` at your project root that extends the desired preset.
+
+**Example Next.js App (`apps/web/tsconfig.json`):**
+```json
+{
+  "extends": "@repo/typescript-config/nextjs.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
+}
+```
+
+## Why Share TS Configs?
+- **Consistency**: Every developer on the team gets the same strictness level (e.g., `noImplicitAny`, `strictNullChecks`).
+- **Performance**: We can centrally configure modern, fast compiler tools (like Target environments) across the workspace once.
+- **Maintainability**: When upgrading TypeScript or changing a core compilation flag, it only needs to be updated in this one package.

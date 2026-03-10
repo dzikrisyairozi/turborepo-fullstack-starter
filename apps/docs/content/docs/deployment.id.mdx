@@ -1,0 +1,81 @@
+---
+title: Penerapan (Deployment)
+description: Panduan untuk menerapkan aplikasi ke produksi.
+---
+
+Setiap aplikasi dalam monorepo dapat diterapkan secara independen. Berikut adalah pendekatan yang disarankan.
+
+## Web & Docs (Next.js) — Vercel
+
+[Vercel](https://vercel.com/) adalah pilihan termudah untuk aplikasi Next.js.
+
+### Langkah-langkah
+
+1. **Hubungkan repositori Anda** ke Vercel
+2. **Konfigurasikan proyek:**
+   - **Direktori Root:** `apps/web` (atau `apps/docs`)
+   - **Perintah Build:** `cd ../.. && pnpm build --filter=web` (atau `--filter=docs`)
+   - **Direktori Output:** `apps/web/.next` (atau `apps/docs/.next`)
+3. **Ubah variabel lingkungan (environment variables)** di dasbor Vercel
+4. **Terapkan (Deploy)** 🚀
+
+### Dukungan Monorepo
+
+Vercel memiliki dukungan monorepo tingkat pertama. Ia akan secara otomatis mendeteksi struktur monorepo Anda dan hanya membangun ulang saat file yang relevan berubah.
+
+## Dashboard (Vite) — Vercel / Netlify / Host Statis Apapun
+
+Dashboard dibangun menjadi file statis, sehingga dapat di-host di mana saja.
+
+### Vercel
+
+- **Direktori Root:** `apps/dashboard`
+- **Perintah Build:** `cd ../.. && pnpm build --filter=@repo/dashboard`
+- **Direktori Output:** `apps/dashboard/dist`
+
+### Netlify
+
+- **Direktori Dasar (Base directory):** `apps/dashboard`
+- **Perintah Build:** `cd ../.. && pnpm build --filter=@repo/dashboard`
+- **Direktori Publikasi (Publish directory):** `apps/dashboard/dist`
+
+## API (Rust) — Docker / Railway / Fly.io
+
+API Rust membutuhkan lingkungan server.
+
+### Docker
+
+```bash
+# Bangun image Docker
+docker build -t monorepo-api -f Dockerfile .
+
+# Jalankan kontainer
+docker run -p 8080:8080 \
+  -e DATABASE_URL="postgresql://user:pass@host:5432/db" \
+  monorepo-api
+```
+
+### Railway
+
+1. Hubungkan repositori Anda
+2. Atur **direktori root** ke `apps/api`
+3. Railway mendeteksi proyek Rust secara otomatis melalui `Cargo.toml`
+4. Atur variabel lingkungan (`DATABASE_URL`, dll.)
+
+### Fly.io
+
+```bash
+cd apps/api
+fly launch
+fly deploy
+```
+
+## Variabel Lingkungan
+
+Pastikan semua variabel lingkungan yang diperlukan telah diatur dalam platform penerapan Anda:
+
+| Aplikasi | Variabel | Deskripsi |
+|-----|----------|-------------|
+| API | `DATABASE_URL` | String koneksi PostgreSQL |
+| API | `RUST_LOG` | Tingkat log (misal, `info`) |
+| Web | `NEXT_PUBLIC_API_URL` | URL dasar untuk API |

@@ -1,0 +1,11 @@
+{
+  "title": "Dokumentasi",
+  "pages": [
+    "index",
+    "getting-started",
+    "project-structure",
+    "apps",
+    "packages",
+    "deployment"
+  ]
+}

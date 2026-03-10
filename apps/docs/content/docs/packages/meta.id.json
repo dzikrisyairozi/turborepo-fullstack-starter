@@ -1,0 +1,11 @@
+{
+  "title": "Paket",
+  "pages": [
+    "ui",
+    "tailwind-config",
+    "i18n",
+    "api-types",
+    "eslint-config",
+    "typescript-config"
+  ]
+}

@@ -1,0 +1,87 @@
+---
+title: Docs
+description: Situs dokumentasi yang dibangun dengan Next.js dan Fumadocs.
+---
+
+Aplikasi `docs` adalah **situs ini** — dibangun dengan [Fumadocs](https://fumadocs.dev/), sebuah kerangka dokumentasi untuk Next.js. Situs ini berbagi sistem desain (design system) yang sama dengan aplikasi dashboard dan web.
+
+## Teknologi (Tech Stack)
+
+- **Next.js** — Kerangka kerja React
+- **Fumadocs** — Kerangka dokumentasi (berbasis MDX)
+- **Tailwind CSS v4** — Penataan (styling) melalui `@repo/tailwind-config`
+- **shadcn/ui** — Komponen bersama melalui `@repo/ui`
+
+## Struktur Direktori
+
+```
+apps/docs/
+├── content/
+│   └── docs/             # File-file dokumentasi MDX
+│       ├── meta.json     # Penataan sidebar
+│       ├── index.mdx     # Halaman pengantar
+│       ├── apps/         # Bagian Aplikasi (Apps)
+│       └── packages/     # Bagian Paket (Packages)
+├── src/
+│   ├── app/
+│   │   ├── layout.tsx    # Tata letak dasar (font, provider)
+│   │   ├── (home)/       # Rute halaman pendaratan (landing page)
+│   │   └── docs/         # Rute-rute dokumentasi (Docs)
+│   └── lib/
+│       ├── source.ts     # Sumber konten Fumadocs
+│       └── layout.shared.tsx  # Opsi tata letak yang dibagikan
+├── source.config.ts      # Konfigurasi Fumadocs MDX
+├── mdx-components.tsx    # Penggantian (overrides) komponen MDX
+└── next.config.mjs       # Plugin MDX Next.js + Fumadocs
+```
+
+## Menjalankan Secara Lokal
+
+```bash
+pnpm dev:docs
+# Terbuka di http://localhost:3002
+```
+
+## Cara Menambahkan Halaman Baru
+
+### 1. Buat File MDX
+
+Tambahkan file `.mdx` baru di dalam `content/docs/`:
+
+```mdx
+---
+title: Halaman Baru Saya
+description: Penjelasan singkat tentang halaman ini.
+---
+
+Konten Anda di sini. Anda bisa menggunakan **Markdown** dan komponen JSX.
+```
+
+### 2. Tambahkan ke Sidebar
+
+Perbarui file `meta.json` pada direktori yang sama agar menyertakan halaman baru Anda di dalam sidebar:
+
+```json
+{
+  "title": "Judul Bagian",
+  "pages": ["halaman-yang-sudah-ada", "halaman-baru-saya"]
+}
+```
+
+### 3. Buat Bagian Baru
+
+Untuk menambahkan bagian berbasis direktori baru (seperti "Aplikasi" atau "Paket"):
+
+1. Buat direktori: `content/docs/bagian-saya/`
+2. Tambahkan `meta.json` di dalamnya untuk pengaturan ketertiban urutan
+3. Tambahkan file MDX Anda
+4. Rujuk bagian tersebut pada `meta.json` milik induk dengan `...bagian-saya`
+
+## Fitur MDX
+
+Fumadocs mendukung fitur standar MDX:
+
+- **Blok kode (Code blocks)** dengan penandaan sintaks (syntax highlighting)
+- **Tabel** dengan Markdown standar
+- **Frontmatter** untuk judul dan deskripsi
+- **Komponen khusus** melalui `mdx-components.tsx`

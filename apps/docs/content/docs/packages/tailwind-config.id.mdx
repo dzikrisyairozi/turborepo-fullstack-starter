@@ -1,0 +1,77 @@
+---
+title: Konfigurasi Tailwind (@repo/tailwind-config)
+description: Tema Tailwind CSS v4 dan token desain yang dibagikan.
+---
+
+Paket `@repo/tailwind-config` memusatkan sistem desain. Semua aplikasi mengimpor darinya sehingga mereka berbagi warna, font, jarak (spacing), dan utilitas yang sama.
+
+## Cara Aplikasi Menggunakannya
+
+Setiap aplikasi mengimpor stylesheet bersama pada titik awal (entry point) CSS-nya:
+
+```css
+@import '@repo/tailwind-config/global.css';
+```
+
+Dan menambahkan paket tersebut sebagai dependensi di `package.json`:
+
+```json
+{
+  "dependencies": {
+    "@repo/tailwind-config": "workspace:*"
+  }
+}
+```
+
+## Sistem Warna
+
+Tema ini menggunakan **warna oklch** dengan aksen **kuning kecoklatan (amber)** sebagai warna utama. Warna-warna didefinisikan sebagai variabel kustom CSS:
+
+| Token | Terang (Light) | Gelap (Dark) |
+|-------|-------|------|
+| `--primary` | Kuning Kecoklatan (Amber) 500 | Kuning Kecoklatan (Amber) 500 |
+| `--background` | Putih | Mendekati hitam |
+| `--foreground` | Mendekati hitam | Mendekati putih |
+| `--muted` | Abu-abu (Gray) 100 | Abu-abu (Gray) 800 |
+| `--accent` | Abu-abu (Gray) 100 | Abu-abu (Gray) 700 |
+| `--border` | Abu-abu (Gray) 200 | Putih 10% |
+
+## Font
+
+Proyek ini menggunakan **Outfit** sebagai font utama sans-serif, dimuat melalui Google Fonts pada setiap tata letak (layout) aplikasi.
+
+## Menyesuaikan Tema
+
+### Mengubah Warna
+
+Edit `packages/tailwind-config/global.css`. Selektor `:root` memiliki warna mode terang, dan `.dark` memiliki warna mode gelap:
+
+```css
+:root {
+  --primary: oklch(0.769 0.188 70);  /* Kuning Kecoklatan (Amber) */
+  --background: oklch(1 0 0);        /* Putih */
+  /* ... */
+}
+
+.dark {
+  --primary: oklch(0.769 0.188 70);  /* Kuning Kecoklatan (Amber) yang sama */
+  --background: oklch(0.145 0 0);    /* Gelap */
+  /* ... */
+}
+```
+
+### Mengubah Font
+
+Perbarui variabel `--font-sans` di dalam blok `@theme inline`:
+
+```css
+@theme inline {
+  --font-sans: 'Font Anda', ui-sans-serif, system-ui, sans-serif;
+}
+```
+
+Kemudian perbarui tata letak masing-masing aplikasi untuk memuat font baru dari Google Fonts.
+
+## Mode Gelap (Dark Mode)
+
+Mode gelap diimplementasikan dengan strategi kelas CSS (`.dark` pada elemen root/dasar). Paket `next-themes` menangani proses peralihan (toggle) pada aplikasi Next.js.

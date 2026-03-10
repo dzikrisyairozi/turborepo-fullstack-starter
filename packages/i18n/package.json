@@ -1,0 +1,40 @@
+{
+  "name": "@repo/i18n",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./src/index.ts"
+    },
+    "./config": {
+      "types": "./src/config.ts",
+      "import": "./src/config.ts"
+    },
+    "./provider": {
+      "types": "./src/provider.tsx",
+      "import": "./src/provider.tsx"
+    },
+    "./language-switcher": {
+      "types": "./src/language-switcher.tsx",
+      "import": "./src/language-switcher.tsx"
+    },
+    "./locales/*": {
+      "import": "./src/locales/*"
+    }
+  },
+  "dependencies": {
+    "i18next": "^25.2.1",
+    "i18next-browser-languagedetector": "^8.0.6",
+    "react-i18next": "^15.5.3"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "@types/react": "^19.2.14",
+    "react": "^19.2.4",
+    "typescript": "^5"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0 || ^19.0.0"
+  }
+}

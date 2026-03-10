@@ -1,0 +1,102 @@
+---
+title: Mulai Cepat
+description: Mengatur Monorepo Full-Stack Starter di komputer lokal Anda.
+---
+
+Siapkan dan jalankan dalam waktu kurang dari 5 menit.
+
+## Persyaratan Awal (Prerequisites)
+
+Pastikan Anda telah menginstal hal-hal berikut:
+
+- **Node.js** 22+ — [Unduh](https://nodejs.org/)
+- **pnpm** — Instal dengan `npm install -g pnpm`
+- **Rust** (untuk API) — [Instal melalui rustup](https://rustup.rs/)
+- **PostgreSQL** (untuk API) — [Unduh](https://www.postgresql.org/download/)
+- **Git** — [Unduh](https://git-scm.com/)
+
+## Instalasi
+
+### 1. Gunakan Template ini (Disarankan)
+
+Klik tombol **"Use this template"** di bagian atas repositori GitHub untuk membuat salinan Anda sendiri dan segera mulai membangun.
+
+### 2. Kloning Repositori
+
+```bash
+git clone https://github.com/dzikrisyairozi/monorepo-fullstack-starter.git
+cd monorepo-fullstack-starter
+```
+
+### 3. Instal Dependensi
+
+```bash
+pnpm install
+```
+
+Langkah ini menginstal dependensi untuk **semua** aplikasi dan paket di dalam monorepo.
+
+### 4. Atur Variabel Lingkungan (Environment Variables)
+
+```bash
+# Salin file env contoh (jika ada)
+cp apps/api/.env.example apps/api/.env
+cp apps/web/.env.example apps/web/.env
+```
+
+### 5. Atur Database (untuk API)
+
+Pastikan PostgreSQL sedang berjalan, kemudian:
+
+```bash
+# Buat database Anda dan jalankan migrasi
+# Periksa apps/api/README.md untuk instruksi lebih spesifik
+```
+
+## Menjalankan Server Pengembangan (Dev)
+
+### Mulai Semuanya
+
+```bash
+pnpm dev
+```
+
+Perintah ini akan meluncurkan semua aplikasi secara paralel menggunakan Turborepo.
+
+### Mulai Aplikasi Secara Individu
+
+```bash
+# Web (halaman utama) — http://localhost:3000
+pnpm dev:web
+
+# Dashboard — http://localhost:5174
+pnpm dev:dashboard
+
+# API — http://localhost:8080
+pnpm dev:api
+
+# Dokumentasi (Docs) — http://localhost:3002
+pnpm dev:docs
+```
+
+## Build untuk Produksi
+
+```bash
+# Build semuanya
+pnpm build
+
+# Build aplikasi tertentu
+pnpm build:web
+pnpm build:docs
+```
+
+## Skrip Berguna
+
+```bash
+pnpm lint          # Lint semua paket
+pnpm lint:fix      # Perbaiki masalah linting secara otomatis
+pnpm format        # Format kode dengan Prettier
+pnpm type-check    # Pengecekan tipe TypeScript
+pnpm test          # Jalankan semua tes
+pnpm check-all     # Jalankan type-check + lint + format check
+```

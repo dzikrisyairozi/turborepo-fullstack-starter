@@ -11,12 +11,16 @@
 import { Outlet, createFileRoute, Link } from '@tanstack/react-router';
 import { Home, Layers, Settings, Box } from 'lucide-react';
 import { ThemeToggle } from '../components/theme-toggle';
+import { useTranslation } from '@repo/i18n';
+import { LanguageSwitcher } from '@repo/i18n';
 
 export const Route = createFileRoute('/_layout')({
   component: DashboardLayout,
 });
 
 function DashboardLayout() {
+  const { t } = useTranslation('dashboard');
+
   return (
     <div className="flex h-screen bg-neutral-50 dark:bg-neutral-950 overflow-hidden font-sans">
       {/* Sidebar */}
@@ -26,13 +30,13 @@ function DashboardLayout() {
             <Box className="h-5 w-5 text-primary-foreground" />
           </div>
           <span className="font-bold text-lg tracking-tight bg-gradient-to-r from-neutral-900 to-neutral-500 dark:from-white dark:to-neutral-400 bg-clip-text text-transparent">
-            Dashboard Starter
+            {t('sidebar.title')}
           </span>
         </div>
 
         <nav className="flex-1 overflow-y-auto py-6 px-4 space-y-1.5">
           <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3 px-2">
-            Overview
+            {t('sidebar.overview')}
           </div>
           <Link
             to="/"
@@ -43,10 +47,10 @@ function DashboardLayout() {
             }}
           >
             <Home className="h-4 w-4" />
-            Dashboard
+            {t('sidebar.dashboard')}
           </Link>
           <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mt-6 mb-3 px-2">
-            Components
+            {t('sidebar.components')}
           </div>
           <Link
             to="/sandbox"
@@ -57,24 +61,24 @@ function DashboardLayout() {
             }}
           >
             <Layers className="h-4 w-4" />
-            UI Sandbox
+            {t('sidebar.uiSandbox')}
           </Link>
           <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mt-6 mb-3 px-2">
-            Account
+            {t('sidebar.account')}
           </div>
           <Link
             to="/"
             className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-muted-foreground hover:bg-neutral-100 dark:hover:bg-neutral-900 hover:text-foreground transition-all font-medium text-sm opacity-50 cursor-not-allowed pointer-events-none"
           >
             <Settings className="h-4 w-4" />
-            Settings
+            {t('sidebar.settings')}
           </Link>
         </nav>
 
         {/* ── Creator Attribution ── */}
         <div className="px-4 py-3 border-t border-border">
           <p className="text-[10px] text-muted-foreground/70 leading-relaxed text-center">
-            Built by{' '}
+            {t('footer.builtBy')}{' '}
             <a
               href="https://github.com/dzikrisyairozi"
               target="_blank"
@@ -92,6 +96,7 @@ function DashboardLayout() {
         {/* Header */}
         <header className="h-16 flex justify-end items-center px-8 bg-white/50 dark:bg-black/50 backdrop-blur-md border-b border-border sticky top-0 z-10 text-foreground">
           <div className="flex items-center gap-4">
+            <LanguageSwitcher />
             <ThemeToggle />
             <div className="h-8 w-8 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-500 shadow-inner ring-2 ring-background border border-border cursor-pointer hover:opacity-90 transition-opacity"></div>
           </div>

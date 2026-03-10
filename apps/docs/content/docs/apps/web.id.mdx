@@ -1,0 +1,56 @@
+---
+title: Web (Halaman Utama)
+description: Halaman utama Next.js dengan visual 3D dan animasi.
+---
+
+Aplikasi `web` adalah halaman utama **Next.js** yang dirancang untuk menjadi wajah publik proyek Anda. Ia menampilkan visual 3D dengan React Three Fiber dan animasi yang halus dengan Framer Motion.
+
+## Teknologi (Tech Stack)
+
+- **Next.js** — Kerangka kerja React dengan App Router
+- **React Three Fiber** + **Drei** — Rendering 3D di React
+- **Framer Motion** — Animasi dan transisi
+- **Tailwind CSS v4** — Penataan (styling) melalui `@repo/tailwind-config`
+- **shadcn/ui** — Komponen bersama melalui `@repo/ui`
+
+## Struktur Direktori
+
+```
+apps/web/
+├── src/
+│   ├── app/
+│   │   ├── layout.tsx      # Tata letak dasar (font, metadata)
+│   │   ├── page.tsx        # Halaman utama (Landing page)
+│   │   └── globals.css     # Impor Tailwind
+│   └── components/         # Komponen khusus halaman
+├── public/                 # Aset statis
+├── next.config.ts          # Konfigurasi Next.js
+├── postcss.config.mjs      # PostCSS (Tailwind)
+└── package.json
+```
+
+## Menjalankan Secara Lokal
+
+```bash
+pnpm dev:web
+# Terbuka di http://localhost:3000
+```
+
+## Cara Mengedit
+
+### Mengubah Halaman Utama
+
+Edit `src/app/page.tsx` untuk mengubah konten halaman utama. Halaman ini menggunakan komponen dari `src/components/`.
+
+### Mengubah Warna / Tema
+
+Aplikasi web menggunakan tema bersama dari `@repo/tailwind-config`. Untuk mengubah palet warna, edit `packages/tailwind-config/global.css`.
+
+### Menambahkan Halaman Baru
+
+Buat file baru di bawah `src/app/` dengan mengikuti konvensi Next.js App Router:
+
+```
+src/app/about/page.tsx  →  /about
+src/app/blog/page.tsx   →  /blog
+```

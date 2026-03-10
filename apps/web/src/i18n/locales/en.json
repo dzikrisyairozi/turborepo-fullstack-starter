@@ -1,0 +1,17 @@
+{
+  "hero": {
+    "title": "Build Faster with Our Starter",
+    "subtitle": "Premium starter kit powered by Next.js, Framer Motion, and Three.js. Designed for performance, built for scale.",
+    "getStarted": "Get Started",
+    "viewDocs": "View Documentation"
+  },
+  "loading": {
+    "word1": "Monorepo",
+    "word2": "Fullstack",
+    "word3": "Starter",
+    "label": "Portfolio"
+  },
+  "footer": {
+    "craftedBy": "Crafted by"
+  }
+}

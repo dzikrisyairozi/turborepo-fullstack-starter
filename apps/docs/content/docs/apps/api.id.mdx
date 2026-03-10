@@ -1,0 +1,81 @@
+---
+title: API
+description: API Rust dibangun dengan Actix-Web dan SQLx.
+---
+
+Aplikasi `api` adalah backend **Rust** yang dibangun dengan Actix-Web untuk performa tinggi. API ini menggunakan SQLx untuk kueri database yang aman dari segi tipe (type-safe) pada PostgreSQL.
+
+## Teknologi (Tech Stack)
+
+- **Rust** — Bahasa pemrograman sistem
+- **Actix-Web** — Kerangka kerja web berkinerja tinggi
+- **SQLx** — Kueri SQL asinkron (async) yang dicek saat kompilasi
+- **PostgreSQL** — Database relasional
+- **ts-rs** — Membuat tipe TypeScript secara otomatis dari struktur (structs) Rust
+
+## Struktur Direktori
+
+```
+apps/api/
+├── src/
+│   ├── main.rs            # Titik awal (Entry point), pengaturan server
+│   ├── api/
+│   │   ├── router.rs      # Definisi rute (Routes)
+│   │   ├── handlers/      # Penangan (Handlers) permintaan
+│   │   └── responses.rs   # Tipe respons
+│   ├── models/            # Model database
+│   └── db/                # Pengaturan koneksi database
+├── migrations/            # File migrasi SQL
+├── Cargo.toml             # Dependensi Rust
+└── .env                   # Variabel lingkungan
+```
+
+## Menjalankan Secara Lokal
+
+### Persyaratan Awal (Prerequisites)
+
+1. Instal Rust melalui [rustup](https://rustup.rs/)
+2. Pastikan PostgreSQL berjalan secara lokal
+3. Buat file `.env` dengan URL database Anda
+
+### Memulai Server
+
+```bash
+pnpm dev:api
+# Atau langsung dengan cargo:
+cd apps/api && cargo run
+# Server berjalan di http://localhost:8080
+```
+
+## Cara Mengedit
+
+### Menambahkan Endpoint Baru
+
+1. Buat penangan (handler) di `src/api/handlers/`:
+
+```rust
+pub async fn get_items(db: web::Data<PgPool>) -> impl Responder {
+    // logika Anda di sini
+}
+```
+
+2. Daftarkan rute tersebut di `src/api/router.rs`:
+
+```rust
+cfg.service(
+    web::resource("/items")
+        .route(web::get().to(handlers::get_items))
+);
+```
+
+### Menambahkan Migrasi Database
+
+Buat file SQL baru di dalam direktori `migrations/`:
+
+```
+migrations/20250309_000001_create_items.sql
+```
+
+### Tipe TypeScript yang Dibuat Secara Otomatis
+
+Struktur Rust (structs) yang dihiasi dengan `#[derive(TS)]` dari `ts-rs` secara otomatis mengekspor tipe TypeScript ke `packages/api-types/`. Hal ini memastikan antarmuka depan (frontend) Anda selalu memiliki tipe yang akurat untuk respons API.

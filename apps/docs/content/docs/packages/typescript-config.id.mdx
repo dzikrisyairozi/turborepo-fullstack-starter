@@ -1,0 +1,42 @@
+---
+title: Konfigurasi TypeScript (@repo/typescript-config)
+description: Konfigurasi tsconfig.json yang dibagikan untuk pengetikan aplikasi dan paket yang optimal.
+---
+
+Paket `@repo/typescript-config` menjamin tingkat keketatan TypeScript dan pengaturan kompilator (compiler settings) yang seragam di seluruh monorepo. Ini memanfaatkan fitur `extends` milik TypeScript untuk membagikan konfigurasi umum.
+
+## Preset yang Tersedia
+
+- **`base.json`** — Landasan utamanya. Menetapkan mode ketat (strict mode), teknik resolusi modul, dan lingkungan target yang sesuai untuk output Node generik.
+- **`nextjs.json`** — Memperluas `base.json` dengan opsi kompilator khusus Next.js (`jsx: preserve`, plugin kustom, alias jalur Next.js).
+- **`react-library.json`** — Memperluas `base.json` tetapi dioptimalkan untuk lingkungan Vite dan komponen React generik.
+
+## Cara Menggunakan
+
+1. Instal sebagai ketergantungan pengembang (dev dependency) di aplikasi atau paket Anda:
+   ```json
+   "devDependencies": {
+     "@repo/typescript-config": "workspace:*"
+   }
+   ```
+
+2. Buat sebuah `tsconfig.json` di root proyek Anda yang memperluas preset yang diinginkan.
+
+**Contoh Aplikasi Next.js (`apps/web/tsconfig.json`):**
+```json
+{
+  "extends": "@repo/typescript-config/nextjs.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
+}
+```
+
+## Mengapa Membagikan Konfigurasi TS?
+- **Konsistensi**: Setiap pengembang di tim mendapatkan tingkat keketatan yang sama (misalnya, `noImplicitAny`, `strictNullChecks`).
+- **Kinerja**: Kita dapat mengkonfigurasi alat penyusun (kompilator) yang modern dan cepat secara terpusat (seperti lingkungan Target) di seluruh ruang kerja hanya dengan satu pengaturan.
+- **Perawatan**: Saat meningkatkan versi TypeScript atau mengubah tanda kompilasi inti (core compilation flag), pembaharuan hanya perlu dilakukan di satu paket ini saja.

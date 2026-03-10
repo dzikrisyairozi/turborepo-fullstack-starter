@@ -1,0 +1,45 @@
+---
+title: Tipe Buatan Otomatis (@repo/api-types)
+description: Antarmuka TypeScript bersama yang dibuat secara otomatis dari backend Rust.
+---
+
+Paket `@repo/api-types` adalah paket kecil berfokus pada utilitas yang bertindak sebagai jembatan antara backend API Rust yang memiliki tipe kuat dengan aplikasi frontend TypeScript kami (`web`, `dashboard`, `docs`).
+
+## Tujuan
+
+Daripada secara manual menduplikasi Objek Transfer Data (Data Transfer Objects/DTO) dan tipe respons API ke dalam TypeScript, backend menghasilkannya secara otomatis melalui *crate* `ts-rs`. Ini menjamin **keamanan tipe ujung-ke-ujung (end-to-end type safety)**. Jika model basis data atau kolom respons API berubah di Rust, *build* TypeScript akan dengan cepat mendeteksi segala ketidakcocokan di semua aplikasi frontend.
+
+## Struktur
+
+```text
+packages/api-types/
+├── package.json
+└── src/
+    ├── index.ts        # Ekspor
+    └── bindings/       # File .ts yang dihasilkan otomatis oleh Rust
+        ├── UserDto.ts
+        ├── ApiResponse.ts
+        └── ...
+```
+
+## Cara Kerja
+
+1. Dalam direktori `api` (Rust), entitas backend dan struct ditandai dengan `#[derive(TS)]` dan `#[ts(export)]`.
+2. Setiap kali proyek Rust dikompilasi atau diuji, makro `ts-rs` menyerialisasi definisi ini dan mengeluarkan antarmuka TypeScript langsung ke `packages/api-types/src/bindings`.
+3. File `packages/api-types/src/index.ts` mengekspornya untuk penggunaan global di seluruh monorepo.
+
+> [!NOTE]
+> Jangan mengedit file di dalam direktori `bindings/` secara manual! File-file tersebut dibuat secara otomatis dari kode sumber Rust. Jika Anda perlu menambahkan tipe baru, perbarui *struct* Rust dan biarkan proses kompilasi menghasilkan padanan TypeScript-nya.
+
+## Penggunaan
+
+Aplikasi front-end cukup mengimpor tipe-tipe tersebut. Jalur kompilasi Turborepo memastikan tipe API selalu dibangun dan tersedia sebelum aplikasi frontend dikompilasi.
+
+```typescript
+import type { UserDto } from '@repo/api-types';
+
+async function fetchUser(id: string): Promise<UserDto> {
+  const response = await fetch(`/api/users/${id}`);
+  return response.json();
+}
+```

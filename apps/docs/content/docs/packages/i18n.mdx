@@ -1,0 +1,79 @@
+---
+title: Localization (@repo/i18n)
+description: Shared multi-language support configuration and UI components.
+---
+
+The `@repo/i18n` package serves as the centralized internationalization core for the monorepo. It ensures a consistent localization strategy (currently English and Bahasa Indonesia) across the Next.js `web` app and the React `dashboard`.
+
+## Features
+
+- **Single Source of Truth** — Common translation keys (`common.json`) are stored here and instantly available in all apps.
+- **Language Switcher UI** — A premium, headless dropdown component (`LanguageSwitcher`) that looks and feels native everywhere.
+- **Flexible Hydration** — Supports both server-side Next.js HTTP cookie hydration and client-side Dashboard LocalStorage detection.
+
+## Structure
+
+```text
+packages/i18n/
+├── src/
+│   ├── config.ts            # Base i18next configuration
+│   ├── index.ts             # Package exports
+│   ├── language-switcher.tsx# Shared dropdown component
+│   ├── provider.tsx         # Shared React Context provider
+│   └── locales/             # Shared translation files (en, id)
+```
+
+## How to Use
+
+### 1. The Provider
+Wrap your React application tree in the shared `I18nProvider`.
+
+```tsx
+import { I18nProvider } from '@repo/i18n';
+
+export function App() {
+  return (
+    <I18nProvider
+      lng="en"               // Optional: Force a language (useful for SSR)
+      detection={true}       // Optional: Enable browser language detection
+      defaultNS="dashboard"  // Optional: Set default namespace for this app
+      resources={{           // Optional: Pass app-specific translation files
+        en: { dashboard: enJson },
+        id: { dashboard: idJson }
+      }}
+    >
+      <YourApp />
+    </I18nProvider>
+  )
+}
+```
+
+### 2. Translating Text
+Use the standard `useTranslation` hook provided by `react-i18next` (exported from `@repo/i18n` for convenience).
+
+```tsx
+import { useTranslation } from '@repo/i18n';
+
+export function Header() {
+  const { t } = useTranslation('dashboard');
+  
+  return <h1>{t('header.greeting')}</h1>;
+}
+```
+
+### 3. Language Switcher
+Drop in the `LanguageSwitcher` anywhere. It automatically hooks into the global `i18n` instance.
+
+```tsx
+import { LanguageSwitcher } from '@repo/i18n';
+
+// Basic usage (Dashboard)
+<LanguageSwitcher />
+
+// Next.js App Router Usage (Web)
+<LanguageSwitcher onLanguageChange={(lang) => {
+  // Save to cookie and refresh Next Router on change
+  setCookie('NEXT_LOCALE', lang);
+  router.refresh();
+}} />
+```

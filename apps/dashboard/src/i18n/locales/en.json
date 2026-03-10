@@ -1,0 +1,38 @@
+{
+  "sidebar": {
+    "title": "Dashboard Starter",
+    "overview": "Overview",
+    "dashboard": "Dashboard",
+    "components": "Components",
+    "uiSandbox": "UI Sandbox",
+    "account": "Account",
+    "settings": "Settings"
+  },
+  "index": {
+    "title": "Modern Dashboard Starter",
+    "subtitle": "A comprehensive foundation for your next SaaS or internal tool, built with Shadcn UI and Turborepo.",
+    "totalRevenue": "Total Revenue",
+    "revenueChange": "+20.1% from last month",
+    "subscriptions": "Subscriptions",
+    "subscriptionsChange": "+180.1% from last month",
+    "sales": "Sales",
+    "salesChange": "+19% from last month",
+    "activeNow": "Active Now",
+    "activeChange": "+201 since last hour",
+    "chartOverview": "Overview",
+    "chartDescription": "Your revenue over the last 30 days.",
+    "recentSales": "Recent Sales",
+    "recentSalesDescription": "You made 265 sales this month.",
+    "checkSandbox": "Check out the UI Sandbox",
+    "desktop": "Desktop",
+    "mobile": "Mobile"
+  },
+  "sandbox": {
+    "badge": "Design System",
+    "title": "UI Component Sandbox",
+    "subtitle": "A comprehensive showcase of every UI component available in the design system. Each component is interactive — click, hover, and explore."
+  },
+  "footer": {
+    "builtBy": "Built by"
+  }
+}

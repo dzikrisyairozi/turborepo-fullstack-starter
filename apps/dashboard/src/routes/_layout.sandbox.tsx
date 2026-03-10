@@ -131,6 +131,8 @@ import {
   User,
 } from 'lucide-react';
 
+import { useTranslation } from '@repo/i18n';
+
 export const Route = createFileRoute('/_layout/sandbox')({
   component: SandboxPage,
 });
@@ -164,6 +166,7 @@ function Section({
 /*  Main Sandbox Page                                       */
 /* ──────────────────────────────────────────────────────── */
 function SandboxPage() {
+  const { t } = useTranslation('dashboard');
   const [progress, setProgress] = useState(45);
   const [sliderValue, setSliderValue] = useState([50]);
   const [switchOn, setSwitchOn] = useState(true);
@@ -176,15 +179,14 @@ function SandboxPage() {
         <div className="flex items-center gap-2">
           <Badge variant="secondary" className="text-xs">
             <Sparkles className="h-3 w-3 mr-1" />
-            Design System
+            {t('sandbox.badge')}
           </Badge>
         </div>
         <h2 className="text-3xl font-bold tracking-tight">
-          UI Component Sandbox
+          {t('sandbox.title')}
         </h2>
         <p className="text-muted-foreground max-w-2xl">
-          A comprehensive showcase of every UI component available in the design
-          system. Each component is interactive — click, hover, and explore.
+          {t('sandbox.subtitle')}
         </p>
       </div>
 

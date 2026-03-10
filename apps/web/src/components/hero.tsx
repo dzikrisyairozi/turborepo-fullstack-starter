@@ -12,9 +12,11 @@
 
 import { motion, Variants } from 'framer-motion';
 import { Button } from '@repo/ui/components/ui/button';
-import { ArrowRight, Box, Layers, Zap } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import Scene from '@/components/scene';
+import { useTranslation } from '@repo/i18n';
+import { WebLanguageSwitcher } from '@/i18n/client';
 
 const container: Variants = {
   hidden: { opacity: 0 },
@@ -33,9 +35,16 @@ const item: Variants = {
 };
 
 export default function Hero() {
+  const { t } = useTranslation('web');
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <Scene />
+
+      {/* Language Switcher — fixed top-right */}
+      <div className="absolute top-6 right-6 z-20">
+        <WebLanguageSwitcher />
+      </div>
 
       <div className="container px-4 md:px-6 z-10">
         <motion.div
@@ -46,11 +55,10 @@ export default function Hero() {
         >
           <motion.div variants={item} className="space-y-4 max-w-3xl">
             <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl/none bg-clip-text text-transparent bg-gradient-to-br from-white to-white/60">
-              Build Faster with Our Starter
+              {t('hero.title')}
             </h1>
             <p className="mx-auto max-w-[700px] text-zinc-400 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              Premium starter kit powered by Next.js, Framer Motion, and
-              Three.js. Designed for performance, built for scale.
+              {t('hero.subtitle')}
             </p>
           </motion.div>
 
@@ -68,7 +76,7 @@ export default function Hero() {
                 rel="noopener noreferrer"
                 className="flex items-center justify-center"
               >
-                Get Started <ArrowRight className="ml-2 h-4 w-4" />
+                {t('hero.getStarted')} <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
             <Button
@@ -82,7 +90,7 @@ export default function Hero() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                View Documentation
+                {t('hero.viewDocs')}
               </Link>
             </Button>
           </motion.div>
@@ -97,7 +105,7 @@ export default function Hero() {
         className="absolute bottom-8 left-0 right-0 flex justify-center z-10"
       >
         <p className="text-xs text-zinc-500 font-medium tracking-widest uppercase">
-          Crafted by{' '}
+          {t('footer.craftedBy')}{' '}
           <a
             href="https://github.com/dzikrisyairozi"
             target="_blank"

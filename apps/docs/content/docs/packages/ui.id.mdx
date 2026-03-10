@@ -1,0 +1,74 @@
+---
+title: Komponen UI (@repo/ui)
+description: Pustaka komponen bersama yang dibangun dengan shadcn/ui.
+---
+
+Paket `@repo/ui` adalah pustaka komponen bersama yang dibangun dengan [shadcn/ui](https://ui.shadcn.com/). Paket ini menyediakan 40+ komponen siap pakai dan dapat diakses, yang digunakan di seluruh aplikasi antarmuka depan (frontend).
+
+## Cara Kerjanya
+
+Komponen-komponen diinstal menggunakan antarmuka baris perintah (CLI) shadcn ke dalam `packages/ui/src/` dan kemudian diekspor agar dapat dikonsumsi oleh aplikasi-aplikasi. Setiap aplikasi mengimpor komponen secara langsung:
+
+```tsx
+import { Button, Card, Input, Dialog } from '@repo/ui';
+```
+
+## Komponen yang Tersedia
+
+### Tata Letak (Layout)
+- **Kartu (Card)** — Wadah konten yang fleksibel
+- **Pemisah (Separator)** — Pembatas visual
+- **Rasio Aspek (Aspect Ratio)** — Mempertahankan rasio aspek
+
+### Formulir (Form)
+- **Tombol (Button)** — Berbagai gaya dan ukuran tombol
+- **Input** — Input teks dengan validasi
+- **Area Teks (Textarea)** — Input teks multivariat/banyak baris
+- **Pilih (Select)** — Pilihan rentet-bawah (Dropdown)
+- **Kotak Centang (Checkbox)** — Input boolean
+- **Grup Radio (Radio Group)** — Pilihan tunggal dari opsi-opsi
+- **Sakelar (Switch)** — Tombol gulir aktif/nonaktif
+- **Penggeser (Slider)** — Input rentang nilai
+- **Formulir (Form)** — Integrasi React Hook Form
+
+### Navigasi
+- **Menu Navigasi (Navigation Menu)** — Struktur navigasi yang kompleks
+- **Lumbung Roti (Breadcrumb)** — Navigasi hierarki
+- **Paginasi (Pagination)** — Navigasi halaman
+- **Tab (Tabs)** — Konten bertab
+- **Penanda Samping (Sidebar)** — Navigasi samping
+
+### Umpan Balik (Feedback)
+- **Peringatan (Alert)** — Pesan-pesan penting
+- **Roti Panggang (Toast / Sonner)** — Pemberitahuan sementara
+- **Progres (Progress)** — Indikator pemuatan
+- **Kerangka (Skeleton)** — Tempat-penampung (placeholder) simulasi pemuatan
+
+### Hamparan (Overlay)
+- **Dialog** — Dialog modal khusus
+- **Laci (Drawer)** — Panel geser
+- **Timbul (Popover)** — Hamparan kontekstual
+- **Petunjuk Alat (Tooltip)** — Petunjuk yang membantu
+- **Lembar (Sheet)** — Panel samping dari tepi jendela
+
+### Tampilan Data (Data Display)
+- **Tabel (Table)** — Tabel-tabel data
+- **Lencana (Badge)** — Indikator status
+- **Avatar** — Representasi pengguna atau gambar profil
+- **Kalender (Calendar)** — Pemilihan tanggal
+- **Grafik (Chart)** — Visualisasi data (Recharts)
+
+## Menambahkan Komponen Baru
+
+Gunakan CLI shadcn dari dalam paket UI:
+
+```bash
+cd packages/ui
+npx shadcn@latest add <nama-komponen>
+```
+
+Komponen akan ditambahkan dengan sendirinya ke dalam direktori `packages/ui/src/` dan secara otomatis tersedia untuk digunakan oleh semua aplikasi lain dalam proyek ini.
+
+## Menyesuaikan Komponen (Customizing)
+
+Semua komponen berada di `packages/ui/src/` sebagai file React biasa. Anda dapat mengubahnya secara langsung — komponen-komponen ini tidak disembunyikan di dalam `node_modules`.

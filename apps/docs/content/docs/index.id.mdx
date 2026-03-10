@@ -1,0 +1,43 @@
+---
+title: Pengenalan
+description: Ringkasan tentang Monorepo Full-Stack Starter — apa itu dan mengapa dibuat.
+---
+
+**Monorepo Full-Stack Starter** adalah template monorepo modern siap-produksi yang dibangun untuk tim yang ingin bergerak cepat tanpa mengorbankan kualitas kode. Template ini menyatukan alat-alat terbaik dalam satu ruang kerja yang kohesif.
+
+## Apa Saja Isinya?
+
+### Aplikasi (Apps)
+
+| Aplikasi | Teknologi | Deskripsi |
+|-----|------|-------------|
+| **web** | Next.js, React Three Fiber, Framer Motion | Halaman Utama (Landing page) dengan visual 3D dan animasi |
+| **dashboard** | Vite, React, TanStack Router | Dashboard admin dengan grafik, formulir, dan tabel data |
+| **api** | Rust, Actix-Web, SQLx | REST API berkinerja tinggi dengan PostgreSQL |
+| **docs** | Next.js, Fumadocs | Situs dokumentasi ini |
+
+### Paket (Packages)
+
+| Paket | Deskripsi |
+|---------|-------------|
+| **@repo/ui** | 40+ komponen bayangan (shadcn/ui) yang dibagikan (Tombol, Kartu, Dialog, dll.) |
+| **@repo/tailwind-config** | Tema CSS Tailwind v4 yang dibagikan dengan aksen kuning kecoklatan (amber), mode gelap |
+| **@repo/i18n** | Konfigurasi lokalisasi (i18n) dan UI (Language Switcher) yang dibagikan |
+| **@repo/typescript-config** | Konfigurasi TypeScript yang dibagikan |
+| **@repo/eslint-config** | Aturan-aturan ESLint yang dibagikan |
+| **@repo/api-types** | Tipe TypeScript yang dibuat secara otomatis dari API Rust |
+
+## Fitur Utama
+
+- 🏗️ **Turborepo** — Pembuatan yang cepat dan bertahap dengan caching yang pintar
+- 🎨 **shadcn/ui** — Komponen yang indah dan dapat diakses, dibagikan di seluruh aplikasi
+- 🎯 **Keamanan Tipe Penuh (Type Safety)** — TypeScript di mana-mana, tipe Rust diekspor ke TS
+- 🌍 **Lokalisasi (i18n)** — Dukungan multi-bahasa bawaan (Inggris & Indonesia)
+- 🌙 **Mode Gelap** — Dukungan tema gelap/terang kelas satu
+- 🔧 **Pengalaman Pengembang (DX)** — ESLint, Prettier, Husky, Commitlint sudah dikonfigurasi
+- 🐳 **Siap Docker** — Dukungan kontainerisasi (Containerization) sudah termasuk
+- 🔄 **CI/CD** — Alur kerja GitHub Actions disertakan
+
+## Langkah Selanjutnya
+
+Lanjut ke [Mulai Cepat](/docs/getting-started) untuk mengatur proyek ini secara lokal.

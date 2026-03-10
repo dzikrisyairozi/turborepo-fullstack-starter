@@ -10,7 +10,9 @@
 
 import type { Metadata } from 'next';
 import { Outfit, Instrument_Serif } from 'next/font/google';
+import { cookies } from 'next/headers';
 import './globals.css';
+import { WebI18nProvider } from '@/i18n/client';
 
 const outfit = Outfit({
   subsets: ['latin'],
@@ -58,17 +60,21 @@ export const metadata: Metadata = {
   manifest: '/favicon/manifest.json',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookieStore = await cookies();
+  const locale = cookieStore.get('NEXT_LOCALE')?.value || 'en';
+
   return (
-    <html lang="en" className="dark">
+    <html lang={locale} className="dark" suppressHydrationWarning>
       <body
         className={`${outfit.variable} ${instrumentSerif.variable} font-sans antialiased bg-background text-foreground`}
+        suppressHydrationWarning
       >
-        {children}
+        <WebI18nProvider locale={locale}>{children}</WebI18nProvider>
       </body>
     </html>
   );

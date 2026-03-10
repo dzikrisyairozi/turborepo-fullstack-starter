@@ -4,6 +4,15 @@ import { createMDX } from 'fumadocs-mdx/next';
 const config = {
     reactStrictMode: true,
     transpilePackages: ['@repo/ui', '@repo/tailwind-config'],
+    async redirects() {
+        return [
+            {
+                source: '/docs',
+                destination: '/en/docs',
+                permanent: false,
+            },
+        ];
+    },
 };
 
 const withMDX = createMDX();

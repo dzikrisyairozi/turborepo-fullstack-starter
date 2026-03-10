@@ -22,6 +22,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from '@repo/ui/components/ui/chart';
+import { useTranslation } from '@repo/i18n';
 
 const chartData = [
   { month: 'January', desktop: 186, mobile: 80 },
@@ -32,61 +33,62 @@ const chartData = [
   { month: 'June', desktop: 214, mobile: 140 },
 ];
 
-const chartConfig = {
-  desktop: {
-    label: 'Desktop',
-    color: 'var(--chart-1)',
-  },
-  mobile: {
-    label: 'Mobile',
-    color: 'var(--chart-2)',
-  },
-} satisfies ChartConfig;
-
 export const Route = createFileRoute('/_layout/')({
   component: Index,
 });
 
 function Index() {
+  const { t } = useTranslation('dashboard');
+
+  const chartConfig = {
+    desktop: {
+      label: t('index.desktop'),
+      color: 'var(--chart-1)',
+    },
+    mobile: {
+      label: t('index.mobile'),
+      color: 'var(--chart-2)',
+    },
+  } satisfies ChartConfig;
+
+  const stats = [
+    {
+      title: t('index.totalRevenue'),
+      value: '$45,231.89',
+      desc: t('index.revenueChange'),
+      icon: CreditCard,
+    },
+    {
+      title: t('index.subscriptions'),
+      value: '+2350',
+      desc: t('index.subscriptionsChange'),
+      icon: Users,
+    },
+    {
+      title: t('index.sales'),
+      value: '+12,234',
+      desc: t('index.salesChange'),
+      icon: BarChart3,
+    },
+    {
+      title: t('index.activeNow'),
+      value: '+573',
+      desc: t('index.activeChange'),
+      icon: Activity,
+    },
+  ];
+
   return (
     <div className="space-y-8">
       <div>
         <h2 className="text-3xl font-bold tracking-tight mb-1">
-          Modern Dashboard Starter
+          {t('index.title')}
         </h2>
-        <p className="text-muted-foreground">
-          A comprehensive foundation for your next SaaS or internal tool, built
-          with Shadcn UI and Turborepo.
-        </p>
+        <p className="text-muted-foreground">{t('index.subtitle')}</p>
       </div>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-        {[
-          {
-            title: 'Total Revenue',
-            value: '$45,231.89',
-            desc: '+20.1% from last month',
-            icon: CreditCard,
-          },
-          {
-            title: 'Subscriptions',
-            value: '+2350',
-            desc: '+180.1% from last month',
-            icon: Users,
-          },
-          {
-            title: 'Sales',
-            value: '+12,234',
-            desc: '+19% from last month',
-            icon: BarChart3,
-          },
-          {
-            title: 'Active Now',
-            value: '+573',
-            desc: '+201 since last hour',
-            icon: Activity,
-          },
-        ].map((stat, i) => (
+        {stats.map((stat, i) => (
           <Card
             key={i}
             className="hover:shadow-lg transition-all duration-300 bg-white/60 dark:bg-neutral-900/60 backdrop-blur-sm border-white/20 dark:border-white/5"
@@ -108,10 +110,8 @@ function Index() {
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-7">
         <Card className="lg:col-span-4 hover:shadow-md transition-shadow bg-white/60 dark:bg-neutral-900/60 backdrop-blur-sm">
           <CardHeader>
-            <CardTitle>Overview</CardTitle>
-            <CardDescription>
-              Your revenue over the last 30 days.
-            </CardDescription>
+            <CardTitle>{t('index.chartOverview')}</CardTitle>
+            <CardDescription>{t('index.chartDescription')}</CardDescription>
           </CardHeader>
           <CardContent className="h-[300px] w-full pt-4">
             <ChartContainer config={chartConfig} className="h-full w-full">
@@ -136,8 +136,10 @@ function Index() {
         </Card>
         <Card className="lg:col-span-3 hover:shadow-md transition-shadow bg-white/60 dark:bg-neutral-900/60 backdrop-blur-sm">
           <CardHeader>
-            <CardTitle>Recent Sales</CardTitle>
-            <CardDescription>You made 265 sales this month.</CardDescription>
+            <CardTitle>{t('index.recentSales')}</CardTitle>
+            <CardDescription>
+              {t('index.recentSalesDescription')}
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-6">
@@ -169,7 +171,7 @@ function Index() {
           className="rounded-full shadow-lg hover:shadow-xl transition-all h-12 px-8"
         >
           <Link to="/sandbox">
-            Check out the UI Sandbox
+            {t('index.checkSandbox')}
             <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
         </Button>

@@ -1,0 +1,17 @@
+{
+  "hero": {
+    "title": "Bangun Lebih Cepat dengan Starter Kami",
+    "subtitle": "Starter kit premium yang didukung oleh Next.js, Framer Motion, dan Three.js. Dirancang untuk performa, dibangun untuk skalabilitas.",
+    "getStarted": "Mulai Sekarang",
+    "viewDocs": "Lihat Dokumentasi"
+  },
+  "loading": {
+    "word1": "Monorepo",
+    "word2": "Fullstack",
+    "word3": "Starter",
+    "label": "Portofolio"
+  },
+  "footer": {
+    "craftedBy": "Dibuat oleh"
+  }
+}

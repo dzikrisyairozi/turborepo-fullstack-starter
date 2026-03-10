@@ -1,0 +1,77 @@
+---
+title: Struktur Proyek
+description: Pahami tata letak monorepo dan di mana semuanya berada.
+---
+
+Proyek ini menggunakan **Turborepo monorepo** dengan pnpm workspaces. Berikut adalah cara pengorganisasiannya:
+
+```
+monorepo-fullstack-starter/
+├── apps/
+│   ├── api/              # Rust API (Actix-Web + SQLx)
+│   ├── dashboard/        # Dashboard Admin (Vite + React)
+│   ├── docs/             # Dokumentasi (Next.js + Fumadocs)
+│   └── web/              # Halaman Utama (Next.js + R3F)
+├── packages/
+│   ├── api-types/        # Tipe TS yang dibuat otomatis dari Rust
+│   ├── eslint-config/    # Konfigurasi ESLint yang dibagikan
+│   ├── i18n/             # Konfigurasi lokalisasi (i18n) & UI yang dibagikan
+│   ├── tailwind-config/  # Tema Tailwind CSS yang dibagikan
+│   ├── typescript-config/# Konfigurasi TypeScript yang dibagikan
+│   └── ui/               # Pustaka komponen yang dibagikan (shadcn/ui)
+├── turbo.json            # Konfigurasi alur (pipeline) Turborepo
+├── pnpm-workspace.yaml   # Definisi ruang kerja (workspace)
+├── package.json          # Skrip root dan dependensi pengembang
+└── eslint.config.mjs     # Konfigurasi ESLint root
+```
+
+## Aplikasi vs Paket (Apps vs Packages)
+
+### Aplikasi (`apps/`)
+
+Aplikasi adalah **program yang dapat diterapkan (deployable)**. Setiap aplikasi memiliki proses build sendiri, server pengembang (dev server), dan dapat diterapkan secara independen.
+
+- Mereka dapat mengimpor dari paket menggunakan protokol `workspace:*`
+- Masing-masing memiliki `package.json`, file konfigurasi, dan skrip sendiri
+
+### Paket (`packages/`)
+
+Paket adalah **pustaka bersama (shared libraries)** yang dikonsumsi oleh aplikasi (dan kadang-kadang oleh paket lain).
+
+- Mereka menyediakan kode yang dapat digunakan kembali (komponen, konfigurasi, tipe)
+- Perubahan pada sebuah paket secara otomatis memicu pembangunan ulang pada aplikasi yang bergantung padanya melalui Turborepo
+
+## File Konfigurasi Utama
+
+### `turbo.json`
+
+Mendefinisikan alur tugas (pipeline) — urutan pembangunan, aturan caching, dan ketergantungan antar tugas. Tugas utama:
+
+- **`build`** — Membangun semua paket dan aplikasi (menghormati urutan ketergantungan)
+- **`dev`** — Memulai server pengembang (tidak masuk cache, persisten)
+- **`lint`** — Menjalankan ESLint di seluruh paket
+
+### `pnpm-workspace.yaml`
+
+Memberitahu pnpm direktori mana saja yang merupakan ruang kerja:
+
+```yaml
+packages:
+  - 'apps/*'
+  - 'packages/*'
+```
+
+### Root `package.json`
+
+Berisi skrip kenyamanan seperti `pnpm dev:web`, `pnpm build:docs`, dll. Ini juga mengelola dependensi pengembang bersama (Prettier, Husky, Commitlint, Turbo).
+
+## Cara Kerja Turborepo
+
+Ketika Anda menjalankan `pnpm build`, Turborepo melakukan:
+
+1. Membaca `turbo.json` untuk memahami ketergantungan tugas
+2. Membangun paket terlebih dahulu (karena aplikasi bergantung padanya)
+3. Membangun aplikasi secara paralel jika memungkinkan
+4. **Menyimpan hasil di cache** — pembangunan berikutnya melewati paket yang tidak berubah
+
+Ini berarti proses pembangunan Anda menjadi cepat, bahkan dalam monorepo berukuran besar.

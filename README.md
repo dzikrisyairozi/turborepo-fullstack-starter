@@ -22,6 +22,7 @@ A production-ready fullstack starter built with **Turborepo** monorepo architect
 - 🎨 **Tailwind CSS** - Utility-first CSS framework
 - 📱 **Responsive Design** - Mobile-first approach with dark/light mode support
 - 🔧 **Developer Experience** - ESLint, Prettier, Husky, and Commitlint pre-configured
+- 🌍 **Internationalization (i18n)** - Full multi-language support (English/Indonesian) across Web, Docs, and Dashboard
 - 🐳 **Docker Ready** - Containerization support for easy deployment
 - 🔄 **CI/CD** - GitHub Actions workflows included
 
@@ -39,6 +40,7 @@ This Monorepo includes the following packages and apps:
 ### Packages
 
 - **`@repo/api-types`** - Auto-generated TS types from the Rust API
+- **`@repo/i18n`** - Shared internationalization configuration and UI components
 - **`@repo/ui`** - Shared React component library
 - **`@repo/eslint-config`** - Shared ESLint configurations
 - **`@repo/tailwind-config`** - Shared Tailwind CSS theme

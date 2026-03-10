@@ -1,0 +1,77 @@
+---
+title: Dashboard
+description: Dashboard admin Vite + React dengan TanStack Router.
+---
+
+Aplikasi `dashboard` adalah dashboard admin **React yang didorong oleh Vite**. Ia menggunakan TanStack Router untuk perutean yang aman tipe (type-safe routing) dan TanStack Query untuk pengambilan data.
+
+## Teknologi (Tech Stack)
+
+- **Vite** — Server pengembang dan pembuat bundel (bundler) secepat kilat
+- **React 19** — Pustaka antarmuka pengguna (UI library)
+- **TanStack Router** — Perutean berbasis file yang type-safe
+- **TanStack Query** — Manajemen status server (server state management)
+- **Recharts** — Visualisasi data (grafik/charts)
+- **React Hook Form** + **Zod** — Penanganan dan validasi formulir
+- **Zustand** — Manajemen status klien (client state management)
+- **Tailwind CSS v4** — Penataan (styling) melalui `@repo/tailwind-config`
+- **shadcn/ui** — Komponen bersama melalui `@repo/ui`
+
+## Struktur Direktori
+
+```
+apps/dashboard/
+├── src/
+│   ├── routes/            # Rute berbasis file TanStack Router
+│   │   ├── __root.tsx     # Tata letak dasar (Root layout)
+│   │   └── index.tsx      # Halaman utama dashboard
+│   ├── components/        # Komponen khusus Dashboard
+│   ├── lib/               # Utilitas dan bantuan
+│   └── main.tsx           # Titik awal (entry point) aplikasi
+├── vite.config.ts         # Konfigurasi Vite
+└── package.json
+```
+
+## Menjalankan Secara Lokal
+
+```bash
+pnpm dev:dashboard
+# Terbuka di http://localhost:5174
+```
+
+## Cara Mengedit
+
+### Menambahkan Rute Baru
+
+Buat file baru di dalam direktori `src/routes/` — TanStack Router secara otomatis akan membuat tipe perutean yang aman (type-safe routes) dari struktur file:
+
+```
+src/routes/users.tsx       →  /users
+src/routes/settings.tsx    →  /settings
+src/routes/users/$id.tsx   →  /users/:id
+```
+
+### Menggunakan Komponen Bersama (Shared Components)
+
+Impor komponen dari paket UI bersama:
+
+```tsx
+import { Button, Card, Input } from '@repo/ui';
+```
+
+### Menambahkan Grafik (Charts)
+
+Dashboard ini menggunakan Recharts. Lihat grafik yang ada pada `src/routes/index.tsx` sebagai referensi.
+
+### Menghubungkan ke API
+
+Gunakan TanStack Query untuk mengambil data dari API Rust:
+
+```tsx
+import { useQuery } from '@tanstack/react-query';
+
+const { data } = useQuery({
+  queryKey: ['users'],
+  queryFn: () => fetch('http://localhost:8080/api/users').then(r => r.json()),
+});
+```

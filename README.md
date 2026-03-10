@@ -65,20 +65,23 @@ This Monorepo includes the following packages and apps:
 
 ### Installation
 
-1. **Clone the repository**
+1. **Use this template** (Recommended)
+   Click the **"Use this template"** button at the top of the GitHub repository to create your own copy and start building immediately.
+
+2. **Clone the repository**
 
    ```bash
-   git clone <your-repo-url>
+   git clone https://github.com/dzikrisyairozi/monorepo-fullstack-starter.git
    cd monorepo-fullstack-starter
    ```
 
-2. **Install dependencies**
+3. **Install dependencies**
 
    ```bash
    pnpm install
    ```
 
-3. **Set up environment variables**
+4. **Set up environment variables**
 
    ```bash
    # Copy environment files
@@ -86,7 +89,7 @@ This Monorepo includes the following packages and apps:
    # Make sure to update your DATABASE_URL in apps/api/.env
    ```
 
-4. **Set up the database** (if using the API)
+5. **Set up the database** (if using the API)
    ```bash
    cd apps/api
    cargo sqlx database setup

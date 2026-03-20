@@ -155,7 +155,7 @@ function Section({
         <h3 className="text-lg font-semibold tracking-tight">{title}</h3>
         <p className="text-sm text-muted-foreground">{description}</p>
       </div>
-      <div className="rounded-xl border border-border bg-white/60 dark:bg-neutral-900/60 backdrop-blur-sm p-6">
+      <div className="rounded-xl border border-border bg-white/60 dark:bg-neutral-900/60 p-6">
         {children}
       </div>
     </section>
@@ -244,7 +244,7 @@ function SandboxPage() {
         description="Container components for grouping related content."
       >
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          <Card className="hover:shadow-lg transition-all duration-300">
+          <Card className="hover:shadow-lg transition-shadow duration-300">
             <CardHeader>
               <CardTitle>Card Title</CardTitle>
               <CardDescription>Card description goes here.</CardDescription>
@@ -260,7 +260,7 @@ function SandboxPage() {
               </Button>
             </CardFooter>
           </Card>
-          <Card className="hover:shadow-lg transition-all duration-300 border-primary/20">
+          <Card className="hover:shadow-lg transition-shadow duration-300 border-primary/20">
             <CardHeader>
               <div className="flex items-center gap-3">
                 <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center">
@@ -278,7 +278,7 @@ function SandboxPage() {
               </p>
             </CardContent>
           </Card>
-          <Card className="hover:shadow-lg transition-all duration-300 bg-gradient-to-br from-primary/5 to-transparent">
+          <Card className="hover:shadow-lg transition-shadow duration-300 bg-gradient-to-br from-primary/5 to-transparent">
             <CardHeader>
               <CardTitle>Gradient</CardTitle>
               <CardDescription>A card with subtle gradient.</CardDescription>

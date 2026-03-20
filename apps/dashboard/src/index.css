@@ -7,4 +7,16 @@
   body {
     @apply antialiased;
   }
+
+  /* Smooth theme transition — only color-related properties, not layout.
+     Tailwind utility classes (e.g. transition-shadow) override this
+     automatically since utilities have higher priority than @layer base. */
+  *,
+  *::before,
+  *::after {
+    transition-property:
+      color, background-color, border-color, outline-color, fill, stroke;
+    transition-duration: 200ms;
+    transition-timing-function: ease-in-out;
+  }
 }

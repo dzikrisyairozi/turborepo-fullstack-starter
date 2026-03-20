@@ -24,7 +24,7 @@ function DashboardLayout() {
   return (
     <div className="flex h-screen bg-neutral-50 dark:bg-neutral-950 overflow-hidden font-sans">
       {/* Sidebar */}
-      <aside className="w-64 flex flex-col bg-white/70 dark:bg-black/70 backdrop-blur-xl border-r border-border shadow-sm transition-all z-20">
+      <aside className="w-64 flex flex-col bg-white/70 dark:bg-black/70 backdrop-blur-xl border-r border-border shadow-sm transition-colors z-20">
         <div className="h-16 flex items-center px-6 border-b border-border">
           <div className="h-8 w-8 bg-primary rounded-lg flex items-center justify-center mr-3 shadow-md">
             <Box className="h-5 w-5 text-primary-foreground" />
@@ -104,9 +104,9 @@ function DashboardLayout() {
 
         {/* Scrollable area */}
         <div className="flex-1 overflow-auto p-4 sm:p-8 relative pb-20">
-          {/* Subtle background glow effect for extreme modern UI feel */}
-          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 dark:bg-primary/5 blur-[120px] rounded-full pointer-events-none -mr-20 -mt-20" />
-          <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-indigo-500/5 blur-[120px] rounded-full pointer-events-none -ml-20 -mb-20" />
+          {/* Subtle background glow effect — use will-change to promote to GPU layer */}
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 dark:bg-primary/5 blur-[120px] rounded-full pointer-events-none -mr-20 -mt-20 will-change-transform" />
+          <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-indigo-500/5 blur-[120px] rounded-full pointer-events-none -ml-20 -mb-20 will-change-transform" />
 
           <div className="max-w-7xl mx-auto relative z-10 w-full animate-in fade-in slide-in-from-bottom-4 duration-500">
             <Outlet />

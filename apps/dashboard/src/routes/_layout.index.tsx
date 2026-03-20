@@ -91,7 +91,7 @@ function Index() {
         {stats.map((stat, i) => (
           <Card
             key={i}
-            className="hover:shadow-lg transition-all duration-300 bg-white/60 dark:bg-neutral-900/60 backdrop-blur-sm border-white/20 dark:border-white/5"
+            className="hover:shadow-lg transition-shadow duration-300 bg-white/60 dark:bg-neutral-900/60 border-white/20 dark:border-white/5"
           >
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
@@ -108,7 +108,7 @@ function Index() {
       </div>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-7">
-        <Card className="lg:col-span-4 hover:shadow-md transition-shadow bg-white/60 dark:bg-neutral-900/60 backdrop-blur-sm">
+        <Card className="lg:col-span-4 hover:shadow-md transition-shadow bg-white/60 dark:bg-neutral-900/60">
           <CardHeader>
             <CardTitle>{t('index.chartOverview')}</CardTitle>
             <CardDescription>{t('index.chartDescription')}</CardDescription>
@@ -134,7 +134,7 @@ function Index() {
             </ChartContainer>
           </CardContent>
         </Card>
-        <Card className="lg:col-span-3 hover:shadow-md transition-shadow bg-white/60 dark:bg-neutral-900/60 backdrop-blur-sm">
+        <Card className="lg:col-span-3 hover:shadow-md transition-shadow bg-white/60 dark:bg-neutral-900/60">
           <CardHeader>
             <CardTitle>{t('index.recentSales')}</CardTitle>
             <CardDescription>

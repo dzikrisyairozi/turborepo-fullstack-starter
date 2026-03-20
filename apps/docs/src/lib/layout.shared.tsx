@@ -11,6 +11,7 @@
 import { i18n } from '@/lib/i18n';
 import { defineI18nUI } from 'fumadocs-ui/i18n';
 import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
+import { ThemeToggle } from '@/components/theme-toggle';
 
 export const i18nUI = defineI18nUI(i18n, {
   translations: {
@@ -34,6 +35,9 @@ export const i18nUI = defineI18nUI(i18n, {
 export function baseOptions(locale: string): BaseLayoutProps {
   return {
     i18n,
+    themeSwitch: {
+      component: <ThemeToggle />,
+    },
     nav: {
       title: (
         <span className="font-bold text-primary">

@@ -4,18 +4,11 @@
 @source "../../../packages/i18n/src";
 
 @layer base {
+  /* Smooth background transition on theme change — scoped to body only
+     to avoid forcing the browser to animate every DOM node. */
   body {
     @apply antialiased;
-  }
-
-  /* Smooth theme transition — only color-related properties, not layout.
-     Tailwind utility classes (e.g. transition-shadow) override this
-     automatically since utilities have higher priority than @layer base. */
-  *,
-  *::before,
-  *::after {
-    transition-property:
-      color, background-color, border-color, outline-color, fill, stroke;
+    transition-property: background-color;
     transition-duration: 200ms;
     transition-timing-function: ease-in-out;
   }

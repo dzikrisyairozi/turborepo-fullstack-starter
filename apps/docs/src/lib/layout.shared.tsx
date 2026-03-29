@@ -44,12 +44,13 @@ export function baseOptions(locale: string): BaseLayoutProps {
           🚀 Monorepo Fullstack Starter
         </span>
       ),
+      url: `/${locale}`,
     },
     githubUrl: 'https://github.com/dzikrisyairozi/monorepo-fullstack-starter',
     links: [
       {
         text: locale === 'id' ? 'Dokumentasi' : 'Docs',
-        url: '/docs',
+        url: `/${locale}/docs`,
         active: 'nested-url',
       },
     ],

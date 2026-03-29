@@ -45,7 +45,7 @@ export default async function HomePage({
         </p>
         <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
           <Link
-            href="/docs"
+            href={`/${lang}/docs`}
             className="inline-flex h-11 items-center justify-center rounded-lg bg-primary px-6 font-medium text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
           >
             {t.readDocs}

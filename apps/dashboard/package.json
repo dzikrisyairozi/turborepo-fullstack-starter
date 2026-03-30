@@ -14,21 +14,21 @@
     "@repo/i18n": "workspace:*",
     "@repo/tailwind-config": "workspace:*",
     "@repo/ui": "workspace:*",
-    "@tanstack/react-query": "^5.95.0",
-    "@tanstack/react-router": "^1.168.2",
-    "lucide-react": "^0.577.0",
+    "@tanstack/react-query": "^5.95.2",
+    "@tanstack/react-router": "^1.168.8",
+    "lucide-react": "^1.7.0",
     "next-themes": "^0.4.6",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-hook-form": "^7.72.0",
-    "recharts": "3.8.0",
+    "recharts": "3.8.1",
     "zod": "^4.3.6",
     "zustand": "^5.0.12"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@tailwindcss/vite": "^4.2.2",
-    "@tanstack/router-plugin": "^1.167.3",
+    "@tanstack/router-plugin": "^1.167.9",
     "@types/node": "^25.5.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
@@ -38,8 +38,8 @@
     "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.4.0",
     "tailwindcss": "^4.2.2",
-    "typescript": "~5.9.3",
-    "typescript-eslint": "^8.57.1",
-    "vite": "^8.0.1"
+    "typescript": "~6.0.2",
+    "typescript-eslint": "^8.57.2",
+    "vite": "^8.0.3"
   }
 }
